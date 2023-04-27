@@ -1,0 +1,48 @@
+.mainNav {
+  background: rgba(#081624, .5);
+  box-shadow: 0 0 9px 3px rgba(226, 30, 228, 0.24);
+}
+.navList {
+  padding: 0;
+  list-style: none;
+  display: flex;
+  font-family: 'Roboto Condensed', sans-serif;
+}
+.navItem {
+  font-size: 18px;
+  margin: 0 15px;
+  text-transform: uppercase;
+}
+.navLink {
+  display: block;
+  border-bottom: 3px solid transparent;
+  padding: 20px 5px 17px;
+  text-decoration: none;
+  color: #fff;
+  transition: linear .2s;
+  transition-property: color, border-color;
+
+  &:hover {
+    color: #b01ba5;
+    border-color: #b01ba5;
+  }
+}
+.profileItem {
+  margin-left: auto;
+  align-self: center;
+  font-size: 14px;
+  text-transform: none;
+  
+  .navLink {
+    padding: 0;
+    &:hover {
+      border-color: transparent;
+    }
+  }
+}
+
+.logoutLink {
+  color: #ce4f4f;
+  text-decoration: underline;
+  cursor: pointer;
+}
