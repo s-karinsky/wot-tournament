@@ -1,9 +1,8 @@
 import { useState, useEffect } from 'react'
-import { Route, Routes, Redirect } from 'react-router-dom'
+import { Route, Routes } from 'react-router-dom'
 import axios from 'axios'
 import Header from './components/Header'
 import Home from './pages/Home'
-import styles from './App.module.scss'
 
 export default function App() {
   const [ user, setUser ] = useState({ authorized: false })

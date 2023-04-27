@@ -1,12 +1,11 @@
 import React from 'react'
 import MainNav from '../MainNav'
-import styles from './styles.module.scss'
 
 const NAV_ITEMS = [
   {
     link: '/tournaments',
     title: 'Турниры',
-    
+
   },
   {
     link: '/akr',
