@@ -2,10 +2,11 @@ import express from 'express'
 import jwt from 'json-web-token'
 import axios from '../../utils/axios.js'
 
+const { API_KEY, JWT_SECRET, API_URL, SITE_URL = API_URL } = process.env
+
 const router = express.Router()
 
 router.get('/', function(req, res) {
-  const { API_KEY, JWT_SECRET, API_URL, SITE_URL = API_URL } = process.env
   const token = req.cookies.token
 
   jwt.decode(JWT_SECRET, token, function(error, result) {

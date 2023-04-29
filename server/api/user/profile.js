@@ -2,10 +2,11 @@ import express from 'express'
 import jwt from 'json-web-token'
 import axios from '../../utils/axios.js'
 
+const { JWT_SECRET, API_KEY } = process.env
+
 const router = express.Router()
 
 router.get('/', function(req, res) {
-  const { JWT_SECRET, API_KEY } = process.env
   const token = req.cookies.token
   if (!token) {
     res.status(403).json({ success: false, error: 403 })

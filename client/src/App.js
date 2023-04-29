@@ -1,40 +1,31 @@
-import { useState, useEffect } from 'react'
+import { useEffect } from 'react'
 import { Route, Routes } from 'react-router-dom'
-import axios from 'axios'
 import { useSelector, useDispatch } from 'react-redux'
 import Header from './components/Header'
+import Footer from './components/Footer'
 import Loader from './components/Loader'
 import Home from './pages/Home'
-import { setProfile, setLoaded, setLoading } from './redux/store/user'
+import { getProfile } from './redux/store/user'
+import { getData } from './redux/store/data'
 
 export default function App() {
   const isUserLoaded = useSelector(state => state.user.isLoaded)
+  const isDataLoaded = useSelector(state => state.data.isLoaded)
   const dispatch = useDispatch()
 
   useEffect(() => {
-    dispatch(setLoading(true))
-    axios.get('/api/user/profile').then(res => {
-      dispatch(setLoading(false))
-      dispatch(setLoaded(true))
-      const { data = {} } = res
-      if (data.status !== 'ok') return
-      const userMap = data.data
-      const userId = Object.keys(userMap)[0]
-      const userData = userMap[userId]
-      dispatch(setProfile({ ...userData, authorized: true }))
-    }).catch(() => {
-      dispatch(setLoading(false))
-      dispatch(setLoaded(true))
-    })
+    if (!isUserLoaded) dispatch(getProfile)
+    if (!isDataLoaded) dispatch(getData)
   }, [])
 
-  return isUserLoaded ?
+  return isUserLoaded && isDataLoaded ?
     <div>
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/as" element={<Home />} />
       </Routes>
+      <Footer />
     </div> :
     <Loader />
 }

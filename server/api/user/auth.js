@@ -1,10 +1,11 @@
 import express from 'express'
 import jwt from 'json-web-token'
 
+const { API_KEY, API_URL, API_EXTERNAL, JWT_SECRET, SITE_URL = API_URL } = process.env
+
 const router = express.Router()
 
 router.get('/', function(req, res) {
-  const { API_KEY, API_URL, API_EXTERNAL, JWT_SECRET, SITE_URL = API_URL } = process.env
 
   if (!req.query?.status) {
     res.redirect(`${API_EXTERNAL}/auth/login/?application_id=${API_KEY}&redirect_uri=${API_URL}/api/user/auth`)

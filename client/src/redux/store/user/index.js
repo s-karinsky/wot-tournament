@@ -25,4 +25,6 @@ export const userSlice = createSlice({
 
 export const { setLoading, setLoaded, setProfile } = userSlice.actions
 
+export * from './thunk'
+
 export default userSlice.reducer

@@ -1,0 +1,14 @@
+.newsItem {
+  margin-bottom: 20px;
+}
+.newsDate {
+  font-size: 12px;
+  display: block;
+}
+.newsLink {
+  color: #fff;
+
+  &:hover {
+    text-decoration: none;
+  }
+}
