@@ -12,6 +12,7 @@
   font-size: 18px;
   margin: 0 15px;
   text-transform: uppercase;
+  align-self: center;
 }
 .navLink {
   display: block;
@@ -22,9 +23,25 @@
   transition: linear .2s;
   transition-property: color, border-color;
 
+  &_active,
   &:hover {
     color: #b01ba5;
     border-color: #b01ba5;
+  }
+  
+  &Logo {
+    border: none;
+    text-transform: none;
+    font-size: 32px;
+    font-weight: bold;
+    padding: 0;
+    transition-property: text-shadow;
+    
+    &_active,
+    &:hover {
+      text-shadow: 0 0 5px #b01ba5;
+      color: #fff;
+    }
   }
 }
 .profileItem {
@@ -32,15 +49,16 @@
   align-self: center;
   font-size: 14px;
   text-transform: none;
+  text-align: right;
   
   .navLink {
-    padding: 0;
-    &:hover {
-      border-color: transparent;
-    }
+    border: none;
   }
 }
-
+.accountLink {
+  color: #fff;
+  text-decoration: none;
+}
 .logoutLink {
   color: #ce4f4f;
   text-decoration: underline;

@@ -5,14 +5,15 @@ const NAV_ITEMS = [
   {
     link: '/tournaments',
     title: 'Турниры',
-
+    roles: ['admin']
   },
   {
     link: '/akr',
-    title: 'АКР'
+    title: 'АКР',
+    roles: ['admin']
   },
   {
-    link: '/rules',
+    link: '/terms-of-use',
     title: 'Правила сайта'
   },
   {
@@ -25,10 +26,10 @@ const NAV_ITEMS = [
   }
 ]
 
-export default function Header({ user }) {
+export default function Header() {
   return (
     <header>
-      <MainNav items={NAV_ITEMS} user={user} />
+      <MainNav items={NAV_ITEMS} />
     </header>
   )
 }
