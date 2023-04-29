@@ -9,7 +9,7 @@ export default function MainNav({
 }) {
   const user = useSelector(state => state.user)
   const { pathname } = useLocation()
-
+  const nav = user.authorized ? items : items.slice(2)
   return (
     <div className={styles.mainNav}>
       <ul className={cn('container', styles.navList)}>
@@ -24,7 +24,7 @@ export default function MainNav({
             ТаВ
           </Link>
         </li>
-        {items.map(item => (
+        {nav.map(item => (
           <li className={styles.navItem} key={item.link}>
             <Link
               className={cn(styles.navLink, {

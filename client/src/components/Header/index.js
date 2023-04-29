@@ -1,5 +1,6 @@
 import React from 'react'
 import MainNav from '../MainNav'
+import styles from './styles.module.scss'
 
 const NAV_ITEMS = [
   {
@@ -28,7 +29,7 @@ const NAV_ITEMS = [
 
 export default function Header() {
   return (
-    <header>
+    <header className={styles.header}>
       <MainNav items={NAV_ITEMS} />
     </header>
   )

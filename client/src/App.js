@@ -5,6 +5,7 @@ import Header from './components/Header'
 import Footer from './components/Footer'
 import Loader from './components/Loader'
 import Home from './pages/Home'
+import TermsOfUse from './pages/TermsOfUse'
 import { getProfile } from './redux/store/user'
 import { getData } from './redux/store/data'
 
@@ -23,7 +24,7 @@ export default function App() {
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/as" element={<Home />} />
+        <Route path="/terms-of-use" element={<TermsOfUse />} />
       </Routes>
       <Footer />
     </div> :
