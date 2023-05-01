@@ -23,9 +23,11 @@ router.get('/', function(req, res) {
     } else {
       axios.get(`/account/info/?application_id=${API_KEY}&account_id=${result.account_id}&access_token=${result.access_token}`)
         .then(response => {
-            res.json(response.data)
-        }).catch(error => {
-            res.status(500).json(error)
+          const user = Object.values(response.data?.data)[0]
+          res.json({ user, success: true })
+        })
+        .catch(error => {
+          res.status(500).json(error)
         })
     }
   })

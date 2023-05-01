@@ -7,12 +7,9 @@ export const getProfile = async (dispatch) => {
     const res = await axios.get('/api/user/profile')
     dispatch(setLoading(false))
     dispatch(setLoaded(true))
-    const { data = {} } = res
-    if (data.status !== 'ok') return
-    const userMap = data.data
-    const userId = Object.keys(userMap)[0]
-    const userData = userMap[userId]
-    dispatch(setProfile({ ...userData, authorized: true }))
+    const { data: { success, user } = {} } = res
+    if (!success) return
+    dispatch(setProfile({ ...user, authorized: true }))
   } catch(e) {
     dispatch(setLoading(false))
     dispatch(setLoaded(true))

@@ -8,17 +8,11 @@ const router = express.Router()
 router.get('/', function(req, res) {
   axios.get(`/clans/info/?application_id=${API_KEY}&clan_id=570514`)
     .then(response => {
-      const { data } = response
-      res.json({
-        clan: data.data,
-        success: true
-      })
+      const clan = Object.values(response.data?.data)[0]
+      res.json({ clan, success: true })
     })
     .catch(error => {
-      res.json({
-        success: false,
-        error
-      })
+      res.status(500).json(error)
     })
 })
 

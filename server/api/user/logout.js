@@ -15,9 +15,12 @@ router.get('/', function(req, res) {
       return
     }
     axios.post(`/auth/logout/?application_id=${API_KEY}&access_token=${result.access_token}`)
-      .then(function() {
+      .then(() => {
         res.clearCookie('token')
         res.redirect(SITE_URL)
+      })
+      .catch(error => {
+        res.status(500).json(error)
       })
   })
 })

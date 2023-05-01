@@ -14,11 +14,9 @@ export const getNews = async (dispatch) => {
 export const getClan = async (dispatch) => {
   try {
     const result = await axios.get('/api/clan')
-    const { data } = result
-    const clanMap = data.clan
-    const clanId = Object.keys(clanMap)[0]
-    const clanData = clanMap[clanId]
-    dispatch(setClan(clanData))
+    const { data: { success, clan } = {} } = result
+    if (!success) return
+    dispatch(setClan(clan))
   } catch(e) {
     console.error(e)
   }
