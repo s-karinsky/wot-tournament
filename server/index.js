@@ -4,6 +4,7 @@ import express from 'express'
 import cookieParser from 'cookie-parser'
 import morgan from 'morgan'
 import session from 'express-session'
+import mongoose from 'mongoose'
 
 import clanRouter from './api/clan.js'
 import userRouter from './api/user/index.js'
@@ -28,6 +29,14 @@ app.get('*', (req, res) => {
   res.sendFile(path.resolve(__dirname, '../client/build', 'index.html'));
 })
 
-app.listen(PORT, () => {
-  console.log(`Server listening on ${PORT}`)
-})
+const start = async () => {
+  try {
+    await mongoose.connect(process.env.MONGODB_URL)
+    app.listen(PORT, () => console.log(`Server listening on ${PORT}`))
+  } catch (error) {
+    console.error(error)
+    process.exit(1)
+  }
+}
+
+start()

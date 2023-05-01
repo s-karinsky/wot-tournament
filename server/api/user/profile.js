@@ -1,5 +1,6 @@
 import express from 'express'
 import jwt from 'json-web-token'
+import User from '../../models/user.js'
 import axios from '../../utils/axios.js'
 
 const { JWT_SECRET, API_KEY } = process.env
@@ -13,22 +14,22 @@ router.get('/', function(req, res) {
     return
   }
   
-  jwt.decode(JWT_SECRET, token, function(error, result) {
+  jwt.decode(JWT_SECRET, token, async function(error, result) {
     if (error) {
       res.status(500).json(error)
       return
     }
-    if (req.session.user) {
-      res.json(req.session.user)
-    } else {
-      axios.get(`/account/info/?application_id=${API_KEY}&account_id=${result.account_id}&access_token=${result.access_token}`)
-        .then(response => {
-          const user = Object.values(response.data?.data)[0]
-          res.json({ user, success: true })
-        })
-        .catch(error => {
-          res.status(500).json(error)
-        })
+    try {
+      const response = await axios.get(`/account/info/?application_id=${API_KEY}&account_id=${result.account_id}&access_token=${result.access_token}`)
+      const user = Object.values(response.data?.data)[0] || {}
+      const { account_id, clan_id } = user
+      const userDb = await User.findOne({ accountId: result.account_id })
+      if (!userDb) {
+        await User.create({ accountId: account_id, clanId: clan_id })
+      }
+      res.json({ user, success: true })
+    } catch(error) {
+      res.status(500).json(error)
     }
   })
 })
