@@ -1,0 +1,42 @@
+.flag {
+  display: inline-block;
+  width: 29px;
+  height: 18px;
+}
+
+.tanksList {
+  display: flex;
+  flex-wrap: wrap;
+  max-height: 200px;
+  overflow: auto;
+}
+.tanksItem {
+  width: 25%;
+}
+.placeButton {
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  border-radius: 100%;
+  border: 2px solid #fff;
+  text-align: center;
+  line-height: 24px;
+  font-size: 1.3em;
+  font-family: sans-serif;
+  cursor: pointer;
+  margin-left: 10px;
+}
+.placesList {
+  margin: 0;
+  padding: 0 0 0 20px;
+}
+.placesItem {
+  margin-top: 10px;
+}
+.formBlock {
+  margin-bottom: 40px;
+
+  & > label {
+    margin-right: 20px;
+  }
+}
