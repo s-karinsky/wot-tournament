@@ -7,8 +7,9 @@ import session from 'express-session'
 import mongoose from 'mongoose'
 
 import clanRouter from './api/clan.js'
-import userRouter from './api/user/index.js'
 import newsRouter from './api/news.js'
+import tanksRouter from './api/tanks.js'
+import userRouter from './api/user/index.js'
 
 const __filename = url.fileURLToPath(import.meta.url)
 const __dirname = url.fileURLToPath(new URL('.', import.meta.url))
@@ -23,8 +24,10 @@ app.use(session({ secret: process.env.SESSION_SECRET }))
 app.use(express.static(path.resolve(__dirname, '../client/build')))
 
 app.use('/api/clan', clanRouter)
-app.use('/api/user', userRouter)
 app.use('/api/news', newsRouter)
+app.use('/api/tanks', tanksRouter)
+app.use('/api/user', userRouter)
+
 app.get('*', (req, res) => {
   res.sendFile(path.resolve(__dirname, '../client/build', 'index.html'));
 })

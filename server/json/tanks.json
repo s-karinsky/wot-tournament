@@ -1,0 +1,3425 @@
+[
+    {
+        "id": "1",
+        "country": "china",
+        "type": "medium",
+        "level": 8,
+        "name": "Type 59"
+    },
+    {
+        "id": "2",
+        "country": "poland",
+        "type": "medium",
+        "level": 6,
+        "name": "Pudel"
+    },
+    {
+        "id": "3",
+        "country": "germany",
+        "type": "SPG",
+        "level": 6,
+        "name": "Hummel"
+    },
+    {
+        "id": "4",
+        "country": "china",
+        "type": "light",
+        "level": 7,
+        "name": "Type 62"
+    },
+    {
+        "id": "5",
+        "country": "ussr",
+        "type": "heavy",
+        "level": 7,
+        "name": "ИС"
+    },
+    {
+        "id": "6",
+        "country": "germany",
+        "type": "heavy",
+        "level": 7,
+        "name": "Tiger I"
+    },
+    {
+        "id": "7",
+        "country": "china",
+        "type": "medium",
+        "level": 8,
+        "name": "Type 59 G"
+    },
+    {
+        "id": "8",
+        "country": "usa",
+        "type": "heavy",
+        "level": 6,
+        "name": "M6"
+    },
+    {
+        "id": "9",
+        "country": "china",
+        "type": "heavy",
+        "level": 8,
+        "name": "WZ-111"
+    },
+    {
+        "id": "10",
+        "country": "poland",
+        "type": "heavy",
+        "level": 8,
+        "name": "50TP prototyp"
+    },
+    {
+        "id": "11",
+        "country": "china",
+        "type": "medium",
+        "level": 7,
+        "name": "T-34-1"
+    },
+    {
+        "id": "12",
+        "country": "uk",
+        "type": "medium",
+        "level": 6,
+        "name": "Cromwell"
+    },
+    {
+        "id": "13",
+        "country": "japan",
+        "type": "medium",
+        "level": 7,
+        "name": "Type 5 Chi-Ri"
+    },
+    {
+        "id": "14",
+        "country": "germany",
+        "type": "medium",
+        "level": 7,
+        "name": "Panther"
+    },
+    {
+        "id": "15",
+        "country": "usa",
+        "type": "medium",
+        "level": 6,
+        "name": "M4A3E8 Sherman"
+    },
+    {
+        "id": "16",
+        "country": "czech",
+        "type": "medium",
+        "level": 6,
+        "name": "Škoda T 25"
+    },
+    {
+        "id": "17",
+        "country": "sweden",
+        "type": "medium",
+        "level": 6,
+        "name": "Strv 74"
+    },
+    {
+        "id": "18",
+        "country": "germany",
+        "type": "AT-SPG",
+        "level": 6,
+        "name": "Jagdpanzer IV"
+    },
+    {
+        "id": "19",
+        "country": "usa",
+        "type": "medium",
+        "level": 7,
+        "name": "T20"
+    },
+    {
+        "id": "20",
+        "country": "china",
+        "type": "medium",
+        "level": 8,
+        "name": "T-34-2"
+    },
+    {
+        "id": "21",
+        "country": "czech",
+        "type": "medium",
+        "level": 7,
+        "name": "Konštrukta T-34/100"
+    },
+    {
+        "id": "22",
+        "country": "sweden",
+        "type": "medium",
+        "level": 7,
+        "name": "Leo"
+    },
+    {
+        "id": "23",
+        "country": "italy",
+        "type": "medium",
+        "level": 6,
+        "name": "P.43 bis"
+    },
+    {
+        "id": "24",
+        "country": "ussr",
+        "type": "SPG",
+        "level": 7,
+        "name": "С-51"
+    },
+    {
+        "id": "25",
+        "country": "china",
+        "type": "medium",
+        "level": 9,
+        "name": "WZ-120"
+    },
+    {
+        "id": "26",
+        "country": "japan",
+        "type": "medium",
+        "level": 6,
+        "name": "Type 4 Chi-To"
+    },
+    {
+        "id": "27",
+        "country": "czech",
+        "type": "medium",
+        "level": 8,
+        "name": "TVP VTU Koncept"
+    },
+    {
+        "id": "28",
+        "country": "sweden",
+        "type": "heavy",
+        "level": 8,
+        "name": "Emil I"
+    },
+    {
+        "id": "29",
+        "country": "italy",
+        "type": "medium",
+        "level": 7,
+        "name": "P.43 ter"
+    },
+    {
+        "id": "30",
+        "country": "china",
+        "type": "heavy",
+        "level": 9,
+        "name": "WZ-111 model 1-4"
+    },
+    {
+        "id": "31",
+        "country": "uk",
+        "type": "light",
+        "level": 6,
+        "name": "Crusader"
+    },
+    {
+        "id": "32",
+        "country": "czech",
+        "type": "medium",
+        "level": 9,
+        "name": "Škoda T 50"
+    },
+    {
+        "id": "33",
+        "country": "sweden",
+        "type": "heavy",
+        "level": 9,
+        "name": "Emil II"
+    },
+    {
+        "id": "34",
+        "country": "italy",
+        "type": "medium",
+        "level": 8,
+        "name": "P.44 Pantera"
+    },
+    {
+        "id": "35",
+        "country": "ussr",
+        "type": "AT-SPG",
+        "level": 7,
+        "name": "СУ-152"
+    },
+    {
+        "id": "36",
+        "country": "germany",
+        "type": "heavy",
+        "level": 6,
+        "name": "VK 36.01 (H)"
+    },
+    {
+        "id": "37",
+        "country": "czech",
+        "type": "medium",
+        "level": 10,
+        "name": "TVP T 50/51"
+    },
+    {
+        "id": "38",
+        "country": "sweden",
+        "type": "heavy",
+        "level": 10,
+        "name": "Kranvagn"
+    },
+    {
+        "id": "39",
+        "country": "poland",
+        "type": "medium",
+        "level": 6,
+        "name": "40TP Habicha"
+    },
+    {
+        "id": "40",
+        "country": "italy",
+        "type": "medium",
+        "level": 9,
+        "name": "Prototipo Standard B"
+    },
+    {
+        "id": "41",
+        "country": "ussr",
+        "type": "medium",
+        "level": 6,
+        "name": "Т-34-85"
+    },
+    {
+        "id": "42",
+        "country": "usa",
+        "type": "AT-SPG",
+        "level": 9,
+        "name": "T30"
+    },
+    {
+        "id": "43",
+        "country": "france",
+        "type": "heavy",
+        "level": 6,
+        "name": "ARL 44"
+    },
+    {
+        "id": "44",
+        "country": "japan",
+        "type": "medium",
+        "level": 8,
+        "name": "STA-1"
+    },
+    {
+        "id": "45",
+        "country": "poland",
+        "type": "heavy",
+        "level": 7,
+        "name": "45TP Habicha"
+    },
+    {
+        "id": "46",
+        "country": "italy",
+        "type": "medium",
+        "level": 10,
+        "name": "Progetto M40 mod. 65"
+    },
+    {
+        "id": "47",
+        "country": "ussr",
+        "type": "heavy",
+        "level": 6,
+        "name": "КВ-85"
+    },
+    {
+        "id": "48",
+        "country": "usa",
+        "type": "heavy",
+        "level": 8,
+        "name": "T34"
+    },
+    {
+        "id": "49",
+        "country": "china",
+        "type": "heavy",
+        "level": 8,
+        "name": "110"
+    },
+    {
+        "id": "50",
+        "country": "czech",
+        "type": "heavy",
+        "level": 10,
+        "name": "Vz. 55"
+    },
+    {
+        "id": "51",
+        "country": "poland",
+        "type": "heavy",
+        "level": 8,
+        "name": "53TP Markowskiego"
+    },
+    {
+        "id": "52",
+        "country": "italy",
+        "type": "heavy",
+        "level": 10,
+        "name": "Rinoceronte"
+    },
+    {
+        "id": "53",
+        "country": "france",
+        "type": "heavy",
+        "level": 8,
+        "name": "AMX 50 100"
+    },
+    {
+        "id": "54",
+        "country": "uk",
+        "type": "heavy",
+        "level": 7,
+        "name": "Black Prince"
+    },
+    {
+        "id": "55",
+        "country": "czech",
+        "type": "heavy",
+        "level": 9,
+        "name": "TNH T Vz. 51"
+    },
+    {
+        "id": "56",
+        "country": "poland",
+        "type": "heavy",
+        "level": 9,
+        "name": "50TP Tyszkiewicza"
+    },
+    {
+        "id": "57",
+        "country": "italy",
+        "type": "heavy",
+        "level": 7,
+        "name": "Carro d'assalto P.88"
+    },
+    {
+        "id": "58",
+        "country": "china",
+        "type": "light",
+        "level": 7,
+        "name": "WZ-131"
+    },
+    {
+        "id": "59",
+        "country": "japan",
+        "type": "medium",
+        "level": 9,
+        "name": "Type 61"
+    },
+    {
+        "id": "60",
+        "country": "czech",
+        "type": "heavy",
+        "level": 8,
+        "name": "TNH 105/1000"
+    },
+    {
+        "id": "61",
+        "country": "poland",
+        "type": "heavy",
+        "level": 10,
+        "name": "60TP Lewandowskiego"
+    },
+    {
+        "id": "62",
+        "country": "italy",
+        "type": "heavy",
+        "level": 9,
+        "name": "Progetto C50 mod. 66"
+    },
+    {
+        "id": "63",
+        "country": "ussr",
+        "type": "AT-SPG",
+        "level": 6,
+        "name": "СУ-100"
+    },
+    {
+        "id": "64",
+        "country": "china",
+        "type": "heavy",
+        "level": 7,
+        "name": "IS-2"
+    },
+    {
+        "id": "65",
+        "country": "france",
+        "type": "medium",
+        "level": 10,
+        "name": "Bat.-Châtillon 25 t"
+    },
+    {
+        "id": "66",
+        "country": "uk",
+        "type": "medium",
+        "level": 6,
+        "name": "Sherman Firefly"
+    },
+    {
+        "id": "67",
+        "country": "japan",
+        "type": "medium",
+        "level": 10,
+        "name": "STB-1"
+    },
+    {
+        "id": "68",
+        "country": "czech",
+        "type": "heavy",
+        "level": 7,
+        "name": "Vz. 44-1"
+    },
+    {
+        "id": "69",
+        "country": "sweden",
+        "type": "AT-SPG",
+        "level": 6,
+        "name": "Ikv 65 Alt II"
+    },
+    {
+        "id": "70",
+        "country": "italy",
+        "type": "heavy",
+        "level": 8,
+        "name": "Progetto CC55 mod. 54"
+    },
+    {
+        "id": "71",
+        "country": "germany",
+        "type": "AT-SPG",
+        "level": 7,
+        "name": "Jagdpanther"
+    },
+    {
+        "id": "72",
+        "country": "usa",
+        "type": "heavy",
+        "level": 7,
+        "name": "T29"
+    },
+    {
+        "id": "73",
+        "country": "china",
+        "type": "light",
+        "level": 8,
+        "name": "WZ-132"
+    },
+    {
+        "id": "74",
+        "country": "france",
+        "type": "heavy",
+        "level": 9,
+        "name": "AMX 50 120"
+    },
+    {
+        "id": "75",
+        "country": "uk",
+        "type": "heavy",
+        "level": 8,
+        "name": "Caernarvon"
+    },
+    {
+        "id": "76",
+        "country": "japan",
+        "type": "heavy",
+        "level": 10,
+        "name": "Type 5 Heavy"
+    },
+    {
+        "id": "77",
+        "country": "sweden",
+        "type": "AT-SPG",
+        "level": 7,
+        "name": "Ikv 90 Typ B"
+    },
+    {
+        "id": "78",
+        "country": "poland",
+        "type": "medium",
+        "level": 6,
+        "name": "B.U.G.I."
+    },
+    {
+        "id": "79",
+        "country": "ussr",
+        "type": "SPG",
+        "level": 8,
+        "name": "СУ-14-2"
+    },
+    {
+        "id": "80",
+        "country": "germany",
+        "type": "medium",
+        "level": 7,
+        "name": "VK 30.02 (D)"
+    },
+    {
+        "id": "81",
+        "country": "china",
+        "type": "medium",
+        "level": 10,
+        "name": "121"
+    },
+    {
+        "id": "82",
+        "country": "japan",
+        "type": "heavy",
+        "level": 9,
+        "name": "Type 4 Heavy"
+    },
+    {
+        "id": "83",
+        "country": "sweden",
+        "type": "AT-SPG",
+        "level": 8,
+        "name": "UDES 03"
+    },
+    {
+        "id": "84",
+        "country": "poland",
+        "type": "medium",
+        "level": 7,
+        "name": "CS-44"
+    },
+    {
+        "id": "85",
+        "country": "italy",
+        "type": "AT-SPG",
+        "level": 6,
+        "name": "Semovente M43 Bassotto"
+    },
+    {
+        "id": "86",
+        "country": "ussr",
+        "type": "medium",
+        "level": 8,
+        "name": "Т-44"
+    },
+    {
+        "id": "87",
+        "country": "usa",
+        "type": "heavy",
+        "level": 8,
+        "name": "T32"
+    },
+    {
+        "id": "88",
+        "country": "uk",
+        "type": "heavy",
+        "level": 9,
+        "name": "Conqueror"
+    },
+    {
+        "id": "89",
+        "country": "sweden",
+        "type": "AT-SPG",
+        "level": 9,
+        "name": "Strv 103-0"
+    },
+    {
+        "id": "90",
+        "country": "poland",
+        "type": "medium",
+        "level": 8,
+        "name": "CS-53"
+    },
+    {
+        "id": "91",
+        "country": "italy",
+        "type": "AT-SPG",
+        "level": 7,
+        "name": "SMV CC-56"
+    },
+    {
+        "id": "92",
+        "country": "france",
+        "type": "SPG",
+        "level": 6,
+        "name": "AMX 13 F3 AM"
+    },
+    {
+        "id": "93",
+        "country": "uk",
+        "type": "heavy",
+        "level": 6,
+        "name": "Churchill VII"
+    },
+    {
+        "id": "94",
+        "country": "sweden",
+        "type": "AT-SPG",
+        "level": 10,
+        "name": "Strv 103B"
+    },
+    {
+        "id": "95",
+        "country": "italy",
+        "type": "AT-SPG",
+        "level": 8,
+        "name": "SMV CC-67"
+    },
+    {
+        "id": "96",
+        "country": "china",
+        "type": "light",
+        "level": 6,
+        "name": "59-16"
+    },
+    {
+        "id": "97",
+        "country": "france",
+        "type": "light",
+        "level": 9,
+        "name": "AMX 13 90"
+    },
+    {
+        "id": "98",
+        "country": "japan",
+        "type": "heavy",
+        "level": 8,
+        "name": "O-Ho"
+    },
+    {
+        "id": "99",
+        "country": "sweden",
+        "type": "medium",
+        "level": 8,
+        "name": "UDES 14 Alt 5"
+    },
+    {
+        "id": "100",
+        "country": "germany",
+        "type": "heavy",
+        "level": 8,
+        "name": "Tiger II"
+    },
+    {
+        "id": "101",
+        "country": "china",
+        "type": "medium",
+        "level": 6,
+        "name": "Type 58"
+    },
+    {
+        "id": "102",
+        "country": "france",
+        "type": "light",
+        "level": 7,
+        "name": "AMX 13 75"
+    },
+    {
+        "id": "103",
+        "country": "japan",
+        "type": "heavy",
+        "level": 7,
+        "name": "O-Ni"
+    },
+    {
+        "id": "104",
+        "country": "sweden",
+        "type": "medium",
+        "level": 9,
+        "name": "UDES 16"
+    },
+    {
+        "id": "105",
+        "country": "poland",
+        "type": "medium",
+        "level": 10,
+        "name": "CS-63"
+    },
+    {
+        "id": "106",
+        "country": "italy",
+        "type": "AT-SPG",
+        "level": 10,
+        "name": "Controcarro 3 Minotauro"
+    },
+    {
+        "id": "107",
+        "country": "ussr",
+        "type": "heavy",
+        "level": 8,
+        "name": "ИС-3"
+    },
+    {
+        "id": "108",
+        "country": "china",
+        "type": "heavy",
+        "level": 10,
+        "name": "113"
+    },
+    {
+        "id": "109",
+        "country": "uk",
+        "type": "medium",
+        "level": 7,
+        "name": "Comet"
+    },
+    {
+        "id": "110",
+        "country": "japan",
+        "type": "heavy",
+        "level": 6,
+        "name": "O-I"
+    },
+    {
+        "id": "111",
+        "country": "sweden",
+        "type": "medium",
+        "level": 10,
+        "name": "UDES 15/16"
+    },
+    {
+        "id": "112",
+        "country": "italy",
+        "type": "AT-SPG",
+        "level": 9,
+        "name": "Controcarro 1 Mk. 2"
+    },
+    {
+        "id": "113",
+        "country": "ussr",
+        "type": "SPG",
+        "level": 6,
+        "name": "СУ-8"
+    },
+    {
+        "id": "114",
+        "country": "china",
+        "type": "light",
+        "level": 9,
+        "name": "WZ-132A"
+    },
+    {
+        "id": "115",
+        "country": "france",
+        "type": "medium",
+        "level": 9,
+        "name": "Bat.-Châtillon 25 t AP"
+    },
+    {
+        "id": "116",
+        "country": "uk",
+        "type": "medium",
+        "level": 9,
+        "name": "Centurion Mk. 7/1"
+    },
+    {
+        "id": "117",
+        "country": "ussr",
+        "type": "heavy",
+        "level": 7,
+        "name": "КВ-3"
+    },
+    {
+        "id": "118",
+        "country": "usa",
+        "type": "medium",
+        "level": 8,
+        "name": "M26 Pershing"
+    },
+    {
+        "id": "119",
+        "country": "china",
+        "type": "light",
+        "level": 10,
+        "name": "WZ-132-1"
+    },
+    {
+        "id": "120",
+        "country": "uk",
+        "type": "medium",
+        "level": 8,
+        "name": "Centurion Mk. I"
+    },
+    {
+        "id": "121",
+        "country": "ussr",
+        "type": "heavy",
+        "level": 10,
+        "name": "ИС-4"
+    },
+    {
+        "id": "122",
+        "country": "china",
+        "type": "heavy",
+        "level": 10,
+        "name": "WZ-111 model 5A"
+    },
+    {
+        "id": "123",
+        "country": "france",
+        "type": "heavy",
+        "level": 10,
+        "name": "AMX 50 B"
+    },
+    {
+        "id": "124",
+        "country": "uk",
+        "type": "heavy",
+        "level": 10,
+        "name": "FV215b"
+    },
+    {
+        "id": "125",
+        "country": "france",
+        "type": "light",
+        "level": 6,
+        "name": "AMX 12 t"
+    },
+    {
+        "id": "126",
+        "country": "ussr",
+        "type": "medium",
+        "level": 7,
+        "name": "Т-43"
+    },
+    {
+        "id": "127",
+        "country": "germany",
+        "type": "heavy",
+        "level": 10,
+        "name": "Maus"
+    },
+    {
+        "id": "128",
+        "country": "france",
+        "type": "heavy",
+        "level": 7,
+        "name": "AMX M4 mle. 45"
+    },
+    {
+        "id": "129",
+        "country": "ussr",
+        "type": "heavy",
+        "level": 10,
+        "name": "ИС-7"
+    },
+    {
+        "id": "130",
+        "country": "germany",
+        "type": "heavy",
+        "level": 6,
+        "name": "VK 30.01 (P)"
+    },
+    {
+        "id": "131",
+        "country": "usa",
+        "type": "AT-SPG",
+        "level": 6,
+        "name": "M36 Jackson"
+    },
+    {
+        "id": "132",
+        "country": "france",
+        "type": "SPG",
+        "level": 7,
+        "name": "Lorraine 155 mle. 50"
+    },
+    {
+        "id": "133",
+        "country": "uk",
+        "type": "medium",
+        "level": 10,
+        "name": "Centurion Action X"
+    },
+    {
+        "id": "134",
+        "country": "ussr",
+        "type": "AT-SPG",
+        "level": 8,
+        "name": "ИСУ-152"
+    },
+    {
+        "id": "135",
+        "country": "germany",
+        "type": "heavy",
+        "level": 9,
+        "name": "VK 45.02 (P) Ausf. B"
+    },
+    {
+        "id": "136",
+        "country": "usa",
+        "type": "SPG",
+        "level": 8,
+        "name": "M40/M43"
+    },
+    {
+        "id": "137",
+        "country": "china",
+        "type": "AT-SPG",
+        "level": 6,
+        "name": "WZ-131G FT"
+    },
+    {
+        "id": "138",
+        "country": "france",
+        "type": "SPG",
+        "level": 8,
+        "name": "Lorraine 155 mle. 51"
+    },
+    {
+        "id": "139",
+        "country": "germany",
+        "type": "AT-SPG",
+        "level": 8,
+        "name": "Ferdinand"
+    },
+    {
+        "id": "140",
+        "country": "china",
+        "type": "AT-SPG",
+        "level": 7,
+        "name": "T-34-2G FT"
+    },
+    {
+        "id": "141",
+        "country": "ussr",
+        "type": "medium",
+        "level": 9,
+        "name": "Т-54"
+    },
+    {
+        "id": "142",
+        "country": "germany",
+        "type": "AT-SPG",
+        "level": 9,
+        "name": "Jagdtiger"
+    },
+    {
+        "id": "143",
+        "country": "usa",
+        "type": "SPG",
+        "level": 7,
+        "name": "M12"
+    },
+    {
+        "id": "144",
+        "country": "china",
+        "type": "AT-SPG",
+        "level": 8,
+        "name": "WZ-111-1G FT"
+    },
+    {
+        "id": "145",
+        "country": "poland",
+        "type": "medium",
+        "level": 9,
+        "name": "CS-59"
+    },
+    {
+        "id": "146",
+        "country": "ussr",
+        "type": "AT-SPG",
+        "level": 9,
+        "name": "Объект 704"
+    },
+    {
+        "id": "147",
+        "country": "usa",
+        "type": "AT-SPG",
+        "level": 8,
+        "name": "T28"
+    },
+    {
+        "id": "148",
+        "country": "china",
+        "type": "AT-SPG",
+        "level": 9,
+        "name": "WZ-111G FT"
+    },
+    {
+        "id": "149",
+        "country": "ussr",
+        "type": "SPG",
+        "level": 9,
+        "name": "212А"
+    },
+    {
+        "id": "150",
+        "country": "germany",
+        "type": "medium",
+        "level": 8,
+        "name": "Panther II"
+    },
+    {
+        "id": "151",
+        "country": "usa",
+        "type": "SPG",
+        "level": 10,
+        "name": "T92 HMC"
+    },
+    {
+        "id": "152",
+        "country": "china",
+        "type": "AT-SPG",
+        "level": 10,
+        "name": "WZ-113G FT"
+    },
+    {
+        "id": "153",
+        "country": "uk",
+        "type": "AT-SPG",
+        "level": 8,
+        "name": "AT 15"
+    },
+    {
+        "id": "154",
+        "country": "ussr",
+        "type": "SPG",
+        "level": 10,
+        "name": "Объект 261"
+    },
+    {
+        "id": "155",
+        "country": "germany",
+        "type": "SPG",
+        "level": 9,
+        "name": "G.W. Tiger"
+    },
+    {
+        "id": "156",
+        "country": "usa",
+        "type": "AT-SPG",
+        "level": 9,
+        "name": "T95"
+    },
+    {
+        "id": "157",
+        "country": "ussr",
+        "type": "medium",
+        "level": 7,
+        "name": "КВ-13"
+    },
+    {
+        "id": "158",
+        "country": "germany",
+        "type": "SPG",
+        "level": 7,
+        "name": "G.W. Panther"
+    },
+    {
+        "id": "159",
+        "country": "usa",
+        "type": "medium",
+        "level": 9,
+        "name": "M46 Patton"
+    },
+    {
+        "id": "160",
+        "country": "china",
+        "type": "heavy",
+        "level": 10,
+        "name": "BZ-75"
+    },
+    {
+        "id": "161",
+        "country": "ussr",
+        "type": "heavy",
+        "level": 8,
+        "name": "ИС-6"
+    },
+    {
+        "id": "162",
+        "country": "germany",
+        "type": "SPG",
+        "level": 10,
+        "name": "G.W. E 100"
+    },
+    {
+        "id": "163",
+        "country": "usa",
+        "type": "AT-SPG",
+        "level": 7,
+        "name": "T25 AT"
+    },
+    {
+        "id": "164",
+        "country": "china",
+        "type": "heavy",
+        "level": 9,
+        "name": "BZ-68"
+    },
+    {
+        "id": "165",
+        "country": "uk",
+        "type": "AT-SPG",
+        "level": 10,
+        "name": "FV215b (183)"
+    },
+    {
+        "id": "166",
+        "country": "germany",
+        "type": "heavy",
+        "level": 10,
+        "name": "E 100"
+    },
+    {
+        "id": "167",
+        "country": "usa",
+        "type": "heavy",
+        "level": 9,
+        "name": "M103"
+    },
+    {
+        "id": "168",
+        "country": "china",
+        "type": "heavy",
+        "level": 8,
+        "name": "BZ-166"
+    },
+    {
+        "id": "169",
+        "country": "uk",
+        "type": "AT-SPG",
+        "level": 6,
+        "name": "AT 8"
+    },
+    {
+        "id": "170",
+        "country": "germany",
+        "type": "heavy",
+        "level": 9,
+        "name": "E 75"
+    },
+    {
+        "id": "171",
+        "country": "china",
+        "type": "heavy",
+        "level": 7,
+        "name": "BZ-58"
+    },
+    {
+        "id": "172",
+        "country": "uk",
+        "type": "AT-SPG",
+        "level": 6,
+        "name": "Churchill Gun Carrier"
+    },
+    {
+        "id": "173",
+        "country": "ussr",
+        "type": "AT-SPG",
+        "level": 8,
+        "name": "СУ-101"
+    },
+    {
+        "id": "174",
+        "country": "germany",
+        "type": "light",
+        "level": 6,
+        "name": "VK 28.01"
+    },
+    {
+        "id": "175",
+        "country": "usa",
+        "type": "medium",
+        "level": 6,
+        "name": "M4A3E2 Sherman Jumbo"
+    },
+    {
+        "id": "176",
+        "country": "uk",
+        "type": "AT-SPG",
+        "level": 7,
+        "name": "AT 7"
+    },
+    {
+        "id": "177",
+        "country": "ussr",
+        "type": "AT-SPG",
+        "level": 7,
+        "name": "СУ-100М1"
+    },
+    {
+        "id": "178",
+        "country": "germany",
+        "type": "medium",
+        "level": 9,
+        "name": "E 50"
+    },
+    {
+        "id": "179",
+        "country": "china",
+        "type": "heavy",
+        "level": 9,
+        "name": "BZ-58-2"
+    },
+    {
+        "id": "180",
+        "country": "ussr",
+        "type": "heavy",
+        "level": 6,
+        "name": "КВ-2"
+    },
+    {
+        "id": "181",
+        "country": "germany",
+        "type": "heavy",
+        "level": 8,
+        "name": "VK 45.02 (P) Ausf. A"
+    },
+    {
+        "id": "182",
+        "country": "ussr",
+        "type": "heavy",
+        "level": 9,
+        "name": "СТ-I"
+    },
+    {
+        "id": "183",
+        "country": "germany",
+        "type": "heavy",
+        "level": 7,
+        "name": "Tiger (P)"
+    },
+    {
+        "id": "184",
+        "country": "usa",
+        "type": "heavy",
+        "level": 10,
+        "name": "T110E5"
+    },
+    {
+        "id": "185",
+        "country": "france",
+        "type": "AT-SPG",
+        "level": 7,
+        "name": "AMX AC mle. 46"
+    },
+    {
+        "id": "186",
+        "country": "ussr",
+        "type": "heavy",
+        "level": 8,
+        "name": "КВ-4"
+    },
+    {
+        "id": "187",
+        "country": "germany",
+        "type": "AT-SPG",
+        "level": 7,
+        "name": "Sturer Emil"
+    },
+    {
+        "id": "188",
+        "country": "usa",
+        "type": "AT-SPG",
+        "level": 7,
+        "name": "T25/2"
+    },
+    {
+        "id": "189",
+        "country": "france",
+        "type": "AT-SPG",
+        "level": 9,
+        "name": "AMX 50 Foch"
+    },
+    {
+        "id": "190",
+        "country": "ussr",
+        "type": "heavy",
+        "level": 6,
+        "name": "Т-150"
+    },
+    {
+        "id": "191",
+        "country": "usa",
+        "type": "AT-SPG",
+        "level": 8,
+        "name": "T28 Prototype"
+    },
+    {
+        "id": "192",
+        "country": "uk",
+        "type": "SPG",
+        "level": 7,
+        "name": "Crusader 5.5-in. SP"
+    },
+    {
+        "id": "193",
+        "country": "ussr",
+        "type": "heavy",
+        "level": 9,
+        "name": "Т-10"
+    },
+    {
+        "id": "194",
+        "country": "germany",
+        "type": "AT-SPG",
+        "level": 8,
+        "name": "Jagdpanther II"
+    },
+    {
+        "id": "195",
+        "country": "usa",
+        "type": "AT-SPG",
+        "level": 6,
+        "name": "M18 Hellcat"
+    },
+    {
+        "id": "196",
+        "country": "france",
+        "type": "AT-SPG",
+        "level": 6,
+        "name": "ARL V39"
+    },
+    {
+        "id": "197",
+        "country": "uk",
+        "type": "SPG",
+        "level": 9,
+        "name": "FV3805"
+    },
+    {
+        "id": "198",
+        "country": "germany",
+        "type": "AT-SPG",
+        "level": 6,
+        "name": "Nashorn"
+    },
+    {
+        "id": "199",
+        "country": "usa",
+        "type": "medium",
+        "level": 7,
+        "name": "T23E3"
+    },
+    {
+        "id": "200",
+        "country": "france",
+        "type": "SPG",
+        "level": 10,
+        "name": "Bat.-Châtillon 155 58"
+    },
+    {
+        "id": "201",
+        "country": "uk",
+        "type": "SPG",
+        "level": 6,
+        "name": "FV304"
+    },
+    {
+        "id": "202",
+        "country": "germany",
+        "type": "AT-SPG",
+        "level": 10,
+        "name": "Jagdpanzer E 100"
+    },
+    {
+        "id": "203",
+        "country": "france",
+        "type": "AT-SPG",
+        "level": 8,
+        "name": "AMX AC mle. 48"
+    },
+    {
+        "id": "204",
+        "country": "uk",
+        "type": "SPG",
+        "level": 8,
+        "name": "FV207"
+    },
+    {
+        "id": "205",
+        "country": "ussr",
+        "type": "medium",
+        "level": 6,
+        "name": "А-43"
+    },
+    {
+        "id": "206",
+        "country": "germany",
+        "type": "medium",
+        "level": 10,
+        "name": "E 50 Ausf. M"
+    },
+    {
+        "id": "207",
+        "country": "uk",
+        "type": "SPG",
+        "level": 10,
+        "name": "Conqueror Gun Carriage"
+    },
+    {
+        "id": "208",
+        "country": "ussr",
+        "type": "medium",
+        "level": 7,
+        "name": "А-44"
+    },
+    {
+        "id": "209",
+        "country": "usa",
+        "type": "AT-SPG",
+        "level": 10,
+        "name": "T110E4"
+    },
+    {
+        "id": "210",
+        "country": "uk",
+        "type": "AT-SPG",
+        "level": 9,
+        "name": "FV4004 Conway"
+    },
+    {
+        "id": "211",
+        "country": "ussr",
+        "type": "medium",
+        "level": 8,
+        "name": "Объект 416"
+    },
+    {
+        "id": "212",
+        "country": "usa",
+        "type": "medium",
+        "level": 8,
+        "name": "T26E4 SuperPershing"
+    },
+    {
+        "id": "213",
+        "country": "ussr",
+        "type": "AT-SPG",
+        "level": 10,
+        "name": "Объект 268"
+    },
+    {
+        "id": "214",
+        "country": "ussr",
+        "type": "medium",
+        "level": 10,
+        "name": "Т-62А"
+    },
+    {
+        "id": "215",
+        "country": "germany",
+        "type": "medium",
+        "level": 8,
+        "name": "Indien-Panzer"
+    },
+    {
+        "id": "216",
+        "country": "usa",
+        "type": "AT-SPG",
+        "level": 10,
+        "name": "T110E3"
+    },
+    {
+        "id": "217",
+        "country": "france",
+        "type": "AT-SPG",
+        "level": 10,
+        "name": "AMX 50 Foch (155)"
+    },
+    {
+        "id": "218",
+        "country": "uk",
+        "type": "AT-SPG",
+        "level": 10,
+        "name": "FV4005 Stage II"
+    },
+    {
+        "id": "219",
+        "country": "germany",
+        "type": "medium",
+        "level": 6,
+        "name": "VK 30.01 (D)"
+    },
+    {
+        "id": "220",
+        "country": "usa",
+        "type": "medium",
+        "level": 10,
+        "name": "M48A5 Patton"
+    },
+    {
+        "id": "221",
+        "country": "uk",
+        "type": "AT-SPG",
+        "level": 7,
+        "name": "Challenger"
+    },
+    {
+        "id": "222",
+        "country": "germany",
+        "type": "light",
+        "level": 7,
+        "name": "Aufklärungspanzer Panther"
+    },
+    {
+        "id": "223",
+        "country": "france",
+        "type": "SPG",
+        "level": 9,
+        "name": "Bat.-Châtillon 155 55"
+    },
+    {
+        "id": "224",
+        "country": "uk",
+        "type": "AT-SPG",
+        "level": 6,
+        "name": "Achilles"
+    },
+    {
+        "id": "225",
+        "country": "germany",
+        "type": "medium",
+        "level": 10,
+        "name": "Leopard 1"
+    },
+    {
+        "id": "226",
+        "country": "usa",
+        "type": "medium",
+        "level": 8,
+        "name": "T69"
+    },
+    {
+        "id": "227",
+        "country": "uk",
+        "type": "AT-SPG",
+        "level": 8,
+        "name": "Charioteer"
+    },
+    {
+        "id": "228",
+        "country": "germany",
+        "type": "medium",
+        "level": 9,
+        "name": "Leopard Prototyp A"
+    },
+    {
+        "id": "229",
+        "country": "usa",
+        "type": "heavy",
+        "level": 10,
+        "name": "T57 Heavy Tank"
+    },
+    {
+        "id": "230",
+        "country": "usa",
+        "type": "light",
+        "level": 6,
+        "name": "T21"
+    },
+    {
+        "id": "231",
+        "country": "germany",
+        "type": "SPG",
+        "level": 8,
+        "name": "G.W. Tiger (P)"
+    },
+    {
+        "id": "232",
+        "country": "usa",
+        "type": "heavy",
+        "level": 9,
+        "name": "T54E1"
+    },
+    {
+        "id": "233",
+        "country": "france",
+        "type": "medium",
+        "level": 10,
+        "name": "AMX 30 B"
+    },
+    {
+        "id": "234",
+        "country": "uk",
+        "type": "medium",
+        "level": 8,
+        "name": "Chieftain/T95"
+    },
+    {
+        "id": "235",
+        "country": "ussr",
+        "type": "medium",
+        "level": 10,
+        "name": "Объект 907"
+    },
+    {
+        "id": "236",
+        "country": "usa",
+        "type": "light",
+        "level": 7,
+        "name": "T71 DA"
+    },
+    {
+        "id": "237",
+        "country": "france",
+        "type": "medium",
+        "level": 9,
+        "name": "AMX 30 1er prototype"
+    },
+    {
+        "id": "238",
+        "country": "uk",
+        "type": "heavy",
+        "level": 10,
+        "name": "Super Conqueror"
+    },
+    {
+        "id": "239",
+        "country": "germany",
+        "type": "medium",
+        "level": 6,
+        "name": "VK 30.02 (M)"
+    },
+    {
+        "id": "240",
+        "country": "usa",
+        "type": "medium",
+        "level": 10,
+        "name": "M60"
+    },
+    {
+        "id": "241",
+        "country": "uk",
+        "type": "AT-SPG",
+        "level": 10,
+        "name": "FV217 Badger"
+    },
+    {
+        "id": "242",
+        "country": "ussr",
+        "type": "SPG",
+        "level": 7,
+        "name": "СУ-14-1"
+    },
+    {
+        "id": "243",
+        "country": "usa",
+        "type": "SPG",
+        "level": 9,
+        "name": "M53/M55"
+    },
+    {
+        "id": "244",
+        "country": "germany",
+        "type": "AT-SPG",
+        "level": 9,
+        "name": "Waffenträger auf Pz. IV"
+    },
+    {
+        "id": "245",
+        "country": "usa",
+        "type": "SPG",
+        "level": 6,
+        "name": "M44"
+    },
+    {
+        "id": "246",
+        "country": "france",
+        "type": "heavy",
+        "level": 8,
+        "name": "AMX 65 t"
+    },
+    {
+        "id": "247",
+        "country": "ussr",
+        "type": "light",
+        "level": 6,
+        "name": "МТ-25"
+    },
+    {
+        "id": "248",
+        "country": "germany",
+        "type": "AT-SPG",
+        "level": 8,
+        "name": "Rhm.-Borsig Waffenträger"
+    },
+    {
+        "id": "249",
+        "country": "usa",
+        "type": "light",
+        "level": 6,
+        "name": "T37"
+    },
+    {
+        "id": "250",
+        "country": "france",
+        "type": "heavy",
+        "level": 9,
+        "name": "AMX M4 mle. 51"
+    },
+    {
+        "id": "251",
+        "country": "ussr",
+        "type": "medium",
+        "level": 10,
+        "name": "Объект 140"
+    },
+    {
+        "id": "252",
+        "country": "france",
+        "type": "heavy",
+        "level": 10,
+        "name": "AMX M4 mle. 54"
+    },
+    {
+        "id": "253",
+        "country": "france",
+        "type": "light",
+        "level": 10,
+        "name": "AMX 13 105"
+    },
+    {
+        "id": "254",
+        "country": "france",
+        "type": "light",
+        "level": 8,
+        "name": "Bat.-Châtillon 12 t"
+    },
+    {
+        "id": "255",
+        "country": "ussr",
+        "type": "medium",
+        "level": 9,
+        "name": "Объект 430 Вариант II"
+    },
+    {
+        "id": "256",
+        "country": "france",
+        "type": "AT-SPG",
+        "level": 10,
+        "name": "AMX 50 Foch B"
+    },
+    {
+        "id": "257",
+        "country": "usa",
+        "type": "light",
+        "level": 8,
+        "name": "M41 Walker Bulldog"
+    },
+    {
+        "id": "258",
+        "country": "france",
+        "type": "light",
+        "level": 6,
+        "name": "Panhard AMD 178B"
+    },
+    {
+        "id": "259",
+        "country": "ussr",
+        "type": "light",
+        "level": 9,
+        "name": "Т-54 облегчённый"
+    },
+    {
+        "id": "260",
+        "country": "usa",
+        "type": "light",
+        "level": 9,
+        "name": "T49"
+    },
+    {
+        "id": "261",
+        "country": "france",
+        "type": "light",
+        "level": 7,
+        "name": "Hotchkiss EBR"
+    },
+    {
+        "id": "262",
+        "country": "ussr",
+        "type": "light",
+        "level": 8,
+        "name": "ЛТТБ"
+    },
+    {
+        "id": "263",
+        "country": "germany",
+        "type": "light",
+        "level": 9,
+        "name": "Spähpanzer Ru 251"
+    },
+    {
+        "id": "264",
+        "country": "france",
+        "type": "light",
+        "level": 8,
+        "name": "Panhard AML Lynx 6x6"
+    },
+    {
+        "id": "265",
+        "country": "ussr",
+        "type": "heavy",
+        "level": 6,
+        "name": "КВ-1С"
+    },
+    {
+        "id": "266",
+        "country": "germany",
+        "type": "heavy",
+        "level": 9,
+        "name": "Mäuschen"
+    },
+    {
+        "id": "267",
+        "country": "france",
+        "type": "light",
+        "level": 9,
+        "name": "Panhard EBR 90"
+    },
+    {
+        "id": "268",
+        "country": "germany",
+        "type": "light",
+        "level": 7,
+        "name": "Spähpanzer SP I C"
+    },
+    {
+        "id": "269",
+        "country": "france",
+        "type": "light",
+        "level": 10,
+        "name": "Panhard EBR 105"
+    },
+    {
+        "id": "270",
+        "country": "ussr",
+        "type": "light",
+        "level": 10,
+        "name": "Т-100 ЛТ"
+    },
+    {
+        "id": "271",
+        "country": "germany",
+        "type": "AT-SPG",
+        "level": 10,
+        "name": "Grille 15"
+    },
+    {
+        "id": "272",
+        "country": "ussr",
+        "type": "light",
+        "level": 7,
+        "name": "ЛТГ"
+    },
+    {
+        "id": "273",
+        "country": "germany",
+        "type": "heavy",
+        "level": 10,
+        "name": "Pz.Kpfw. VII"
+    },
+    {
+        "id": "274",
+        "country": "usa",
+        "type": "light",
+        "level": 10,
+        "name": "XM551 Sheridan"
+    },
+    {
+        "id": "275",
+        "country": "ussr",
+        "type": "heavy",
+        "level": 9,
+        "name": "Объект 257"
+    },
+    {
+        "id": "276",
+        "country": "germany",
+        "type": "heavy",
+        "level": 8,
+        "name": "VK 100.01 (P)"
+    },
+    {
+        "id": "277",
+        "country": "usa",
+        "type": "light",
+        "level": 7,
+        "name": "T71 CMCD"
+    },
+    {
+        "id": "278",
+        "country": "ussr",
+        "type": "medium",
+        "level": 10,
+        "name": "Объект 430У"
+    },
+    {
+        "id": "279",
+        "country": "germany",
+        "type": "light",
+        "level": 10,
+        "name": "Rheinmetall Panzerwagen"
+    },
+    {
+        "id": "280",
+        "country": "ussr",
+        "type": "AT-SPG",
+        "level": 10,
+        "name": "Объект 268 Вариант 4"
+    },
+    {
+        "id": "281",
+        "country": "germany",
+        "type": "light",
+        "level": 8,
+        "name": "HWK 12"
+    },
+    {
+        "id": "282",
+        "country": "ussr",
+        "type": "heavy",
+        "level": 8,
+        "name": "ИС-М"
+    },
+    {
+        "id": "283",
+        "country": "usa",
+        "type": "heavy",
+        "level": 6,
+        "name": "Pawlack Tank"
+    },
+    {
+        "id": "284",
+        "country": "ussr",
+        "type": "heavy",
+        "level": 9,
+        "name": "Объект 705"
+    },
+    {
+        "id": "285",
+        "country": "usa",
+        "type": "heavy",
+        "level": 7,
+        "name": "M-II-Y"
+    },
+    {
+        "id": "286",
+        "country": "ussr",
+        "type": "heavy",
+        "level": 10,
+        "name": "Объект 705А"
+    },
+    {
+        "id": "287",
+        "country": "usa",
+        "type": "heavy",
+        "level": 8,
+        "name": "M-III-Y"
+    },
+    {
+        "id": "288",
+        "country": "ussr",
+        "type": "AT-SPG",
+        "level": 9,
+        "name": "Объект 263"
+    },
+    {
+        "id": "289",
+        "country": "usa",
+        "type": "heavy",
+        "level": 9,
+        "name": "M-VI-Y"
+    },
+    {
+        "id": "290",
+        "country": "ussr",
+        "type": "medium",
+        "level": 9,
+        "name": "Объект 430"
+    },
+    {
+        "id": "291",
+        "country": "usa",
+        "type": "heavy",
+        "level": 10,
+        "name": "M-V-Y"
+    },
+    {
+        "id": "292",
+        "country": "ussr",
+        "type": "medium",
+        "level": 10,
+        "name": "К-91"
+    },
+    {
+        "id": "293",
+        "country": "ussr",
+        "type": "heavy",
+        "level": 10,
+        "name": "Объект 277"
+    },
+    {
+        "id": "294",
+        "country": "ussr",
+        "type": "heavy",
+        "level": 10,
+        "name": "СТ-II"
+    },
+    {
+        "id": "295",
+        "country": "ussr",
+        "type": "heavy",
+        "level": 9,
+        "name": "ИС-3-II"
+    },
+    {
+        "id": "296",
+        "country": "ussr",
+        "type": "heavy",
+        "level": 8,
+        "name": "ИС-2-II"
+    },
+    {
+        "id": "297",
+        "country": "germany",
+        "type": "light",
+        "level": 6,
+        "name": "VK 28.01 mit 10,5 cm L/28"
+    },
+    {
+        "id": "298",
+        "country": "germany",
+        "type": "AT-SPG",
+        "level": 9,
+        "name": "Kampfpanzer 3 Prj. 07 HK"
+    },
+    {
+        "id": "299",
+        "country": "ussr",
+        "type": "heavy",
+        "level": 7,
+        "name": "ИС-2 экранированный"
+    },
+    {
+        "id": "300",
+        "country": "ussr",
+        "type": "AT-SPG",
+        "level": 8,
+        "name": "ИСУ-152К"
+    },
+    {
+        "id": "301",
+        "country": "ussr",
+        "type": "heavy",
+        "level": 10,
+        "name": "Объект 780"
+    },
+    {
+        "id": "302",
+        "country": "france",
+        "type": "medium",
+        "level": 8,
+        "name": "AltProto AMX 30"
+    },
+    {
+        "id": "303",
+        "country": "ussr",
+        "type": "medium",
+        "level": 8,
+        "name": "Объект 274а"
+    },
+    {
+        "id": "304",
+        "country": "france",
+        "type": "light",
+        "level": 9,
+        "name": "Char Mle. 75"
+    },
+    {
+        "id": "305",
+        "country": "ussr",
+        "type": "AT-SPG",
+        "level": 9,
+        "name": "К-91-ПТ"
+    },
+    {
+        "id": "306",
+        "country": "usa",
+        "type": "medium",
+        "level": 8,
+        "name": "M47 Patton Improved"
+    },
+    {
+        "id": "307",
+        "country": "usa",
+        "type": "heavy",
+        "level": 9,
+        "name": "T54 Heavy Tank"
+    },
+    {
+        "id": "308",
+        "country": "usa",
+        "type": "medium",
+        "level": 8,
+        "name": "AMBT"
+    },
+    {
+        "id": "309",
+        "country": "ussr",
+        "type": "heavy",
+        "level": 8,
+        "name": "К-2"
+    },
+    {
+        "id": "310",
+        "country": "ussr",
+        "type": "medium",
+        "level": 9,
+        "name": "Объект 283"
+    },
+    {
+        "id": "311",
+        "country": "usa",
+        "type": "medium",
+        "level": 8,
+        "name": "ASTRON Rex 105 mm"
+    },
+    {
+        "id": "312",
+        "country": "ussr",
+        "type": "medium",
+        "level": 8,
+        "name": "Т-44-100 Игровой"
+    },
+    {
+        "id": "313",
+        "country": "france",
+        "type": "heavy",
+        "level": 9,
+        "name": "Lorraine 50 t"
+    },
+    {
+        "id": "314",
+        "country": "usa",
+        "type": "heavy",
+        "level": 8,
+        "name": "M-IV-Y"
+    },
+    {
+        "id": "315",
+        "country": "france",
+        "type": "light",
+        "level": 8,
+        "name": "Panhard EBR 75 (FL 10)"
+    },
+    {
+        "id": "316",
+        "country": "ussr",
+        "type": "heavy",
+        "level": 8,
+        "name": "Объект 703 Вариант II"
+    },
+    {
+        "id": "317",
+        "country": "ussr",
+        "type": "heavy",
+        "level": 9,
+        "name": "Объект 777 Вариант II"
+    },
+    {
+        "id": "318",
+        "country": "ussr",
+        "type": "AT-SPG",
+        "level": 8,
+        "name": "СУ-130ПМ"
+    },
+    {
+        "id": "319",
+        "country": "ussr",
+        "type": "light",
+        "level": 6,
+        "name": "Т-50-2"
+    },
+    {
+        "id": "320",
+        "country": "ussr",
+        "type": "light",
+        "level": 8,
+        "name": "ЛТ-432"
+    },
+    {
+        "id": "321",
+        "country": "germany",
+        "type": "medium",
+        "level": 8,
+        "name": "Kampfpanzer 07 RH"
+    },
+    {
+        "id": "322",
+        "country": "germany",
+        "type": "medium",
+        "level": 9,
+        "name": "Kunze Panzer"
+    },
+    {
+        "id": "323",
+        "country": "ussr",
+        "type": "heavy",
+        "level": 7,
+        "name": "ИС-2М"
+    },
+    {
+        "id": "324",
+        "country": "germany",
+        "type": "medium",
+        "level": 8,
+        "name": "M48A2 Räumpanzer"
+    },
+    {
+        "id": "325",
+        "country": "ussr",
+        "type": "heavy",
+        "level": 10,
+        "name": "Объект 279 ранний"
+    },
+    {
+        "id": "326",
+        "country": "germany",
+        "type": "heavy",
+        "level": 8,
+        "name": "E 75 TS"
+    },
+    {
+        "id": "327",
+        "country": "germany",
+        "type": "medium",
+        "level": 9,
+        "name": "Kampfpanzer 50 t"
+    },
+    {
+        "id": "328",
+        "country": "ussr",
+        "type": "medium",
+        "level": 8,
+        "name": "СТГ Гвардеец"
+    },
+    {
+        "id": "329",
+        "country": "germany",
+        "type": "light",
+        "level": 8,
+        "name": "HWK 30"
+    },
+    {
+        "id": "330",
+        "country": "ussr",
+        "type": "medium",
+        "level": 8,
+        "name": "СТГ"
+    },
+    {
+        "id": "331",
+        "country": "ussr",
+        "type": "medium",
+        "level": 6,
+        "name": "М4-А2 Шерман Лозы"
+    },
+    {
+        "id": "332",
+        "country": "germany",
+        "type": "heavy",
+        "level": 8,
+        "name": "VK 168.01 Mauerbrecher"
+    },
+    {
+        "id": "333",
+        "country": "ussr",
+        "type": "AT-SPG",
+        "level": 8,
+        "name": "Т-103"
+    },
+    {
+        "id": "334",
+        "country": "germany",
+        "type": "AT-SPG",
+        "level": 8,
+        "name": "Kanonenjagdpanzer 105"
+    },
+    {
+        "id": "335",
+        "country": "ussr",
+        "type": "heavy",
+        "level": 8,
+        "name": "Объект 252У Защитник"
+    },
+    {
+        "id": "336",
+        "country": "germany",
+        "type": "heavy",
+        "level": 8,
+        "name": "VK 168.01 (P)"
+    },
+    {
+        "id": "337",
+        "country": "germany",
+        "type": "heavy",
+        "level": 6,
+        "name": "Tiger 131"
+    },
+    {
+        "id": "338",
+        "country": "ussr",
+        "type": "heavy",
+        "level": 8,
+        "name": "ИС-6 Ч"
+    },
+    {
+        "id": "339",
+        "country": "ussr",
+        "type": "heavy",
+        "level": 8,
+        "name": "Объект 252У"
+    },
+    {
+        "id": "340",
+        "country": "ussr",
+        "type": "heavy",
+        "level": 7,
+        "name": "КВ-122"
+    },
+    {
+        "id": "341",
+        "country": "germany",
+        "type": "medium",
+        "level": 8,
+        "name": "Schwarzpanzer 58"
+    },
+    {
+        "id": "342",
+        "country": "germany",
+        "type": "AT-SPG",
+        "level": 8,
+        "name": "Rheinmetall Skorpion G"
+    },
+    {
+        "id": "343",
+        "country": "italy",
+        "type": "AT-SPG",
+        "level": 8,
+        "name": "SMV CC-64 Vipera"
+    },
+    {
+        "id": "344",
+        "country": "italy",
+        "type": "medium",
+        "level": 10,
+        "name": "Lion"
+    },
+    {
+        "id": "345",
+        "country": "ussr",
+        "type": "AT-SPG",
+        "level": 10,
+        "name": "Объект 268 Вариант 5"
+    },
+    {
+        "id": "346",
+        "country": "usa",
+        "type": "medium",
+        "level": 8,
+        "name": "T42"
+    },
+    {
+        "id": "347",
+        "country": "italy",
+        "type": "medium",
+        "level": 10,
+        "name": "Carro da Combattimento 45 t"
+    },
+    {
+        "id": "348",
+        "country": "germany",
+        "type": "light",
+        "level": 8,
+        "name": "leKpz M 41 90 mm GF"
+    },
+    {
+        "id": "349",
+        "country": "usa",
+        "type": "light",
+        "level": 6,
+        "name": "M24E2 Super Chaffee"
+    },
+    {
+        "id": "350",
+        "country": "czech",
+        "type": "heavy",
+        "level": 8,
+        "name": "Škoda T 56"
+    },
+    {
+        "id": "351",
+        "country": "poland",
+        "type": "medium",
+        "level": 8,
+        "name": "CS-52 LIS"
+    },
+    {
+        "id": "352",
+        "country": "italy",
+        "type": "heavy",
+        "level": 8,
+        "name": "Bisonte C45"
+    },
+    {
+        "id": "353",
+        "country": "usa",
+        "type": "heavy",
+        "level": 8,
+        "name": "T77"
+    },
+    {
+        "id": "354",
+        "country": "japan",
+        "type": "heavy",
+        "level": 8,
+        "name": "Карачун"
+    },
+    {
+        "id": "355",
+        "country": "czech",
+        "type": "heavy",
+        "level": 7,
+        "name": "Škoda T 45"
+    },
+    {
+        "id": "356",
+        "country": "poland",
+        "type": "medium",
+        "level": 6,
+        "name": "T-34-85 Rudy"
+    },
+    {
+        "id": "357",
+        "country": "italy",
+        "type": "medium",
+        "level": 8,
+        "name": "Progetto M35 mod. 46"
+    },
+    {
+        "id": "358",
+        "country": "uk",
+        "type": "heavy",
+        "level": 8,
+        "name": "Caliban"
+    },
+    {
+        "id": "359",
+        "country": "czech",
+        "type": "medium",
+        "level": 6,
+        "name": "Škoda T 40"
+    },
+    {
+        "id": "360",
+        "country": "sweden",
+        "type": "medium",
+        "level": 6,
+        "name": "Strv m/42-57 Alt A.2"
+    },
+    {
+        "id": "361",
+        "country": "uk",
+        "type": "heavy",
+        "level": 9,
+        "name": "FV4201 Chieftain Proto"
+    },
+    {
+        "id": "362",
+        "country": "czech",
+        "type": "medium",
+        "level": 8,
+        "name": "Škoda T 27"
+    },
+    {
+        "id": "363",
+        "country": "uk",
+        "type": "heavy",
+        "level": 8,
+        "name": "Charlemagne"
+    },
+    {
+        "id": "364",
+        "country": "japan",
+        "type": "medium",
+        "level": 8,
+        "name": "STA-2"
+    },
+    {
+        "id": "365",
+        "country": "sweden",
+        "type": "AT-SPG",
+        "level": 8,
+        "name": "Strv S1"
+    },
+    {
+        "id": "366",
+        "country": "italy",
+        "type": "medium",
+        "level": 8,
+        "name": "Марс"
+    },
+    {
+        "id": "367",
+        "country": "uk",
+        "type": "AT-SPG",
+        "level": 8,
+        "name": "GSOR 1008"
+    },
+    {
+        "id": "368",
+        "country": "japan",
+        "type": "heavy",
+        "level": 6,
+        "name": "Heavy Tank No. VI"
+    },
+    {
+        "id": "369",
+        "country": "sweden",
+        "type": "medium",
+        "level": 8,
+        "name": "Strv 81"
+    },
+    {
+        "id": "370",
+        "country": "usa",
+        "type": "heavy",
+        "level": 8,
+        "name": "M6A2E1"
+    },
+    {
+        "id": "371",
+        "country": "uk",
+        "type": "AT-SPG",
+        "level": 9,
+        "name": "Tortoise"
+    },
+    {
+        "id": "372",
+        "country": "sweden",
+        "type": "medium",
+        "level": 8,
+        "name": "Primo Victoria"
+    },
+    {
+        "id": "373",
+        "country": "sweden",
+        "type": "heavy",
+        "level": 8,
+        "name": "EMIL 1951"
+    },
+    {
+        "id": "374",
+        "country": "sweden",
+        "type": "medium",
+        "level": 8,
+        "name": "Lansen C"
+    },
+    {
+        "id": "375",
+        "country": "ussr",
+        "type": "heavy",
+        "level": 8,
+        "name": "КВ-5"
+    },
+    {
+        "id": "376",
+        "country": "japan",
+        "type": "AT-SPG",
+        "level": 8,
+        "name": "Type 5 Ka-Ri"
+    },
+    {
+        "id": "377",
+        "country": "usa",
+        "type": "medium",
+        "level": 8,
+        "name": "T95E2"
+    },
+    {
+        "id": "378",
+        "country": "uk",
+        "type": "heavy",
+        "level": 6,
+        "name": "TOG II*"
+    },
+    {
+        "id": "379",
+        "country": "uk",
+        "type": "AT-SPG",
+        "level": 7,
+        "name": "AT 15A"
+    },
+    {
+        "id": "380",
+        "country": "sweden",
+        "type": "heavy",
+        "level": 9,
+        "name": "Strv K"
+    },
+    {
+        "id": "381",
+        "country": "germany",
+        "type": "heavy",
+        "level": 8,
+        "name": "Löwe"
+    },
+    {
+        "id": "382",
+        "country": "sweden",
+        "type": "heavy",
+        "level": 8,
+        "name": "Bofors Tornvagn"
+    },
+    {
+        "id": "383",
+        "country": "ussr",
+        "type": "AT-SPG",
+        "level": 6,
+        "name": "СУ-100Y"
+    },
+    {
+        "id": "384",
+        "country": "uk",
+        "type": "heavy",
+        "level": 7,
+        "name": "FV201 (A45)"
+    },
+    {
+        "id": "385",
+        "country": "ussr",
+        "type": "AT-SPG",
+        "level": 7,
+        "name": "СУ-122-44"
+    },
+    {
+        "id": "386",
+        "country": "germany",
+        "type": "AT-SPG",
+        "level": 8,
+        "name": "8,8 cm Pak 43 Jagdtiger"
+    },
+    {
+        "id": "387",
+        "country": "uk",
+        "type": "light",
+        "level": 6,
+        "name": "A46"
+    },
+    {
+        "id": "388",
+        "country": "germany",
+        "type": "AT-SPG",
+        "level": 7,
+        "name": "E 25"
+    },
+    {
+        "id": "389",
+        "country": "uk",
+        "type": "medium",
+        "level": 8,
+        "name": "FV4202"
+    },
+    {
+        "id": "390",
+        "country": "usa",
+        "type": "medium",
+        "level": 10,
+        "name": "T95E6"
+    },
+    {
+        "id": "391",
+        "country": "uk",
+        "type": "medium",
+        "level": 6,
+        "name": "Cromwell B"
+    },
+    {
+        "id": "392",
+        "country": "ussr",
+        "type": "heavy",
+        "level": 8,
+        "name": "ИС-3А Сапсан"
+    },
+    {
+        "id": "393",
+        "country": "germany",
+        "type": "heavy",
+        "level": 8,
+        "name": "VK 75.01 (K)"
+    },
+    {
+        "id": "394",
+        "country": "usa",
+        "type": "medium",
+        "level": 6,
+        "name": "M4A3E8 Fury"
+    },
+    {
+        "id": "395",
+        "country": "uk",
+        "type": "medium",
+        "level": 6,
+        "name": "AC 4 Experimental"
+    },
+    {
+        "id": "396",
+        "country": "usa",
+        "type": "AT-SPG",
+        "level": 7,
+        "name": "M56 Scorpion"
+    },
+    {
+        "id": "397",
+        "country": "usa",
+        "type": "AT-SPG",
+        "level": 7,
+        "name": "T28 Concept"
+    },
+    {
+        "id": "398",
+        "country": "uk",
+        "type": "heavy",
+        "level": 8,
+        "name": "Caernarvon Action X"
+    },
+    {
+        "id": "399",
+        "country": "ussr",
+        "type": "medium",
+        "level": 7,
+        "name": "Т-44-122"
+    },
+    {
+        "id": "400",
+        "country": "uk",
+        "type": "medium",
+        "level": 8,
+        "name": "Centurion Mk. 5/1 RAAC"
+    },
+    {
+        "id": "401",
+        "country": "germany",
+        "type": "AT-SPG",
+        "level": 6,
+        "name": "Dicker Max"
+    },
+    {
+        "id": "402",
+        "country": "usa",
+        "type": "medium",
+        "level": 8,
+        "name": "M46 Patton KR"
+    },
+    {
+        "id": "403",
+        "country": "uk",
+        "type": "medium",
+        "level": 6,
+        "name": "Sherman VC Firefly"
+    },
+    {
+        "id": "404",
+        "country": "germany",
+        "type": "medium",
+        "level": 6,
+        "name": "Pz.Kpfw. IV Schmalturm"
+    },
+    {
+        "id": "405",
+        "country": "usa",
+        "type": "medium",
+        "level": 8,
+        "name": "T25 Pilot Number 1"
+    },
+    {
+        "id": "406",
+        "country": "uk",
+        "type": "medium",
+        "level": 8,
+        "name": "Chimera"
+    },
+    {
+        "id": "407",
+        "country": "germany",
+        "type": "medium",
+        "level": 7,
+        "name": "Panther/M10"
+    },
+    {
+        "id": "408",
+        "country": "uk",
+        "type": "AT-SPG",
+        "level": 6,
+        "name": "Excalibur"
+    },
+    {
+        "id": "409",
+        "country": "usa",
+        "type": "light",
+        "level": 8,
+        "name": "T92"
+    },
+    {
+        "id": "410",
+        "country": "uk",
+        "type": "heavy",
+        "level": 10,
+        "name": "T95/FV4201 Chieftain"
+    },
+    {
+        "id": "411",
+        "country": "ussr",
+        "type": "medium",
+        "level": 6,
+        "name": "Т-34-85М"
+    },
+    {
+        "id": "412",
+        "country": "ussr",
+        "type": "heavy",
+        "level": 10,
+        "name": "Объект 260"
+    },
+    {
+        "id": "413",
+        "country": "uk",
+        "type": "light",
+        "level": 8,
+        "name": "FV1066 Senlac"
+    },
+    {
+        "id": "414",
+        "country": "ussr",
+        "type": "AT-SPG",
+        "level": 8,
+        "name": "ИСУ-130"
+    },
+    {
+        "id": "415",
+        "country": "germany",
+        "type": "heavy",
+        "level": 10,
+        "name": "VK 72.01 (K)"
+    },
+    {
+        "id": "416",
+        "country": "usa",
+        "type": "heavy",
+        "level": 8,
+        "name": "Chrysler K GF"
+    },
+    {
+        "id": "417",
+        "country": "china",
+        "type": "medium",
+        "level": 10,
+        "name": "Царь обезьян"
+    },
+    {
+        "id": "418",
+        "country": "uk",
+        "type": "light",
+        "level": 9,
+        "name": "GSOR3301 AVR FS"
+    },
+    {
+        "id": "419",
+        "country": "ussr",
+        "type": "heavy",
+        "level": 8,
+        "name": "ИС-5 (Объект 730)"
+    },
+    {
+        "id": "420",
+        "country": "usa",
+        "type": "heavy",
+        "level": 8,
+        "name": "T26E5"
+    },
+    {
+        "id": "421",
+        "country": "uk",
+        "type": "light",
+        "level": 10,
+        "name": "Manticore"
+    },
+    {
+        "id": "422",
+        "country": "ussr",
+        "type": "heavy",
+        "level": 7,
+        "name": "ИС-2"
+    },
+    {
+        "id": "423",
+        "country": "usa",
+        "type": "heavy",
+        "level": 8,
+        "name": "T26E5 Patriot"
+    },
+    {
+        "id": "424",
+        "country": "usa",
+        "type": "heavy",
+        "level": 8,
+        "name": "T34 B"
+    },
+    {
+        "id": "425",
+        "country": "china",
+        "type": "heavy",
+        "level": 10,
+        "name": "116-F3"
+    },
+    {
+        "id": "426",
+        "country": "uk",
+        "type": "light",
+        "level": 8,
+        "name": "LHMTV"
+    },
+    {
+        "id": "427",
+        "country": "ussr",
+        "type": "AT-SPG",
+        "level": 7,
+        "name": "ИСУ-122С"
+    },
+    {
+        "id": "428",
+        "country": "usa",
+        "type": "medium",
+        "level": 6,
+        "name": "M4A3E8 Thunderbolt VII"
+    },
+    {
+        "id": "429",
+        "country": "uk",
+        "type": "light",
+        "level": 7,
+        "name": "GSR 3301 Setter"
+    },
+    {
+        "id": "430",
+        "country": "ussr",
+        "type": "medium",
+        "level": 8,
+        "name": "Т-54 первый образец"
+    },
+    {
+        "id": "431",
+        "country": "usa",
+        "type": "medium",
+        "level": 7,
+        "name": "T26E3 Eagle 7"
+    },
+    {
+        "id": "432",
+        "country": "uk",
+        "type": "AT-SPG",
+        "level": 8,
+        "name": "Turtle Mk. I"
+    },
+    {
+        "id": "433",
+        "country": "ussr",
+        "type": "heavy",
+        "level": 6,
+        "name": "Объект 244"
+    },
+    {
+        "id": "434",
+        "country": "germany",
+        "type": "medium",
+        "level": 8,
+        "name": "Panther mit 8,8 cm L/71"
+    },
+    {
+        "id": "435",
+        "country": "usa",
+        "type": "heavy",
+        "level": 8,
+        "name": "Chrysler K"
+    },
+    {
+        "id": "436",
+        "country": "china",
+        "type": "heavy",
+        "level": 8,
+        "name": "BZ-176"
+    },
+    {
+        "id": "437",
+        "country": "france",
+        "type": "medium",
+        "level": 8,
+        "name": "Bat.-Châtillon Bourrasque"
+    },
+    {
+        "id": "438",
+        "country": "ussr",
+        "type": "heavy",
+        "level": 8,
+        "name": "ИС-3 с МЗ"
+    },
+    {
+        "id": "439",
+        "country": "usa",
+        "type": "AT-SPG",
+        "level": 8,
+        "name": "TS-5"
+    },
+    {
+        "id": "440",
+        "country": "china",
+        "type": "heavy",
+        "level": 9,
+        "name": "WZ-114"
+    },
+    {
+        "id": "441",
+        "country": "france",
+        "type": "medium",
+        "level": 9,
+        "name": "Char Futur 4"
+    },
+    {
+        "id": "442",
+        "country": "uk",
+        "type": "medium",
+        "level": 9,
+        "name": "Cobra"
+    },
+    {
+        "id": "443",
+        "country": "czech",
+        "type": "AT-SPG",
+        "level": 8,
+        "name": "ShPTK-TVP 100"
+    },
+    {
+        "id": "444",
+        "country": "france",
+        "type": "medium",
+        "level": 6,
+        "name": "Bretagne Panther"
+    },
+    {
+        "id": "445",
+        "country": "uk",
+        "type": "heavy",
+        "level": 8,
+        "name": "Gonsalo"
+    },
+    {
+        "id": "446",
+        "country": "germany",
+        "type": "medium",
+        "level": 9,
+        "name": "T 55A"
+    },
+    {
+        "id": "447",
+        "country": "china",
+        "type": "AT-SPG",
+        "level": 10,
+        "name": "114 SP2"
+    },
+    {
+        "id": "448",
+        "country": "france",
+        "type": "medium",
+        "level": 6,
+        "name": "M4A1 FL 10"
+    },
+    {
+        "id": "449",
+        "country": "usa",
+        "type": "AT-SPG",
+        "level": 6,
+        "name": "T78"
+    },
+    {
+        "id": "450",
+        "country": "usa",
+        "type": "heavy",
+        "level": 7,
+        "name": "King Tiger (захваченный)"
+    },
+    {
+        "id": "451",
+        "country": "france",
+        "type": "light",
+        "level": 8,
+        "name": "ELC EVEN 90"
+    },
+    {
+        "id": "452",
+        "country": "ussr",
+        "type": "medium",
+        "level": 10,
+        "name": "Т-22 ср."
+    },
+    {
+        "id": "453",
+        "country": "germany",
+        "type": "AT-SPG",
+        "level": 7,
+        "name": "Krupp-Steyr Waffenträger"
+    },
+    {
+        "id": "454",
+        "country": "usa",
+        "type": "heavy",
+        "level": 9,
+        "name": "AE Phase I"
+    },
+    {
+        "id": "455",
+        "country": "france",
+        "type": "AT-SPG",
+        "level": 8,
+        "name": "AMX Canon d'assaut 105"
+    },
+    {
+        "id": "456",
+        "country": "usa",
+        "type": "heavy",
+        "level": 8,
+        "name": "M54 Renegade"
+    },
+    {
+        "id": "457",
+        "country": "china",
+        "type": "light",
+        "level": 8,
+        "name": "M41D"
+    },
+    {
+        "id": "458",
+        "country": "france",
+        "type": "heavy",
+        "level": 8,
+        "name": "AMX M4 mle. 49 Liberté"
+    },
+    {
+        "id": "459",
+        "country": "ussr",
+        "type": "AT-SPG",
+        "level": 8,
+        "name": "КВ-4 КТТС"
+    },
+    {
+        "id": "460",
+        "country": "usa",
+        "type": "medium",
+        "level": 8,
+        "name": "TL-1 LPC"
+    },
+    {
+        "id": "461",
+        "country": "china",
+        "type": "heavy",
+        "level": 10,
+        "name": "WZ-111 Qilin"
+    },
+    {
+        "id": "462",
+        "country": "france",
+        "type": "heavy",
+        "level": 8,
+        "name": "Somua SM"
+    },
+    {
+        "id": "463",
+        "country": "germany",
+        "type": "AT-SPG",
+        "level": 8,
+        "name": "Rheinmetall Skorpion"
+    },
+    {
+        "id": "464",
+        "country": "usa",
+        "type": "AT-SPG",
+        "level": 7,
+        "name": "Super Hellcat"
+    },
+    {
+        "id": "465",
+        "country": "china",
+        "type": "heavy",
+        "level": 10,
+        "name": "113 Beijing Opera"
+    },
+    {
+        "id": "466",
+        "country": "france",
+        "type": "medium",
+        "level": 8,
+        "name": "Lorraine 40 t"
+    },
+    {
+        "id": "467",
+        "country": "ussr",
+        "type": "heavy",
+        "level": 8,
+        "name": "Кировец-1"
+    },
+    {
+        "id": "468",
+        "country": "usa",
+        "type": "heavy",
+        "level": 9,
+        "name": "Concept 1B"
+    },
+    {
+        "id": "469",
+        "country": "france",
+        "type": "heavy",
+        "level": 8,
+        "name": "AMX M4 mle. 49"
+    },
+    {
+        "id": "470",
+        "country": "germany",
+        "type": "heavy",
+        "level": 7,
+        "name": "VK 45.03"
+    },
+    {
+        "id": "471",
+        "country": "china",
+        "type": "AT-SPG",
+        "level": 9,
+        "name": "WZ-120G FT"
+    },
+    {
+        "id": "472",
+        "country": "france",
+        "type": "medium",
+        "level": 8,
+        "name": "M4A1 Revalorisé"
+    },
+    {
+        "id": "473",
+        "country": "ussr",
+        "type": "heavy",
+        "level": 8,
+        "name": "КВ-4 Креславского"
+    },
+    {
+        "id": "474",
+        "country": "china",
+        "type": "AT-SPG",
+        "level": 8,
+        "name": "WZ-120-1G FT"
+    },
+    {
+        "id": "475",
+        "country": "france",
+        "type": "light",
+        "level": 7,
+        "name": "AMX 13 57 GF"
+    },
+    {
+        "id": "476",
+        "country": "china",
+        "type": "medium",
+        "level": 10,
+        "name": "121B"
+    },
+    {
+        "id": "477",
+        "country": "france",
+        "type": "medium",
+        "level": 8,
+        "name": "AMX Chasseur de chars"
+    },
+    {
+        "id": "478",
+        "country": "germany",
+        "type": "medium",
+        "level": 8,
+        "name": "Panzer 58"
+    },
+    {
+        "id": "479",
+        "country": "china",
+        "type": "medium",
+        "level": 8,
+        "name": "59-Patton"
+    },
+    {
+        "id": "480",
+        "country": "france",
+        "type": "light",
+        "level": 7,
+        "name": "AMX 13 57"
+    },
+    {
+        "id": "481",
+        "country": "germany",
+        "type": "light",
+        "level": 8,
+        "name": "leKpz M 41 90 mm"
+    },
+    {
+        "id": "482",
+        "country": "china",
+        "type": "medium",
+        "level": 8,
+        "name": "T-34-3"
+    },
+    {
+        "id": "483",
+        "country": "france",
+        "type": "heavy",
+        "level": 8,
+        "name": "FCM 50 t"
+    },
+    {
+        "id": "484",
+        "country": "germany",
+        "type": "medium",
+        "level": 8,
+        "name": "Panzer 58 Mutz"
+    },
+    {
+        "id": "485",
+        "country": "china",
+        "type": "heavy",
+        "level": 8,
+        "name": "112"
+    },
+    {
+        "id": "486",
+        "country": "ussr",
+        "type": "heavy",
+        "level": 6,
+        "name": "КВ-2 (Р)"
+    },
+    {
+        "id": "487",
+        "country": "china",
+        "type": "light",
+        "level": 6,
+        "name": "Type 64"
+    },
+    {
+        "id": "488",
+        "country": "china",
+        "type": "heavy",
+        "level": 8,
+        "name": "WZ-111 Alpine Tiger"
+    },
+    {
+        "id": "489",
+        "country": "china",
+        "type": "medium",
+        "level": 8,
+        "name": "122 TM"
+    }
+]
