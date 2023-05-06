@@ -6,6 +6,14 @@ import { Button, Checkbox, Input, Select, Range } from '../Form'
 import Loader from '../Loader'
 import styles from './styles.module.scss'
 
+const VALIDATION_MESSAGES = {
+  startDate: 'Не выбрана дата начала турнира',
+  endDate: 'Не выбрана дата окончания турнира',
+  invalidDateRange: 'Дата начала турнира должны быть меньше даты окончания',
+  tanks: 'Не выбрана техника',
+  places: 'Не все призовые места описаны'
+}
+
 export default function TournamentForm() {
   const [ values, setValues ] = useState({
     startDate: '',
@@ -20,6 +28,7 @@ export default function TournamentForm() {
   })
   const [ tanks, setTanks ] = useState([])
   const [ isTanksLoading, setIsTanksLoading ] = useState(true)
+  const [ validationErros, setValidationErrors ] = useState({})
 
   useLazyEffect(() => {
     setIsTanksLoading(true)
@@ -38,8 +47,31 @@ export default function TournamentForm() {
       })
   }, [values.type, values.level], 1000)
 
+  const handleSubmit = useCallback(e => {
+    e.preventDefault()
+    const { startDate, endDate, tanks = [], places = [] } = values
+    let validationErros = {}
+    if (!startDate) validationErros.startDate = VALIDATION_MESSAGES.startDate
+    if (!endDate) validationErros.endDate = VALIDATION_MESSAGES.endDate
+    if (startDate && endDate && new Date(startDate).getTime() > new Date(endDate).getTime()) {
+      validationErros.invalidDateRange = VALIDATION_MESSAGES.invalidDateRange
+    }
+    if (!tanks.length) validationErros.tanks = VALIDATION_MESSAGES.tanks
+    if (!places.reduce((res, place) => res && !!place, true)) {
+      validationErros.places = VALIDATION_MESSAGES.places
+    }
+    setValidationErrors(validationErros)
+    if (!Object.values(validationErros).length) {
+      // submit
+    }
+  }, [values])
+
   const handleChange = useCallback(e => {
     const { name, value } = e.target
+    if (Object.values(validationErros).length > 0) {
+      setValidationErrors({})
+    }
+
     if (name === 'tanks') {
       const newTanks = values.tanks.includes(value) ? values.tanks.filter(id => id !== value) : [...values.tanks, value]
       setValues({
@@ -66,7 +98,7 @@ export default function TournamentForm() {
   }, [values])
 
   return (
-    <div className={styles.form}>
+    <form className={styles.form} onSubmit={handleSubmit}>
       <div className={styles.formColumns}>
         <div className={styles.formLeft}>
           <div className={cn(styles.formBlock, styles.formBlock_bordered)}>
@@ -233,12 +265,21 @@ export default function TournamentForm() {
           ))}
         </ol>
       </div>
-
+      {Object.keys(validationErros).length > 0 && <div className={styles.errors}>
+        {Object.keys(validationErros).map(key => {
+          if (!validationErros[key]) return null
+          return (
+            <div className={styles.errorMessage}>
+              {validationErros[key]}
+            </div>
+          )
+        })}
+      </div>}
       <Button
         type='submit'
       >
         Создать турнир
       </Button>
-    </div>
+    </form>
   )
 }
