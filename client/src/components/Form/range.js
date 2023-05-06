@@ -5,6 +5,7 @@ export default function Range({
   label,
   min = 0,
   max,
+  width,
   ...rest
 }) {
   const [ value, setValue ] = useState(rest.value || min)
@@ -20,28 +21,33 @@ export default function Range({
   }
 
   return (
-    <label className={styles.range}>
+    <label
+      className={styles.range}
+      style={{ width }}
+    >
       {!!label && <span className={styles.label}>{label}</span>}
-      <input
-        {...rest}
-        min={min}
-        max={max}
-        type='range'
-        value={value}
-        className={styles.input}
-        onChange={handleChange}
-      />
-      <span>
+      <div className={styles.rangeInputs}>
         <input
-          type='number'
-          value={value}
+          {...rest}
           min={min}
           max={max}
-          className={styles.input}
+          type='range'
+          value={value}
+          className={styles.rangeField}
           onChange={handleChange}
-          onBlur={handleBlur}
         />
-      </span>
+        <span>
+          <input
+            type='number'
+            value={value}
+            min={min}
+            max={max}
+            className={styles.inputField}
+            onChange={handleChange}
+            onBlur={handleBlur}
+          />
+        </span>
+      </div>
     </label>
   )
 }

@@ -3,15 +3,19 @@ import styles from './styles.module.scss'
 export default function Input({
   label,
   type = 'text',
+  width,
   ...rest
 }) {
   return (
-    <label>
+    <label
+      className={styles.input}
+      style={{ width }}
+    >
       {!!label && <span className={styles.label}>{label}</span>}
       <input
         {...rest}
         type={type}
-        className={styles.input}
+        className={styles.inputField}
       />
     </label>
   )

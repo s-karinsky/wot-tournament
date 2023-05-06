@@ -1,9 +1,19 @@
+.input {
+  display: block;
+
+  .inputField,
+  .selectWrapper {
+    width: 100%;
+    box-sizing: border-box;
+  }
+}
+
 .label {
   display: block;
   margin-bottom: 5px;
 }
 
-.input {
+.inputField {
   width: 200px;
   height: 40px;
   font-family: 'Roboto Condensed', sans-serif;
@@ -15,10 +25,6 @@
   &:focus {
     box-shadow: 0 0 9px 3px rgba(226, 30, 228, 0.24);
     outline: none;
-  }
-
-  &[type="date"] {
-    width: 120px;
   }
 
   &[type="number"] {
@@ -51,7 +57,35 @@
   }
 }
 .range {
-  .input {
+  display: block;
+
+  .rangeInputs {
+    display: flex;
+  }
+
+  .rangeField {
     vertical-align: middle;
+    width: 100%;
+  }
+  .inputField {
+    vertical-align: middle;
+  }
+}
+.button {
+  display: block;
+  width: 100%;
+  font-family: 'Roboto Condensed', sans-serif;
+  font-size: 24px;
+  height: 60px;
+  text-align: center;
+  border-radius: 3px;
+  color: #fff;
+  background: linear-gradient(#941396, #5f0b61);
+  border: none;
+  cursor: pointer;
+  transition: ease .3s box-shadow;
+
+  &:hover {
+    box-shadow: 0 0 9px 3px rgba(226, 30, 228, 0.24);
   }
 }

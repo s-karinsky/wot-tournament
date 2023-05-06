@@ -2,16 +2,26 @@
   display: inline-block;
   width: 29px;
   height: 18px;
+  vertical-align: middle;
+  margin-right: 5px;
 }
-
 .tanksList {
   display: flex;
   flex-wrap: wrap;
-  max-height: 200px;
+  height: calc(100% - 60px);
   overflow: auto;
+  flex-direction: column;
+  margin-left: -20px;
+  margin-top: 15px;
+  padding-left: 20px;
+}
+.tanksBlock {
+  position: relative;
+  height: 100%;
 }
 .tanksItem {
-  width: 25%;
+  width: 250px;
+  margin-bottom: 5px;
 }
 .placeButton {
   display: inline-block;
@@ -26,17 +36,70 @@
   cursor: pointer;
   margin-left: 10px;
 }
+.placesBlock {
+  margin-bottom: 40px;
+}
 .placesList {
   margin: 0;
   padding: 0 0 0 20px;
 }
 .placesItem {
   margin-top: 10px;
+
+  .placesInner {
+    display: inline-block;
+  }
 }
 .formBlock {
-  margin-bottom: 40px;
+  display: flex;
+  padding-bottom: 40px;
+
+  &_bordered {
+    border-right: 1px solid #e21ee4;
+  }
 
   & > label {
     margin-right: 20px;
+  }
+}
+.form {
+  padding: 10px 20px;
+}
+.formColumns {
+  display: flex;
+
+  & + & {
+    margin-top: 40px;
+  }
+}
+.formLeft {
+  & > .formBlock:first-child {
+    padding-top: 20px;
+  }
+}
+.formRight {
+  width: 100%;
+  padding-left: 20px;
+  padding-top: 20px;
+  height: 589px;
+  box-sizing: border-box;
+  border: 1px solid #e21ee4;
+  border-left: none;
+}
+.tanksFilter {
+  border: 1px solid #e21ee4;
+  border-right: none;
+  padding: 10px;
+  margin: 0 0 0 -10px;
+
+  & + .formBlock {
+    padding-top: 40px;
+  }
+}
+.tanksFilterItem {
+  margin-bottom: 40px;
+
+  &:last-child {
+    margin-bottom: 10px;
   }
 }
