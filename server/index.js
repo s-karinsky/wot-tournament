@@ -5,10 +5,12 @@ import cookieParser from 'cookie-parser'
 import morgan from 'morgan'
 import session from 'express-session'
 import mongoose from 'mongoose'
+import bodyParser from 'body-parser'
 
 import clanRouter from './api/clan.js'
 import newsRouter from './api/news.js'
 import tanksRouter from './api/tanks.js'
+import tournamentRouter from './api/tournament/index.js'
 import userRouter from './api/user/index.js'
 
 const __filename = url.fileURLToPath(import.meta.url)
@@ -18,6 +20,7 @@ const PORT = process.env.PORT || 3001
 
 const app = express()
 
+app.use(bodyParser.json())
 app.use(cookieParser())
 app.use(morgan('tiny'))
 app.use(session({ secret: process.env.SESSION_SECRET }))
@@ -26,6 +29,7 @@ app.use(express.static(path.resolve(__dirname, '../client/build')))
 app.use('/api/clan', clanRouter)
 app.use('/api/news', newsRouter)
 app.use('/api/tanks', tanksRouter)
+app.use('/api/tournament', tournamentRouter)
 app.use('/api/user', userRouter)
 
 app.get('*', (req, res) => {

@@ -2,6 +2,8 @@ import { useState, useCallback } from 'react'
 import axios from 'axios'
 import cn from 'classnames'
 import dayjs from 'dayjs'
+import { useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
 import { useLazyEffect } from '../../utils/hooks'
 import { Button, Checkbox, Input, Select, Range } from '../Form'
 import Loader from '../Loader'
@@ -26,27 +28,27 @@ const TANKS_TYPES = {
 }
 
 const BATTLE_TYPES = {
-  1: 'Случайный',
-  2: 'Штурм',
-  3: 'Встречный'
+  random: 'Случайный',
+  assault: 'Штурм',
+  meeting: 'Встречный'
 }
 
 const CONDITION_TYPES = {
-  1: 'Урон',
-  2: 'Урон + насвет',
-  3: 'Насвет',
-  4: 'Заблокированно броней',
-  5: 'Оглушение'
+  damage: 'Урон',
+  damageHighlight: 'Урон + насвет',
+  highlight: 'Насвет',
+  blocking: 'Заблокированно броней',
+  stun: 'Оглушение'
 }
 
 export default function TournamentForm() {
   const [ values, setValues ] = useState({
     startDate: '',
     endDate: '',
-    battleType: '1',
+    battleType: 'random',
     minFights: 5,
     type: 'any',
-    condition: '1',
+    condition: 'damage',
     level: 6,
     tanks: [],
     resetCount: 1,
@@ -56,6 +58,9 @@ export default function TournamentForm() {
   const [ isTanksLoading, setIsTanksLoading ] = useState(true)
   const [ validationErros, setValidationErrors ] = useState({})
   const [ isModal, setIsModal ] = useState(false)
+  const [ isPending, setIsPending ] = useState(false)
+  const navigate = useNavigate()
+  const clanName = useSelector(state => state.data?.clan?.name)
 
   useLazyEffect(() => {
     setIsTanksLoading(true)
@@ -124,6 +129,20 @@ export default function TournamentForm() {
     })
   }, [values, validationErros])
 
+  const createTournament = useCallback(() => {
+    setIsPending(true)
+    axios.post('/api/tournament/create', { ...values, clan: clanName })
+      .then(({ data }) => {
+        setIsPending(false)
+        if (data.success) {
+          navigate(`/tournaments/${data.result._id}`)
+        }
+      })
+      .catch(error => {
+        console.error(error)
+      })
+  }, [values])
+
   return (
     <div>
       {isModal &&
@@ -131,57 +150,60 @@ export default function TournamentForm() {
           title='Подтвердите данные турнира'
           onClose={() => setIsModal(false)}
         >
-          <div className={styles.summary}>
-            <div className={styles.summaryItem}>
-              <b>Начало турнира</b> {dayjs(values.startDate).format('DD.MM.YYYY')}
-            </div>
-            <div className={styles.summaryItem}>
-              <b>Окончание турнира</b> {dayjs(values.endDate).format('DD.MM.YYYY')}
-            </div>
-            <div className={styles.summaryItem}>
-              <b>Тип танка </b> {TANKS_TYPES[values.type]}
-            </div>
-            <div className={styles.summaryItem}>
-              <b>Уровень техники </b> {values.level}
-            </div>
-            <div className={styles.summaryItem}>
-              <b>Техника</b>
-              <div className={styles.summaryTanks}>
-                {tanks
-                  .filter(({ id }) => values.tanks.includes(id))
-                  .map(tank => (
-                    <div className={styles.summaryTanksItem}>
-                      <span className={styles.flag} style={{ backgroundImage: `url(/img/flag-${tank.country}.png)` }}></span>
-                      {tank.name}
-                    </div>
-                  ))
-                }
+          {isPending ? 
+            <Loader /> :
+            <div className={styles.summary}>
+              <div className={styles.summaryItem}>
+                <b>Начало турнира</b> {dayjs(values.startDate).format('DD.MM.YYYY')}
+              </div>
+              <div className={styles.summaryItem}>
+                <b>Окончание турнира</b> {dayjs(values.endDate).format('DD.MM.YYYY')}
+              </div>
+              <div className={styles.summaryItem}>
+                <b>Тип танка </b> {TANKS_TYPES[values.type]}
+              </div>
+              <div className={styles.summaryItem}>
+                <b>Уровень техники </b> {values.level}
+              </div>
+              <div className={styles.summaryItem}>
+                <b>Техника</b>
+                <div className={styles.summaryTanks}>
+                  {tanks
+                    .filter(({ id }) => values.tanks.includes(id))
+                    .map(tank => (
+                      <div className={styles.summaryTanksItem}>
+                        <span className={styles.flag} style={{ backgroundImage: `url(/img/flag-${tank.country}.png)` }}></span>
+                        {tank.name}
+                      </div>
+                    ))
+                  }
+                </div>
+              </div>
+              <div className={styles.summaryItem}>
+                <b>Режим боя </b> {BATTLE_TYPES[values.battleType]}
+              </div>
+              <div className={styles.summaryItem}>
+                <b>Условие турнира </b> {CONDITION_TYPES[values.condition]}
+              </div>
+              <div className={styles.summaryItem}>
+                <b>Мин. кол-во боев </b> {values.minFights}
+              </div>
+              <div className={styles.summaryItem}>
+                <b>Кол-во обнулений </b> {values.resetCount}
+              </div>
+              <div className={styles.summaryItem}>
+                <b>Призовые места</b>
+                <ol>
+                  {values.places.map((place, i) => (
+                    <li key={i}>{place}</li>
+                  ))}
+                </ol>
+              </div>
+              <div className={styles.summaryItem}>
+                <Button type='button' onClick={createTournament}>Создать турнир</Button>
               </div>
             </div>
-            <div className={styles.summaryItem}>
-              <b>Режим боя </b> {BATTLE_TYPES[values.battleType]}
-            </div>
-            <div className={styles.summaryItem}>
-              <b>Условие турнира </b> {CONDITION_TYPES[values.condition]}
-            </div>
-            <div className={styles.summaryItem}>
-              <b>Мин. кол-во боев </b> {values.minFights}
-            </div>
-            <div className={styles.summaryItem}>
-              <b>Кол-во обнулений </b> {values.resetCount}
-            </div>
-            <div className={styles.summaryItem}>
-              <b>Призовые места</b>
-              <ol>
-                {values.places.map((place, i) => (
-                  <li key={i}>{place}</li>
-                ))}
-              </ol>
-            </div>
-            <div className={styles.summaryItem}>
-              <Button type='button'>Создать турнир</Button>
-            </div>
-          </div>
+          }
         </Modal>
       }
       <form className={styles.form} onSubmit={handleSubmit}>
