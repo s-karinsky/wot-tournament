@@ -18,7 +18,7 @@ router.post('/', function(req, res) {
   const data = req.body
   data.minFights = parseInt(data.minFights)
   data.level = parseInt(data.level)
-  data.resetCount = parseInt(data.resetCount)
+  data.resetLimit = parseInt(data.resetLimit)
   data.tanks = tanksData.filter(tank => data.tanks.includes(tank.id)).map(({ id, ...tank }) => tank)
   Tournament.create(data)
     .then(result => {

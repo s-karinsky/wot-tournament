@@ -24,14 +24,14 @@ const tournamentSchema = new mongoose.Schema({
   type: {
     type: String,
     required: true,
-    enum: ['any', 'light', 'medium', 'heavy', 'SPG', 'ATSPG']
+    enum: ['any', 'lightTank', 'mediumTank', 'heavyTank', 'SPG', 'AT-SPG']
   },
   condition: {
     type: String,
     required: true,
     enum: ['damage', 'damageHighlight', 'highlight', 'blocking', 'stun']
   },
-  level: {
+  tier: {
     type: Number,
     required: true,
     min: 6,
@@ -41,7 +41,7 @@ const tournamentSchema = new mongoose.Schema({
     type: [Object],
     required: true
   },
-  resetCount: {
+  resetLimit: {
     type: Number,
     required: true,
     min: 1,
@@ -66,17 +66,17 @@ const LEVEL_OUTPUT = {
 
 const TANKS_OUTPUT = {
   any: 'Любой',
-  light: 'Лёгкие',
-  medium: 'Средние',
-  heavy: 'Тяжелые',
+  lightTank: 'Лёгкие',
+  mediumTank: 'Средние',
+  heavyTank: 'Тяжелые',
   SPG: 'САУ',
-  ATSPG: 'ПТ-САУ'
+  'AT-SPG': 'ПТ-САУ'
 }
 
 tournamentSchema.virtual('name').get(function() {
-  const { clan, tanks, type, level } = this
-  const tankNames = tanks.map(tank => tank.name).join(', ')
-  return [clan, tankNames, TANKS_OUTPUT[type], LEVEL_OUTPUT[level]].join(' ')
+  const { clan, tanks, type, tier } = this
+  const tankNames = tanks.map(tank => tank.short_name).join(', ')
+  return [clan, tankNames, TANKS_OUTPUT[type], LEVEL_OUTPUT[tier]].join(' ')
 })
 
 const Tournament = mongoose.model('Tournament', tournamentSchema)
