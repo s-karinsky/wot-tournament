@@ -16,6 +16,8 @@ router.get('/', function(req, res) {
     }
     axios.post(`/auth/logout/?application_id=${API_KEY}&access_token=${result.access_token}`)
       .then(() => {
+        req.session.user = null
+        req.session.clan = null
         res.clearCookie('token')
         res.redirect(SITE_URL)
       })

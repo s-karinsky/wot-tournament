@@ -51,12 +51,32 @@ const tournamentSchema = new mongoose.Schema({
     type: [String],
     required: true
   }
+}, {
+  toObject: { virtuals: true },
+  toJSON: { virtuals: true }
 })
+
+const LEVEL_OUTPUT = {
+  6: 'VI',
+  7: 'VII',
+  8: 'VIII',
+  9: 'IX',
+  10: 'X'
+}
+
+const TANKS_OUTPUT = {
+  any: 'Любой',
+  light: 'Лёгкие',
+  medium: 'Средние',
+  heavy: 'Тяжелые',
+  SPG: 'САУ',
+  ATSPG: 'ПТ-САУ'
+}
 
 tournamentSchema.virtual('name').get(function() {
   const { clan, tanks, type, level } = this
   const tankNames = tanks.map(tank => tank.name).join(', ')
-  return [clan, tankNames, type, level].join(' ')
+  return [clan, tankNames, TANKS_OUTPUT[type], LEVEL_OUTPUT[level]].join(' ')
 })
 
 const Tournament = mongoose.model('Tournament', tournamentSchema)

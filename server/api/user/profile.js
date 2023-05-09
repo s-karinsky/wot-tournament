@@ -27,7 +27,10 @@ router.get('/', function(req, res) {
       if (!userDb) {
         await User.create({ accountId: account_id, clanId: clan_id })
       }
-      res.json({ user, success: true })
+      jwt.encode(JWT_SECRET, { ...result, clan_id }, function(err, newToken) {
+        res.cookie('token', newToken)
+        res.json({ user, success: true })
+      })
     } catch(error) {
       res.status(500).json(error)
     }

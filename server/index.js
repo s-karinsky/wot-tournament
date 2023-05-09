@@ -23,7 +23,12 @@ const app = express()
 app.use(bodyParser.json())
 app.use(cookieParser())
 app.use(morgan('tiny'))
-app.use(session({ secret: process.env.SESSION_SECRET }))
+app.use(session({
+  secret: process.env.SESSION_SECRET,
+  resave: false,
+  saveUninitialized: true,
+  cookie: { secure: true }
+}))
 app.use(express.static(path.resolve(__dirname, '../client/build')))
 
 app.use('/api/clan', clanRouter)
