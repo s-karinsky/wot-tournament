@@ -42,7 +42,7 @@ export default function TournamentList({ data }) {
       },
       {
         Header: 'Уровень техники',
-        accessor: 'level'
+        accessor: 'tier'
       }
     ],
     []

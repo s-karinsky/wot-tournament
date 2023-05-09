@@ -1,0 +1,22 @@
+.header {
+  font-size: 24px;
+  font-weight: bold;
+}
+.dates {
+  margin: 10px 0;
+  font-size: 20px;
+}
+.list {
+  font-size: 16px;
+  list-style: none;
+  margin: 20px 0 0;
+  padding: 0;
+
+  li {
+    margin-bottom: 10px;
+
+    span {
+      font-weight: bold;
+    }
+  }
+}

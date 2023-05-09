@@ -8,11 +8,11 @@ export const VALIDATION_MESSAGES = {
 
 export const TANKS_TYPES = {
   any: 'Любой тип',
-  light: 'Лёгкие',
-  medium: 'Средние',
-  heavy: 'Тяжелые',
+  lightTank: 'Лёгкие',
+  mediumTank: 'Средние',
+  heavyTank: 'Тяжелые',
   SPG: 'САУ',
-  ATSPG: 'ПТ-САУ'
+  'AT-SPG': 'ПТ-САУ'
 }
 
 export const BATTLE_TYPES = {

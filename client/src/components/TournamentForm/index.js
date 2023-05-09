@@ -20,9 +20,9 @@ export default function TournamentForm() {
     minFights: 5,
     type: 'any',
     condition: 'damage',
-    level: 6,
+    tier: 6,
     tanks: [],
-    resetCount: 1,
+    resetLimit: 1,
     places: [''],
   })
   const [ tanks, setTanks ] = useState([])
@@ -36,7 +36,7 @@ export default function TournamentForm() {
 
   useLazyEffect(() => {
     setIsTanksLoading(true)
-    axios.get(`/api/tanks?type=${values.type}&level=${values.level}`)
+    axios.get(`/api/tanks?type=${values.type}&tier=${values.tier}`)
       .then(({ data = {} }) => {
         if (!data.success) return
         setTanks(data.tanks)
@@ -49,7 +49,7 @@ export default function TournamentForm() {
       .catch(error => {
         console.error(error)
       })
-  }, [values.type, values.level], 1000)
+  }, [values.type, values.tier], 1000)
 
   const handleSubmit = useCallback(e => {
     e.preventDefault()
@@ -77,7 +77,8 @@ export default function TournamentForm() {
     }
 
     if (name === 'tanks') {
-      const newTanks = values.tanks.includes(value) ? values.tanks.filter(id => id !== value) : [...values.tanks, value]
+      const tankId = parseInt(value)
+      const newTanks = values.tanks.includes(tankId) ? values.tanks.filter(id => id !== tankId) : [...values.tanks, tankId]
       setValues({
         ...values,
         tanks: newTanks
@@ -127,7 +128,7 @@ export default function TournamentForm() {
                 <b>Тип танка </b> {TANKS_TYPES[values.type]}
               </div>
               <div className={styles.summaryItem}>
-                <b>Уровень техники </b> {values.level}
+                <b>Уровень техники </b> {values.tier}
               </div>
               <div className={styles.summaryItem}>
                 <b>Техника</b>
@@ -136,8 +137,8 @@ export default function TournamentForm() {
                     .filter(({ id }) => values.tanks.includes(id))
                     .map(tank => (
                       <div className={styles.summaryTanksItem} key={tank.id}>
-                        <span className={styles.flag} style={{ backgroundImage: `url(/img/flag-${tank.country}.png)` }}></span>
-                        {tank.name}
+                        <span className={styles.flag} style={{ backgroundImage: `url(/img/flag-${tank.nation}.png)` }}></span>
+                        {tank.short_name}
                       </div>
                     ))
                   }
@@ -153,7 +154,7 @@ export default function TournamentForm() {
                 <b>Мин. кол-во боев </b> {values.minFights}
               </div>
               <div className={styles.summaryItem}>
-                <b>Кол-во обнулений </b> {values.resetCount}
+                <b>Кол-во обнулений </b> {values.resetLimit}
               </div>
               <div className={styles.summaryItem}>
                 <b>Призовые места</b>
@@ -210,10 +211,10 @@ export default function TournamentForm() {
               <div className={styles.tanksFilterItem}>
                 <Range
                   label='Уровень техники'
-                  name='level'
+                  name='tier'
                   min={6}
                   max={10}
-                  value={values.level}
+                  value={values.tier}
                   onChange={handleChange}
                   width="320px"
                 />
@@ -276,8 +277,8 @@ export default function TournamentForm() {
                       checked={values.tanks.includes(tank.id)}
                       className={styles.tanksItem}
                     >
-                      <span className={styles.flag} style={{ backgroundImage: `url(/img/flag-${tank.country}.png)` }}></span>
-                      {tank.name}
+                      <span className={styles.flag} style={{ backgroundImage: `url(/img/flag-${tank.nation}.png)` }}></span>
+                      {tank.short_name}
                     </Checkbox>
                   ))}
                 </div>
@@ -300,10 +301,10 @@ export default function TournamentForm() {
           <div className={styles.formBlock}>
             <Range
               label='Количество обнулений данных'
-              name='resetCount'
+              name='resetLimit'
               min={1}
               max={100}
-              value={values.resetCount}
+              value={values.resetLimit}
               onChange={handleChange}
               width="450px"
             />

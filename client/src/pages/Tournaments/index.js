@@ -3,10 +3,10 @@ import { useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import TournamentForm from '../../components/TournamentForm'
 import TournamentList from '../../components/TournamentList'
+import TournamentDetails from '../../components/TournamentDetails'
 import { getTournaments, getList } from '../../redux/store/tournaments'
-import styles from './styles.module.scss'
 
-export default function Tournaments(props) {
+export default function Tournaments() {
   const { page } = useParams()
   const dispatch = useDispatch()
   const list = useSelector(state => getList(state, 'common'))
@@ -18,6 +18,7 @@ export default function Tournaments(props) {
     <div className="container content-block">
       {!page && <TournamentList data={list} />}
       {page === 'create' && <TournamentForm />}
+      {!!page && page !== 'create' && <TournamentDetails id={page} /> }
     </div>
   )
 }
