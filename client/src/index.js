@@ -2,10 +2,16 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { BrowserRouter } from 'react-router-dom'
 import { Provider } from 'react-redux'
+import dayjs from 'dayjs'
+import relativeTime from 'dayjs/plugin/relativeTime'
 import store from './redux'
 import App from './App'
 import reportWebVitals from './reportWebVitals'
 import './index.scss'
+import 'dayjs/locale/ru'
+
+dayjs.extend(relativeTime)
+dayjs.locale('ru')
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

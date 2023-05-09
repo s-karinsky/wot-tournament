@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { setLoaded, setLoading, setProfile } from "."
+import { setLoaded, setLoading, setProfile } from '.'
 
 export const getProfile = async (dispatch) => {
   dispatch(setLoading(true))

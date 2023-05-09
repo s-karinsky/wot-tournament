@@ -17,8 +17,12 @@ export default function App() {
 
   useEffect(() => {
     if (!isUserLoaded) dispatch(getProfile)
-    if (!isDataLoaded) dispatch(getData)
   }, [])
+
+  useEffect(() => {
+    if (!isUserLoaded) return
+    if (!isDataLoaded) dispatch(getData)
+  }, [isUserLoaded])
 
   return isUserLoaded && isDataLoaded ?
     <div>

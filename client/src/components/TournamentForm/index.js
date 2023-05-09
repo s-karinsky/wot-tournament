@@ -1,10 +1,11 @@
-import { useState, useCallback } from 'react'
+import { useState, useCallback, useEffect } from 'react'
 import axios from 'axios'
 import cn from 'classnames'
 import dayjs from 'dayjs'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { useLazyEffect } from '../../utils/hooks'
+import { createTournament } from '../../redux/store/tournaments'
 import { Button, Checkbox, Input, Select, Range } from '../Form'
 import Loader from '../Loader'
 import Modal from '../Modal'
@@ -58,9 +59,10 @@ export default function TournamentForm() {
   const [ isTanksLoading, setIsTanksLoading ] = useState(true)
   const [ validationErros, setValidationErrors ] = useState({})
   const [ isModal, setIsModal ] = useState(false)
-  const [ isPending, setIsPending ] = useState(false)
   const navigate = useNavigate()
+  const dispatch = useDispatch()
   const clanName = useSelector(state => state.data?.clan?.name)
+  const isCreating = useSelector(state => state.tournaments.isCreating)
 
   useLazyEffect(() => {
     setIsTanksLoading(true)
@@ -129,18 +131,10 @@ export default function TournamentForm() {
     })
   }, [values, validationErros])
 
-  const createTournament = useCallback(() => {
-    setIsPending(true)
-    axios.post('/api/tournament/create', { ...values, clan: clanName })
-      .then(({ data }) => {
-        setIsPending(false)
-        if (data.success) {
-          navigate(`/tournaments/${data.result._id}`)
-        }
-      })
-      .catch(error => {
-        console.error(error)
-      })
+  const handleCreateTournament = useCallback(() => {
+    dispatch(createTournament({ ...values, clan: clanName }, result => {
+      navigate(`/tournaments/${result._id}`)
+    }))
   }, [values])
 
   return (
@@ -150,7 +144,7 @@ export default function TournamentForm() {
           title='Подтвердите данные турнира'
           onClose={() => setIsModal(false)}
         >
-          {isPending ? 
+          {isCreating ? 
             <Loader /> :
             <div className={styles.summary}>
               <div className={styles.summaryItem}>
@@ -171,7 +165,7 @@ export default function TournamentForm() {
                   {tanks
                     .filter(({ id }) => values.tanks.includes(id))
                     .map(tank => (
-                      <div className={styles.summaryTanksItem}>
+                      <div className={styles.summaryTanksItem} key={tank.id}>
                         <span className={styles.flag} style={{ backgroundImage: `url(/img/flag-${tank.country}.png)` }}></span>
                         {tank.name}
                       </div>
@@ -200,7 +194,7 @@ export default function TournamentForm() {
                 </ol>
               </div>
               <div className={styles.summaryItem}>
-                <Button type='button' onClick={createTournament}>Создать турнир</Button>
+                <Button type='button' onClick={handleCreateTournament}>Создать турнир</Button>
               </div>
             </div>
           }

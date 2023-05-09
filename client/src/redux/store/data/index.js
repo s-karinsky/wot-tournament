@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
 
-export const newsSlice = createSlice({
+export const dataSlice = createSlice({
   name: 'data',
   initialState: {
     isLoading: false,
@@ -24,8 +24,8 @@ export const newsSlice = createSlice({
   },
 })
 
-export const { setLoading, setLoaded, setNews, setClan } = newsSlice.actions
+export const { setLoading, setLoaded, setNews, setClan, setTournaments } = dataSlice.actions
 
 export * from './thunk'
 
-export default newsSlice.reducer
+export default dataSlice.reducer

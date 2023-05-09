@@ -1,13 +1,27 @@
-import { useSelector } from 'react-redux'
+import { useEffect } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
 import cn from 'classnames'
+import dayjs from 'dayjs'
 import News from '../../components/News'
+import { getTournaments, getList } from '../../redux/store/tournaments'
 import styles from './styles.module.scss'
 
 export default function Home() {
+  const dispatch = useDispatch()
+  const list = useSelector(state => getList(state, 'active'))
   const news = useSelector(state => state.data.news)
   const clan = useSelector(state => state.data.clan)
   const isAuthorized = useSelector(state => state.user.authorized)
+  useEffect(() => {
+    const startDate = dayjs()
+    const endDate = dayjs().add(5, 'day')
+    dispatch(
+      getTournaments('active', {
+        dateRange: [startDate.format('YYYY-MM-DD'), endDate.format('YYYY-MM-DD')].join(';')
+      })
+    )
+  }, [])
 
   return (
     <div className={cn('container', styles.home)}>
@@ -22,18 +36,17 @@ export default function Home() {
         <div className='content-block'>
           <div className='header'>Активные турниры</div>
           <ul className={styles.tournaments}>
-            <li>
-              <Link to='#'>Турнир 1</Link>
-              <span className={styles.tournamentsDate}>Начнется через 2 дня</span>
-            </li>
-            <li>
-              <Link to='#'>Турнир 2</Link>
-              <span className={styles.tournamentsDate}>Начнется сегодня</span>
-            </li>
-            <li>
-              <Link to='#'>Турнир 3</Link>
-              <span className={styles.tournamentsDate}>Окончание через 5 дней</span>
-            </li>
+            {list.map(item => (
+              <li key={item.id}>
+                <Link to={`/tourmanets/${item.id}`}>{item.name}</Link>
+                <span className={styles.tournamentsDate}>
+                  {dayjs(item.startDate).isBefore(dayjs()) ?
+                    `Окончание через ${dayjs(item.endDate).fromNow()}` :
+                    `Начало через ${dayjs(item.startDate).fromNow()}`
+                  }
+                </span>
+              </li>
+            ))}
           </ul>
         </div>
       </div>
