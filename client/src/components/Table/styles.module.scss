@@ -1,0 +1,16 @@
+.table {
+  text-align: center;
+
+  td {
+    vertical-align: top;
+    padding-bottom: 10px;
+  }
+
+  a {
+    color: #fff;
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
+}

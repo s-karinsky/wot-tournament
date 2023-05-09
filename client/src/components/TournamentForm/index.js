@@ -10,37 +10,7 @@ import { Button, Checkbox, Input, Select, Range } from '../Form'
 import Loader from '../Loader'
 import Modal from '../Modal'
 import styles from './styles.module.scss'
-
-const VALIDATION_MESSAGES = {
-  startDate: 'Не выбрана дата начала турнира',
-  endDate: 'Не выбрана дата окончания турнира',
-  invalidDateRange: 'Дата начала турнира должны быть меньше даты окончания',
-  tanks: 'Не выбрана техника',
-  places: 'Не все призовые места описаны'
-}
-
-const TANKS_TYPES = {
-  any: 'Любой тип',
-  light: 'Лёгкие',
-  medium: 'Средние',
-  heavy: 'Тяжелые',
-  SPG: 'САУ',
-  ATSPG: 'ПТ-САУ'
-}
-
-const BATTLE_TYPES = {
-  random: 'Случайный',
-  assault: 'Штурм',
-  meeting: 'Встречный'
-}
-
-const CONDITION_TYPES = {
-  damage: 'Урон',
-  damageHighlight: 'Урон + насвет',
-  highlight: 'Насвет',
-  blocking: 'Заблокированно броней',
-  stun: 'Оглушение'
-}
+import { VALIDATION_MESSAGES, TANKS_TYPES, BATTLE_TYPES, CONDITION_TYPES } from '../../consts'
 
 export default function TournamentForm() {
   const [ values, setValues ] = useState({
