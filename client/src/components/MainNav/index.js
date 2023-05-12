@@ -43,9 +43,9 @@ export default function MainNav({
                 {user.profile?.nickname}
               </Link>
               <br />
-              <a className={styles.logoutLink} href="http://localhost:3001/api/user/logout">Выход</a>
+              <a className={styles.logoutLink} href="/api/user/logout">Выход</a>
             </span>) :
-            (<a className={styles.navLink} href="http://localhost:3001/api/user/auth">
+            (<a className={styles.navLink} href="/api/user/auth">
               Войти или зарегистрироваться
             </a>)
           }
