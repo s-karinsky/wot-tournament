@@ -2,6 +2,7 @@ import React from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import cn from 'classnames'
 import { useSelector } from 'react-redux'
+import { API_URL } from '../../consts'
 import styles from './styles.module.scss'
 
 export default function MainNav({
@@ -43,9 +44,9 @@ export default function MainNav({
                 {user.profile?.nickname}
               </Link>
               <br />
-              <a className={styles.logoutLink} href="/api/user/logout">Выход</a>
+              <a className={styles.logoutLink} href={`${API_URL}/api/user/logout`}>Выход</a>
             </span>) :
-            (<a className={styles.navLink} href="/api/user/auth">
+            (<a className={styles.navLink} href={`${API_URL}/api/user/auth`}>
               Войти или зарегистрироваться
             </a>)
           }
