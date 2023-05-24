@@ -11,8 +11,8 @@ export default function Tournaments() {
   const dispatch = useDispatch()
   const list = useSelector(state => getList(state, 'common'))
   useEffect(() => {
-    dispatch(getTournaments('common'))
-  }, [])
+    if (!page) dispatch(getTournaments('common'))
+  }, [page])
 
   return (
     <div className="container content-block">

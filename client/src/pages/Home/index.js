@@ -38,7 +38,7 @@ export default function Home() {
           <ul className={styles.tournaments}>
             {list.map(item => (
               <li key={item.id}>
-                <Link to={`/tourmanets/${item.id}`}>{item.name}</Link>
+                <Link to={`/tournaments/${item.id}`}>{item.name}</Link>
                 <span className={styles.tournamentsDate}>
                   {dayjs(item.startDate).isBefore(dayjs()) ?
                     `Окончание через ${dayjs(item.endDate).fromNow()}` :

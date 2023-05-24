@@ -49,6 +49,6 @@ export default function TournamentDetails({ id }) {
         </li>
       </ul>
 
-      <Button>Принять участие</Button>
+      {dayjs().isBefore(data.endDate) && <Button>Принять участие</Button>}
     </div>
 }

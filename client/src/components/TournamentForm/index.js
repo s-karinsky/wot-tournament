@@ -112,7 +112,7 @@ export default function TournamentForm() {
     <div>
       {isModal &&
         <Modal
-          title='Подтвердите данные турнира'
+          title={isCreating ? '' : 'Подтвердите данные турнира'}
           onClose={() => setIsModal(false)}
         >
           {isCreating ? 
