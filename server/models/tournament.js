@@ -75,7 +75,7 @@ const TANKS_OUTPUT = {
 
 tournamentSchema.virtual('name').get(function() {
   const { clan, tanks, type, tier } = this
-  const tankNames = tanks.map(tank => tank.short_name).join(', ')
+  const tankNames = tanks.length > 1 ? 'Любой танк' : tanks.map(tank => tank.short_name).join(', ')
   return [clan, tankNames, TANKS_OUTPUT[type], LEVEL_OUTPUT[tier]].join(' ')
 })
 
