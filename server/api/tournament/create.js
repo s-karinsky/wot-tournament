@@ -9,7 +9,6 @@ router.use(auth)
 
 router.post('/', function(req, res) {
   const { user } = req.session
-  console.log(user.clan_role)
   if (!user || !user.clan_id || !['commander', 'executive_officer'].includes(user.clan_role)) {
     res.status(403).json({ success: false })
     return
