@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
+import axios from 'axios'
 import dayjs from 'dayjs'
 import { Button } from '../Form'
 import { getTournament } from '../../redux/store/tournaments'
@@ -49,6 +50,14 @@ export default function TournamentDetails({ id }) {
         </li>
       </ul>
 
-      {dayjs().isBefore(data.endDate) && <Button>Принять участие</Button>}
+      {dayjs().isBefore(data.endDate) &&
+        <Button
+          onClick={() => {
+            axios.post('/api/tournament/join', { id })
+          }}
+        >
+          Принять участие
+        </Button>
+      }
     </div>
 }
