@@ -22,12 +22,16 @@ router.get('/', function(req, res) {
     try {
       const response = await axios.get(`/account/info/?application_id=${API_KEY}&account_id=${result.account_id}&access_token=${result.access_token}`)
       const user = Object.values(response.data?.data)[0] || {}
-      const { account_id, clan_id } = user
-      const userDb = await User.findOne({ accountId: result.account_id })
+      const { account_id, clan_id, nickname } = user
+      let userDb = await User.findOne({ accountId: result.account_id })
       if (!userDb) {
-        await User.create({ accountId: account_id, clanId: clan_id })
+        userDb = await User.create({
+          accountId: account_id,
+          clanId: clan_id,
+          nickname
+        })
       }
-      jwt.encode(JWT_SECRET, { ...result, clan_id }, function(err, newToken) {
+      jwt.encode(JWT_SECRET, { ...result, clan_id, user_id: userDb._id }, function(err, newToken) {
         res.cookie('token', newToken)
         res.json({ user, success: true })
       })
