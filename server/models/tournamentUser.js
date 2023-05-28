@@ -1,8 +1,10 @@
 import mongoose from 'mongoose'
+import { statsSchema } from './common.js'
 
 const tournamentUserSchema = new mongoose.Schema({
-  accountId: {
-    type: String,
+  user: {
+    type: mongoose.ObjectId,
+    ref: 'User',
     required: true
   },
   tournamentId: {
@@ -13,16 +15,11 @@ const tournamentUserSchema = new mongoose.Schema({
     type: Date,
     required: true
   },
-  initialStats: {
-    battles: Number,
-    damage: Number,
-    spotted: Number,
-    blocked: Number,
-    stun: Number
-  },
   resetCount: {
-    type: Number
-  }
+    type: Number,
+    required: true
+  },
+  initialStats: statsSchema
 })
 
 const TournamentUser = mongoose.model('TournamentUser', tournamentUserSchema)

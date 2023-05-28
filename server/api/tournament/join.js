@@ -2,11 +2,10 @@ import express from 'express'
 import auth from '../../middleware/auth.js'
 import Tournament from '../../models/tournament.js'
 import TournamentUser from '../../models/tournamentUser.js'
-import axios from '../../utils/axios.js'
+import User from '../../models/user.js'
+import getUserStats from '../../utils/getUserStats.js'
 
 const router = express.Router()
-
-const { API_KEY } = process.env
 
 router.use(auth)
 
@@ -38,35 +37,14 @@ router.post('/', async function(req, res) {
       return
     }
 
-    const tanks = tournament.tanks.map(tank => tank.id).join(',')
-    const response = await axios.get(`/tanks/stats/?application_id=${API_KEY}&account_id=${user.account_id}&tank_id=${tanks}`)
-    const data = (response.data?.data || {})[user.account_id]
+    const initialStats = await getUserStats(user.account_id, tournament.tanks)
 
-    if (!data || !Array.isArray(data)) {  
-      res.json({ success: false, error: 'Can\'t fetch stats, try later '})
-      return
-    }
-
-    const initialStats = data.reduce((acc, item) => {
-      const { all } = item
-      if (all) {
-        acc.battles += all.battles
-        acc.damage += all.damage_dealt
-        acc.spotted += all.spotted
-        acc.blocked += all.avg_damage_blocked * all.battles
-        acc.stun += all.stun_number
-      }
-      return acc
-    }, {
-      battles: 0,
-      damage: 0,
-      spotted: 0,
-      blocked: 0,
-      stun: 0
+    await User.findByIdAndUpdate(user.user_id, {
+      stats: initialStats
     })
 
     const result = await TournamentUser.create({
-      accountId: user.account_id,
+      user: user.user_id,
       tournamentId: id,
       date: Date.now(),
       initialStats,

@@ -19,6 +19,7 @@ router.post('/', function(req, res) {
   data.level = parseInt(data.level)
   data.resetLimit = parseInt(data.resetLimit)
   data.tanks = tanksData.filter(tank => data.tanks.includes(tank.id))
+  data.lastStatsUpdate = Date.now()
   Tournament.create(data)
     .then(result => {
       res.status(200).json({

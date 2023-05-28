@@ -50,10 +50,17 @@ const tournamentSchema = new mongoose.Schema({
   places: {
     type: [String],
     required: true
+  },
+  lastStatsUpdate: {
+    type: Date
   }
 }, {
-  toObject: { virtuals: true },
-  toJSON: { virtuals: true }
+  toObject: {
+    virtuals: true
+  },
+  toJSON: {
+    virtuals: true
+  }
 })
 
 const LEVEL_OUTPUT = {
