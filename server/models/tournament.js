@@ -15,7 +15,7 @@ const tournamentSchema = new mongoose.Schema({
     required: true,
     enum: ['random', 'assault', 'meeting']
   },
-  minFights: {
+  minBattles: {
     type: Number,
     required: true,
     min: 5,
@@ -50,9 +50,6 @@ const tournamentSchema = new mongoose.Schema({
   places: {
     type: [String],
     required: true
-  },
-  lastStatsUpdate: {
-    type: Date
   }
 }, {
   toObject: {
