@@ -43,7 +43,7 @@ export default function TournamentDetails({ id }) {
           <span>Условия турнира</span> {CONDITION_TYPES[data.condition]}
         </li>
         <li>
-          <span>Мин. кол-во боев</span> {data.minFights}
+          <span>Мин. кол-во боев</span> {data.minBattles}
         </li>
         <li>
           <span>Кол-во обнулений</span> {data.resetLimit}

@@ -17,7 +17,7 @@ export default function TournamentForm() {
     startDate: '',
     endDate: '',
     battleType: 'random',
-    minFights: 5,
+    minBattles: 5,
     type: 'any',
     condition: 'damage',
     tier: 6,
@@ -151,7 +151,7 @@ export default function TournamentForm() {
                 <b>Условие турнира </b> {CONDITION_TYPES[values.condition]}
               </div>
               <div className={styles.summaryItem}>
-                <b>Мин. кол-во боев </b> {values.minFights}
+                <b>Мин. кол-во боев </b> {values.minBattles}
               </div>
               <div className={styles.summaryItem}>
                 <b>Кол-во обнулений </b> {values.resetLimit}
@@ -290,10 +290,10 @@ export default function TournamentForm() {
           <div className={styles.formBlock}>
             <Range
               label='Мин. кол-во боев для попадания на призовое место'
-              name='minFights'
+              name='minBattles'
               min={5}
               max={100}
-              value={values.minFights}
+              value={values.minBattles}
               onChange={handleChange}
               width="450px"
             />
