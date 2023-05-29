@@ -24,7 +24,10 @@ router.post('/', async function(req, res) {
   }
 
   try {
-    const tournamentUser = await TournamentUser.find({ tournamentId: id, accountId: user.account_id })
+    const tournamentUser = await TournamentUser.find({
+      tournament: id,
+      user: user.user_id
+    })
     if (tournamentUser.length > 0) {
       res.json({ success: false, error: 'Already joined' })
       return
@@ -45,7 +48,7 @@ router.post('/', async function(req, res) {
 
     const result = await TournamentUser.create({
       user: user.user_id,
-      tournamentId: id,
+      tournament: id,
       date: Date.now(),
       initialStats,
       resetCount: 0

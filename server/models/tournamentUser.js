@@ -7,8 +7,9 @@ const tournamentUserSchema = new mongoose.Schema({
     ref: 'User',
     required: true
   },
-  tournamentId: {
-    type: String,
+  tournament: {
+    type: mongoose.ObjectId,
+    ref: 'Tournament',
     required: true
   },
   date: {
