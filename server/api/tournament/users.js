@@ -63,8 +63,9 @@ router.get('/', async function(req, res) {
 
       const initialBattles = initialStats[battleType]?.battles
       const currentBattles = stats[battleType]?.battles
+      const battles = currentBattles - initialBattles
 
-      if (currentBattles - initialBattles < minBattles) {
+      if (battles < minBattles) {
         // @TODO
       }
 
@@ -75,6 +76,7 @@ router.get('/', async function(req, res) {
       return {
         nickname,
         accountId,
+        battles,
         value
       }
     })

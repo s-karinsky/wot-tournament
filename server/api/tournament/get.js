@@ -1,6 +1,5 @@
 import express from 'express'
 import Tournament from '../../models/tournament.js'
-import tanksData from '../../json/tanks.json' assert { type: 'json' }
 
 const router = express.Router()
 
