@@ -20,6 +20,9 @@ const tournamentUserSchema = new mongoose.Schema({
     type: Number,
     required: true
   },
+  lastResetDate: {
+    type: Date
+  },
   initialStats: statsSchema,
   currentStats: statsSchema
 })

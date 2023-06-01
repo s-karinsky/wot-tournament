@@ -1,5 +1,6 @@
 import express from 'express'
 import auth from '../../middleware/auth.js'
+import Tournament from '../../models/tournament.js'
 import TournamentUser from '../../models/tournamentUser.js'
 
 const router = express.Router()
@@ -10,7 +11,9 @@ router.get('/', async function(req, res) {
   const { id } = req.query
   const { user } = req.session
 
-  if (!user.user_id) {
+  const tournament = await Tournament.findById(id)
+
+  if (!user.user_id || !tournament) {
     res.status(403).json({ success: false })
     return
   }
@@ -20,7 +23,19 @@ router.get('/', async function(req, res) {
     query.tournament = id
   }
 
-  const tournaments = await TournamentUser.find(query).populate('tournament')
+  let tournaments = await TournamentUser.find(query).populate('tournament')
+
+  tournaments = tournaments.map(item => ({
+    tournament: {
+      id: item.tournament.id,
+      resetLimit: item.tournament.resetLimit
+    },
+    resetCount: item.resetCount,
+    date: item.date,
+    initialStats: item.initialStats[tournament.battleType],
+    currentStats: item.currentStats[tournament.battleType]
+  }))
+
   const result = !id ? tournaments : tournaments[0]
 
   res.json({ success: true, result })
