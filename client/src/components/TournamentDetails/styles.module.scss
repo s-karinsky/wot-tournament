@@ -20,3 +20,15 @@
     }
   }
 }
+
+.table {
+  margin-top: 40px;
+
+  .header {
+    margin-bottom: 20px;
+  }
+
+  th:first-child {
+    text-align: left;
+  }
+}

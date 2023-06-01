@@ -6,7 +6,8 @@ export const userSlice = createSlice({
     isLoading: false,
     isLoaded: false,
     authorized: false,
-    profile: {}
+    profile: {},
+    tournaments: {}
   },
   reducers: {
     setLoading: (state, action) => {
@@ -19,11 +20,26 @@ export const userSlice = createSlice({
       const { authorized = false, ...profile } = action.payload
       state.authorized = authorized
       state.profile = profile
+    },
+    setTournaments: (state, action) => {
+      const { payload } = action
+      if (payload.id && payload.tournament) {
+        state.tournaments[payload.id] = payload.tournament
+      } else {
+        state.tournaments = payload
+      }
     }
   },
 })
 
-export const { setLoading, setLoaded, setProfile } = userSlice.actions
+export const {
+  setLoading,
+  setLoaded,
+  setProfile,
+  setTournaments
+} = userSlice.actions
+
+export * from './selectors'
 
 export * from './thunk'
 

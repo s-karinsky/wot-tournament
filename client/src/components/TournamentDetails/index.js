@@ -1,16 +1,19 @@
 import { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import axios from 'axios'
 import dayjs from 'dayjs'
 import { Button } from '../Form'
-import { getTournament } from '../../redux/store/tournaments'
-import styles from './styles.module.scss'
-import { TANKS_TYPES, BATTLE_TYPES, CONDITION_TYPES } from '../../consts'
 import Loader from '../Loader'
+import TournamentUsers from '../TournamentUsers'
+import { getTournament } from '../../redux/store/tournaments'
+import { selectUserTournament } from '../../redux/store/user'
+import { TANKS_TYPES, BATTLE_TYPES, CONDITION_TYPES } from '../../consts'
+import styles from './styles.module.scss'
 
-export default function TournamentDetails({ id }) {
+export default function TournamentDetails({ id, onJoin }) {
   const dispatch = useDispatch()
   const data = useSelector(state => state.tournaments.map[id])
+  const users = useSelector(state => state.tournaments.mapUsersByTournament[id])
+  const userTournament = useSelector(state => selectUserTournament(state, id))
 
   useEffect(() => {
     if (data) return
@@ -50,14 +53,19 @@ export default function TournamentDetails({ id }) {
         </li>
       </ul>
 
-      {dayjs().isBefore(data.endDate) &&
+      {!userTournament && dayjs().isBefore(data.endDate) &&
         <Button
-          onClick={() => {
-            axios.post('/api/tournament/join', { id })
-          }}
+          onClick={onJoin}
         >
           Принять участие
         </Button>
       }
+
+      <div className={styles.table}>
+        <div className={styles.header}>
+          Участники
+        </div>
+        <TournamentUsers users={users} />
+      </div>
     </div>
 }

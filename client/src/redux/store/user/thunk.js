@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { setLoaded, setLoading, setProfile } from '.'
+import { setLoaded, setLoading, setProfile, setTournaments } from '.'
 
 export const getProfile = async (dispatch) => {
   dispatch(setLoading(true))
@@ -13,5 +13,20 @@ export const getProfile = async (dispatch) => {
   } catch(e) {
     dispatch(setLoading(false))
     dispatch(setLoaded(true))
+  }
+}
+
+export const getUserTournaments = (id) => async (dispatch) => {
+  try {
+    const res = await axios.get('/api/tournament/my', { params: { id } })
+    const { data: { success, result } = {} } = res
+    if (!success) return
+    const params = id ? { id, tournament: result } : result.reduce((res, item) => ({
+      ...res,
+      [item.tournament?.id]: item
+    }), {})
+    dispatch(setTournaments(params))
+  } catch(e) {
+    console.error(e)
   }
 }

@@ -6,7 +6,8 @@ export const tournamentsSlice = createSlice({
     isCreating: false,
     map: {},
     list: {},
-    listStatus: {}
+    listStatus: {},
+    mapUsersByTournament: {},
   },
   reducers: {
     setIsCreating: (state, action) => {
@@ -34,11 +35,21 @@ export const tournamentsSlice = createSlice({
       if (status) {
         state.listStatus[list] = status
       }
+    },
+    setUsersByTournament: (state, action) => {
+      const { id, users } = action.payload
+      state.mapUsersByTournament[id] = users
     }
   },
 })
 
-export const { setIsCreating, setTournament, setTournaments, setList } = tournamentsSlice.actions
+export const {
+  setIsCreating,
+  setTournament,
+  setTournaments,
+  setList,
+  setUsersByTournament
+} = tournamentsSlice.actions
 
 export * from './thunk'
 
