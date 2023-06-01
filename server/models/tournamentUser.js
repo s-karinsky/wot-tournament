@@ -20,7 +20,8 @@ const tournamentUserSchema = new mongoose.Schema({
     type: Number,
     required: true
   },
-  initialStats: statsSchema
+  initialStats: statsSchema,
+  currentStats: statsSchema
 })
 
 const TournamentUser = mongoose.model('TournamentUser', tournamentUserSchema)

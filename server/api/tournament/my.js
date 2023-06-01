@@ -1,8 +1,6 @@
 import express from 'express'
 import auth from '../../middleware/auth.js'
-import Tournament from '../../models/tournament.js'
 import TournamentUser from '../../models/tournamentUser.js'
-import User from '../../models/user.js'
 
 const router = express.Router()
 

@@ -1,7 +1,6 @@
 import express from 'express'
 import Tournament from '../../models/tournament.js'
 import TournamentUser from '../../models/tournamentUser.js'
-import User from '../../models/user.js'
 import getUserStats from '../../utils/getUserStats.js'
 
 const router = express.Router()
@@ -31,13 +30,14 @@ router.get('/', async function(req, res) {
 
   const updateUsers = tournamentUsers
     .filter(tournamentUser => {
-      const { user: { stats } } = tournamentUser
-      return now - new Date(stats.updatedAt) > UPDATE_STATS_MINUTES_DELAY * 60 * 1000
+      const { currentStats = {} } = tournamentUser
+      return !currentStats.updatedAt ||
+        now - new Date(currentStats.updatedAt) > UPDATE_STATS_MINUTES_DELAY * 60 * 1000
     })
     .map(tournamentUser => {
-      const { user: { accountId }, tournament } = tournamentUser
+      const { user: { accountId, _id }, tournament } = tournamentUser
       return getUserStats(accountId, tournament.tanks).then(stats => ({
-        accountId,
+        userId: _id,
         stats
       }))
     })
@@ -46,8 +46,13 @@ router.get('/', async function(req, res) {
 
   await Promise.all(
     updates.map(updateUser => {
-      const { accountId, stats } = updateUser
-      return User.findOneAndUpdate({ accountId }, { stats })
+      const { userId, stats } = updateUser
+      return TournamentUser.findOneAndUpdate({
+        tournament: id,
+        user: userId
+      }, {
+        currentStats: stats
+      })
     })
   )
 
@@ -57,12 +62,12 @@ router.get('/', async function(req, res) {
 
   const users = tournamentUsers
     .map(tournamentUser => {
-      const { user, tournament, initialStats } = tournamentUser
+      const { user, tournament, initialStats, currentStats = {} } = tournamentUser
       const { battleType, condition, minBattles } = tournament
-      const { accountId, nickname, stats } = user
+      const { accountId, nickname } = user
 
       const initialBattles = initialStats[battleType]?.battles
-      const currentBattles = stats[battleType]?.battles
+      const currentBattles = currentStats[battleType]?.battles
       const battles = currentBattles - initialBattles
 
       if (battles < minBattles) {
@@ -70,7 +75,7 @@ router.get('/', async function(req, res) {
       }
 
       const initialStat = (initialStats[battleType] || {})[condition]
-      const currentStat = (stats[battleType] || {})[condition]
+      const currentStat = (currentStats[battleType] || {})[condition]
       const value = currentStat - initialStat
 
       return {

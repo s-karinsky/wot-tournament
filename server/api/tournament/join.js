@@ -2,7 +2,6 @@ import express from 'express'
 import auth from '../../middleware/auth.js'
 import Tournament from '../../models/tournament.js'
 import TournamentUser from '../../models/tournamentUser.js'
-import User from '../../models/user.js'
 import getUserStats from '../../utils/getUserStats.js'
 
 const router = express.Router()
@@ -42,15 +41,12 @@ router.post('/', async function(req, res) {
 
     const initialStats = await getUserStats(user.account_id, tournament.tanks)
 
-    await User.findByIdAndUpdate(user.user_id, {
-      stats: initialStats
-    })
-
     const result = await TournamentUser.create({
       user: user.user_id,
       tournament: id,
       date: Date.now(),
       initialStats,
+      currentStats: initialStats,
       resetCount: 0
     })
 
