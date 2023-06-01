@@ -14,6 +14,7 @@ export default function TournamentDetails({ id, onJoin }) {
   const data = useSelector(state => state.tournaments.map[id])
   const users = useSelector(state => state.tournaments.mapUsersByTournament[id])
   const userTournament = useSelector(state => selectUserTournament(state, id))
+  const { currentStats, initialStats } = userTournament || {}
 
   useEffect(() => {
     if (data) return
@@ -23,35 +24,69 @@ export default function TournamentDetails({ id, onJoin }) {
   return !data ?
     <Loader /> :
     <div>
-      <div className={styles.header}>
-        {data.name}
+      <div className={styles.columns}>
+        <div className={styles.about}>
+          <div className={styles.header}>
+            {data.name}
+          </div>
+          <div className={styles.dates}>
+            Проводится с {dayjs(data.startDate).format('DD.MM.YYYY')} по {dayjs(data.endDate).format('DD.MM.YYYY')}
+          </div>
+          <ul className={styles.list}>
+            {!!data.clan && <li>
+              <span>Клан</span> {data.clan}
+            </li>}
+            <li>
+              <span>Режим боя</span> {BATTLE_TYPES[data.battleType]}
+            </li>
+            <li>
+              <span>Тип танка</span> {TANKS_TYPES[data.type]}
+            </li>
+            <li>
+              <span>Уровень техники</span> {data.tier}
+            </li>
+            <li>
+              <span>Условия турнира</span> {CONDITION_TYPES[data.condition]}
+            </li>
+            <li>
+              <span>Мин. кол-во боев</span> {data.minBattles}
+            </li>
+            <li>
+              <span>Кол-во обнулений</span> {data.resetLimit}
+            </li>
+          </ul>
+        </div>
+        {!!userTournament &&
+          <div className={styles.stats}>
+            <div className={styles.header}>
+              Ваша статистика
+            </div>
+            <div className={styles.dates}>
+              В турнире с {dayjs(userTournament.date).format('DD.MM.YYYY')}
+            </div>
+            <ul className={styles.list}>
+            <li>
+              <span>Кол-во боев</span> {currentStats?.battles - initialStats?.battles}
+            </li>
+            <li>
+              <span>Нанесено урона</span> {currentStats?.damage - initialStats?.damage}
+            </li>
+            <li>
+              <span>Обнаружено противников</span> {currentStats?.spotted - initialStats?.spotted}
+            </li>
+            <li>
+              <span>Заблокировано урона</span> {currentStats?.blocked - initialStats?.blocked}
+            </li>
+            <li>
+              <span>Оглушения</span> {currentStats?.stun - initialStats?.stun}
+            </li>
+            <li>
+              <span>Обнуления</span> {userTournament.resetCount}
+            </li>
+          </ul>
+          </div>
+        }
       </div>
-      <div className={styles.dates}>
-        Проводится с {dayjs(data.startDate).format('DD.MM.YYYY')} по {dayjs(data.endDate).format('DD.MM.YYYY')}
-      </div>
-      <ul className={styles.list}>
-        {!!data.clan && <li>
-          <span>Клан</span> {data.clan}
-        </li>}
-        <li>
-          <span>Режим боя</span> {BATTLE_TYPES[data.battleType]}
-        </li>
-        <li>
-          <span>Тип танка</span> {TANKS_TYPES[data.type]}
-        </li>
-        <li>
-          <span>Уровень техники</span> {data.tier}
-        </li>
-        <li>
-          <span>Условия турнира</span> {CONDITION_TYPES[data.condition]}
-        </li>
-        <li>
-          <span>Мин. кол-во боев</span> {data.minBattles}
-        </li>
-        <li>
-          <span>Кол-во обнулений</span> {data.resetLimit}
-        </li>
-      </ul>
 
       {!userTournament && dayjs().isBefore(data.endDate) &&
         <Button

@@ -6,6 +6,15 @@
   margin: 10px 0;
   font-size: 20px;
 }
+.columns {
+  display: flex;
+}
+.about {
+  flex: 1 1 0px;
+}
+.stats {
+  flex: 1 1 0px;
+}
 .list {
   font-size: 16px;
   list-style: none;
@@ -20,7 +29,6 @@
     }
   }
 }
-
 .table {
   margin-top: 40px;
 
