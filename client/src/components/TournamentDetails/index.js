@@ -9,7 +9,7 @@ import { selectUserTournament } from '../../redux/store/user'
 import { TANKS_TYPES, BATTLE_TYPES, CONDITION_TYPES } from '../../consts'
 import styles from './styles.module.scss'
 
-export default function TournamentDetails({ id, onJoin }) {
+export default function TournamentDetails({ id, onJoin, onReset }) {
   const dispatch = useDispatch()
   const data = useSelector(state => state.tournaments.map[id])
   const users = useSelector(state => state.tournaments.mapUsersByTournament[id])
@@ -63,27 +63,37 @@ export default function TournamentDetails({ id, onJoin }) {
             </div>
             <div className={styles.dates}>
               В турнире с {dayjs(userTournament.date).format('DD.MM.YYYY')}
+              {!!userTournament.lastResetDate &&
+                ` , последний сброс ${dayjs(userTournament.lastResetDate).format('DD.MM.YYYY')}`
+              }
             </div>
             <ul className={styles.list}>
-            <li>
-              <span>Кол-во боев</span> {currentStats?.battles - initialStats?.battles}
-            </li>
-            <li>
-              <span>Нанесено урона</span> {currentStats?.damage - initialStats?.damage}
-            </li>
-            <li>
-              <span>Обнаружено противников</span> {currentStats?.spotted - initialStats?.spotted}
-            </li>
-            <li>
-              <span>Заблокировано урона</span> {currentStats?.blocked - initialStats?.blocked}
-            </li>
-            <li>
-              <span>Оглушения</span> {currentStats?.stun - initialStats?.stun}
-            </li>
-            <li>
-              <span>Обнуления</span> {userTournament.resetCount}
-            </li>
-          </ul>
+              <li>
+                <span>Кол-во боев</span> {currentStats?.battles - initialStats?.battles}
+              </li>
+              <li>
+                <span>Нанесено урона</span> {currentStats?.damage - initialStats?.damage}
+              </li>
+              <li>
+                <span>Обнаружено противников</span> {currentStats?.spotted - initialStats?.spotted}
+              </li>
+              <li>
+                <span>Заблокировано урона</span> {currentStats?.blocked - initialStats?.blocked}
+              </li>
+              <li>
+                <span>Оглушения</span> {currentStats?.stun - initialStats?.stun}
+              </li>
+              <li>
+                <span>Доступные обнуления</span> {data.resetLimit - userTournament.resetCount}
+              </li>
+            </ul>
+            {data.resetLimit - userTournament.resetCount > 0 && <div>
+              <Button
+                onClick={onReset}
+              >
+                Сбросить статистику
+              </Button>
+            </div>}
           </div>
         }
       </div>

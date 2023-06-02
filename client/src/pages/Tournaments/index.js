@@ -30,6 +30,13 @@ export default function Tournaments() {
     })
   }, [])
 
+  const resetStats = useCallback(() => {
+    if (!window.confirm('Сбросить вашу статистику в турнире?')) return
+    axios.post('/api/tournament/reset', { id: page }).then(() => {
+      dispatch(getUserTournaments(page))
+    })
+  })
+
   return (
     <div className="container content-block">
       {!page && <TournamentList data={list} />}
@@ -38,6 +45,7 @@ export default function Tournaments() {
         <TournamentDetails
           id={page}
           onJoin={joinTournament}
+          onReset={resetStats}
         />
       }
     </div>
