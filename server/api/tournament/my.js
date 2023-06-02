@@ -31,6 +31,7 @@ router.get('/', async function(req, res) {
       resetLimit: item.tournament.resetLimit
     },
     resetCount: item.resetCount,
+    lastResetDate: item.lastResetDate,
     date: item.date,
     initialStats: item.initialStats[tournament.battleType],
     currentStats: item.currentStats[tournament.battleType]

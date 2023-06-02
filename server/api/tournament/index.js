@@ -3,6 +3,7 @@ import createRouter from './create.js'
 import getRouter from './get.js'
 import joinRouter from './join.js'
 import myRouter from './my.js'
+import resetRouter from './reset.js'
 import usersRouter from './users.js'
 
 const router = express.Router()
@@ -11,6 +12,7 @@ router.use('/create', createRouter)
 router.use('/get', getRouter)
 router.use('/join', joinRouter)
 router.use('/my', myRouter)
+router.use('/reset', resetRouter)
 router.use('/users', usersRouter)
 
 export default router
