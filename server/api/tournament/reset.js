@@ -31,6 +31,12 @@ router.post('/', async function(req, res) {
       res.json({ success: false, error: 'Not joined' })
       return
     }
+    const currentBattles = tournamentUser.currentStats?.random?.battles
+    const initialBattles = tournamentUser.initialStats?.random?.battles
+    if (currentBattles <= initialBattles) {
+      res.json({ success: false, error: 'Stats are empty' })
+      return
+    }
 
     const tournament = await Tournament.findById(id)
 
@@ -54,15 +60,6 @@ router.post('/', async function(req, res) {
     tournamentUser.resetCount += 1
     tournamentUser.lastResetDate = new Date()
     tournamentUser.save()
-    // await TournamentUser.findOneAndUpdate({
-    //   tournament: id,
-    //   user: user.user_id
-    // }, {
-    //   initialStats: stats,
-    //   currentStats: stats,
-    //   resetCount: tournamentUser.resetCount + 1,
-    //   lastResetDate: new Date()
-    // })
 
     res.json({ success: true })
   } catch (error) {
