@@ -1,15 +1,18 @@
+import cn from 'classnames'
 import styles from './styles.module.scss'
 
-export default function Loader({ size = '40px', isStatic }) {
+export default function Loader({ size = '40px', margin, color, isStatic }) {
   return (
     <div
       style={{
         width: size,
         height: size,
         position: isStatic ? 'static' : 'absolute',
-        margin: isStatic ? 0 : undefined
+        margin: margin || (isStatic ? 0 : undefined)
       }}
-      className={styles.loader}
+      className={cn(styles.loader, {
+        [styles[color]]: !!color
+      })}
     ></div>
   )
 }
