@@ -90,4 +90,13 @@
   &:hover {
     box-shadow: 0 0 9px 3px rgba(226, 30, 228, 0.24);
   }
+
+  &:disabled {
+    background: linear-gradient(#8e6d8f, #5a3e5a);
+    cursor: auto;
+
+    &:hover {
+      box-shadow: none;
+    }
+  }
 }
