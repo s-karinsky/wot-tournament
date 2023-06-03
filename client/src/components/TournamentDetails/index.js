@@ -13,6 +13,8 @@ export default function TournamentDetails({ id, onJoin, onReset }) {
   const dispatch = useDispatch()
   const data = useSelector(state => state.tournaments.map[id])
   const users = useSelector(state => state.tournaments.mapUsersByTournament[id])
+  const isJoining = useSelector(state => state.tournaments.pendingJoin[id])
+  const isReseting = useSelector(state => state.tournaments.pendingReset[id])
   const userTournament = useSelector(state => selectUserTournament(state, id))
   const { currentStats, initialStats } = userTournament || {}
 
@@ -90,8 +92,16 @@ export default function TournamentDetails({ id, onJoin, onReset }) {
             {data.resetLimit - userTournament.resetCount > 0 && <div>
               <Button
                 onClick={onReset}
+                disabled={isReseting}
               >
-                Сбросить статистику
+                {isReseting ?
+                  <Loader
+                    margin='0 auto'
+                    color='white'
+                    isStatic
+                  /> :
+                  'Сбросить статистику'
+                }
               </Button>
             </div>}
           </div>
@@ -101,8 +111,16 @@ export default function TournamentDetails({ id, onJoin, onReset }) {
       {!userTournament && dayjs().isBefore(data.endDate) &&
         <Button
           onClick={onJoin}
+          disabled={isJoining}
         >
-          Принять участие
+          {isJoining ?
+            <Loader
+              margin='0 auto'
+              color='white'
+              isStatic
+            /> :
+            'Принять участие'
+          }
         </Button>
       }
 

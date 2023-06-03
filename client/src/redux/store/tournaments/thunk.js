@@ -1,10 +1,13 @@
 import axios from 'axios'
+import { getUserTournaments } from '../user'
 import {
   setIsCreating,
   setTournament,
   setTournaments,
   setList,
-  setUsersByTournament
+  setUsersByTournament,
+  setPendingJoin,
+  setPendingReset
 } from '.'
 
 export const createTournament = (data, onSuccess = () => {}) => async (dispatch) => {
@@ -46,6 +49,31 @@ export const getUsersByTournament = id => async (dispatch) => {
   try {
     const result = await axios.get('/api/tournament/users', { params: { id } })
     dispatch(setUsersByTournament({ id, users: result.data.users || [] }))
+  } catch (e) {
+    console.error(e)
+  }
+}
+
+export const joinTournament = id => async (dispatch) => {
+  try {
+    dispatch(setPendingJoin({ [id]: true }))
+    await axios.post('/api/tournament/join', { id })
+    await Promise.all([
+      dispatch(getUserTournaments(id)),
+      dispatch(getUsersByTournament(id))
+    ])
+    dispatch(setPendingJoin({ [id]: false }))
+  } catch (e) {
+    console.error(e)
+  }
+}
+
+export const resetTournament = id => async (dispatch) => {
+  try {
+    dispatch(setPendingReset({ [id]: true }))
+    await axios.post('/api/tournament/reset', { id })
+    await dispatch(getUserTournaments(id))
+    dispatch(setPendingReset({ [id]: false }))
   } catch (e) {
     console.error(e)
   }

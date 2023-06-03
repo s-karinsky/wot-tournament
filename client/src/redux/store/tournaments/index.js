@@ -8,6 +8,8 @@ export const tournamentsSlice = createSlice({
     list: {},
     listStatus: {},
     mapUsersByTournament: {},
+    pendingJoin: {},
+    pendingReset: {}
   },
   reducers: {
     setIsCreating: (state, action) => {
@@ -39,6 +41,18 @@ export const tournamentsSlice = createSlice({
     setUsersByTournament: (state, action) => {
       const { id, users } = action.payload
       state.mapUsersByTournament[id] = users
+    },
+    setPendingJoin: (state, action) => {
+      const { payload } = action
+      Object.keys(payload).forEach(id => {
+        state.pendingJoin[id] = payload[id]
+      })
+    },
+    setPendingReset: (state, action) => {
+      const { payload } = action
+      Object.keys(payload).forEach(id => {
+        state.pendingReset[id] = payload[id]
+      })
     }
   },
 })
@@ -48,7 +62,9 @@ export const {
   setTournament,
   setTournaments,
   setList,
-  setUsersByTournament
+  setUsersByTournament,
+  setPendingJoin,
+  setPendingReset
 } = tournamentsSlice.actions
 
 export * from './thunk'
