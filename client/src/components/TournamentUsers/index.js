@@ -8,6 +8,10 @@ export default function TournamentUsers({
   const columns = useMemo(
     () => [
       {
+        Header: 'Место',
+        accessor: 'pos'
+      },
+      {
         Header: 'Пользователь',
         accessor: 'nickname',
         width: '40%',

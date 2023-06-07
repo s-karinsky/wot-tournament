@@ -34,6 +34,9 @@ export default function TournamentDetails({ id, onJoin, onReset }) {
           <div className={styles.dates}>
             Проводится с {dayjs(data.startDate).format('DD.MM.YYYY')} по {dayjs(data.endDate).format('DD.MM.YYYY')}
           </div>
+          <div className={styles.header}>
+            Правила турнира
+          </div>
           <ul className={styles.list}>
             {!!data.clan && <li>
               <span>Клан</span> {data.clan}
@@ -56,6 +59,14 @@ export default function TournamentDetails({ id, onJoin, onReset }) {
             <li>
               <span>Кол-во обнулений</span> {data.resetLimit}
             </li>
+            <li>
+              <span>Призовые места</span> 
+              <ol className={styles.places}>
+                {(data.places || []).map(place => (
+                  <li>{place}</li>
+                ))}
+              </ol>
+            </li>
           </ul>
         </div>
         {!!userTournament &&
@@ -65,9 +76,6 @@ export default function TournamentDetails({ id, onJoin, onReset }) {
             </div>
             <div className={styles.dates}>
               В турнире с {dayjs(userTournament.date).format('DD.MM.YYYY')}
-              {!!userTournament.lastResetDate &&
-                ` , последний сброс ${dayjs(userTournament.lastResetDate).format('DD.MM.YYYY')}`
-              }
             </div>
             <ul className={styles.list}>
               <li>

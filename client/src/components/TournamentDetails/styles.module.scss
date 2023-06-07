@@ -3,7 +3,7 @@
   font-weight: bold;
 }
 .dates {
-  margin: 10px 0;
+  margin: 10px 0 30px;
   font-size: 20px;
 }
 .columns {
@@ -36,7 +36,11 @@
     margin-bottom: 20px;
   }
 
-  th:first-child {
+  th:nth-child(2) {
     text-align: left;
   }
+}
+.places {
+  margin: 10px 0 0 30px;
+  padding: 0;
 }
