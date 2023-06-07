@@ -10,7 +10,7 @@ router.use(auth)
 
 router.get('/', async function(req, res) {
   const { id } = req.query
-  const { user } = req.session
+  const { user = {} } = req.session
 
   const tournament = await Tournament.findById(id)
 
