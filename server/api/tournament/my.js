@@ -2,6 +2,7 @@ import express from 'express'
 import auth from '../../middleware/auth.js'
 import Tournament from '../../models/tournament.js'
 import TournamentUser from '../../models/tournamentUser.js'
+import updateTournamentUserStats from '../../utils/updateTournamentUserStats.js'
 
 const router = express.Router()
 
@@ -21,6 +22,7 @@ router.get('/', async function(req, res) {
   const query = { user: user.user_id }
   if (id) {
     query.tournament = id
+    await updateTournamentUserStats(id, query)
   }
 
   let tournaments = await TournamentUser.find(query).populate('tournament')

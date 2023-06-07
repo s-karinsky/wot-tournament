@@ -1,7 +1,7 @@
 import express from 'express'
 import Tournament from '../../models/tournament.js'
 import TournamentUser from '../../models/tournamentUser.js'
-import getUserStats from '../../utils/getUserStats.js'
+import updateTournamentUserStats from '../../utils/updateTournamentUserStats.js'
 
 const router = express.Router()
 
@@ -22,41 +22,9 @@ router.get('/', async function(req, res) {
     return
   }
 
-  let tournamentUsers = await TournamentUser.find({ tournament: id })
-    .populate('tournament')
-    .populate('user')
+  await updateTournamentUserStats(id)
 
-  const now = Date.now()
-
-  const updateUsers = tournamentUsers
-    .filter(tournamentUser => {
-      const { currentStats = {} } = tournamentUser
-      return !currentStats.updatedAt ||
-        now - new Date(currentStats.updatedAt) > UPDATE_STATS_MINUTES_DELAY * 60 * 1000
-    })
-    .map(tournamentUser => {
-      const { user: { accountId, _id }, tournament } = tournamentUser
-      return getUserStats(accountId, tournament.tanks).then(stats => ({
-        userId: _id,
-        stats
-      }))
-    })
-
-  const updates = await Promise.all(updateUsers)
-
-  await Promise.all(
-    updates.map(updateUser => {
-      const { userId, stats } = updateUser
-      return TournamentUser.findOneAndUpdate({
-        tournament: id,
-        user: userId
-      }, {
-        currentStats: stats
-      })
-    })
-  )
-
-  tournamentUsers = await TournamentUser.find({ tournament: id })
+  const tournamentUsers = await TournamentUser.find({ tournament: id })
     .populate('tournament')
     .populate('user')
 
@@ -81,11 +49,16 @@ router.get('/', async function(req, res) {
       return {
         nickname,
         accountId,
+        minBattles,
         battles,
         value
       }
     })
     .sort((a, b) => a.value > b.value ? -1 : 1)
+    .map((item, pos) => ({
+      ...item,
+      pos: item.battles > item.minBattles ? pos + 1 : '-'
+    }))
 
   res.json({ success: true, users })
 })
