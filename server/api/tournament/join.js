@@ -18,7 +18,7 @@ router.post('/', async function(req, res) {
   }
 
   if (!user) {
-    res.status(403).json({ success: false, error: 'Not authorized' })
+    res.json({ success: false, error: 'Not authorized' })
     return
   }
 
