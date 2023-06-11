@@ -6,6 +6,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { useLazyEffect } from '../../utils/hooks'
 import { createTournament } from '../../redux/store/tournaments'
+import { show, hide } from '../../redux/store/modal'
 import { Button, Checkbox, Input, Select, Range } from '../Form'
 import Loader from '../Loader'
 import Modal from '../Modal'
@@ -28,10 +29,15 @@ export default function TournamentForm() {
   const [ tanks, setTanks ] = useState([])
   const [ isTanksLoading, setIsTanksLoading ] = useState(true)
   const [ validationErros, setValidationErrors ] = useState({})
-  const [ isModal, setIsModal ] = useState(false)
   const navigate = useNavigate()
   const dispatch = useDispatch()
   const isCreating = useSelector(state => state.tournaments.isCreating)
+
+  useEffect(() => {
+    return () => {
+      dispatch(hide('createTournament'))
+    }
+  }, [])
 
   useLazyEffect(() => {
     setIsTanksLoading(true)
@@ -65,7 +71,7 @@ export default function TournamentForm() {
     }
     setValidationErrors(erros)
     if (!Object.values(erros).length) {
-      setIsModal(true)
+      dispatch(show('createTournament'))
     }
   }, [values])
 
@@ -109,67 +115,65 @@ export default function TournamentForm() {
 
   return (
     <div>
-      {isModal &&
-        <Modal
-          title={isCreating ? '' : 'Подтвердите данные турнира'}
-          onClose={() => setIsModal(false)}
-        >
-          {isCreating ? 
-            <Loader /> :
-            <div className={styles.summary}>
-              <div className={styles.summaryItem}>
-                <b>Начало турнира</b> {dayjs(values.startDate).format('DD.MM.YYYY')}
-              </div>
-              <div className={styles.summaryItem}>
-                <b>Окончание турнира</b> {dayjs(values.endDate).format('DD.MM.YYYY')}
-              </div>
-              <div className={styles.summaryItem}>
-                <b>Тип танка </b> {TANKS_TYPES[values.type]}
-              </div>
-              <div className={styles.summaryItem}>
-                <b>Уровень техники </b> {values.tier}
-              </div>
-              <div className={styles.summaryItem}>
-                <b>Техника</b>
-                <div className={styles.summaryTanks}>
-                  {tanks
-                    .filter(({ id }) => values.tanks.includes(id))
-                    .map(tank => (
-                      <div className={styles.summaryTanksItem} key={tank.id}>
-                        <span className={styles.flag} style={{ backgroundImage: `url(/img/flag-${tank.nation}.png)` }}></span>
-                        {tank.short_name}
-                      </div>
-                    ))
-                  }
-                </div>
-              </div>
-              <div className={styles.summaryItem}>
-                <b>Режим боя </b> {BATTLE_TYPES[values.battleType]}
-              </div>
-              <div className={styles.summaryItem}>
-                <b>Условие турнира </b> {CONDITION_TYPES[values.condition]}
-              </div>
-              <div className={styles.summaryItem}>
-                <b>Мин. кол-во боев </b> {values.minBattles}
-              </div>
-              <div className={styles.summaryItem}>
-                <b>Кол-во обнулений </b> {values.resetLimit}
-              </div>
-              <div className={styles.summaryItem}>
-                <b>Призовые места</b>
-                <ol>
-                  {values.places.map((place, i) => (
-                    <li key={i}>{place}</li>
-                  ))}
-                </ol>
-              </div>
-              <div className={styles.summaryItem}>
-                <Button type='button' onClick={handleCreateTournament}>Создать турнир</Button>
+      <Modal
+        name='createTournament'
+        title={isCreating ? '' : 'Подтвердите данные турнира'}
+      >
+        {isCreating ? 
+          <Loader /> :
+          <div className={styles.summary}>
+            <div className={styles.summaryItem}>
+              <b>Начало турнира</b> {dayjs(values.startDate).format('DD.MM.YYYY')}
+            </div>
+            <div className={styles.summaryItem}>
+              <b>Окончание турнира</b> {dayjs(values.endDate).format('DD.MM.YYYY')}
+            </div>
+            <div className={styles.summaryItem}>
+              <b>Тип танка </b> {TANKS_TYPES[values.type]}
+            </div>
+            <div className={styles.summaryItem}>
+              <b>Уровень техники </b> {values.tier}
+            </div>
+            <div className={styles.summaryItem}>
+              <b>Техника</b>
+              <div className={styles.summaryTanks}>
+                {tanks
+                  .filter(({ id }) => values.tanks.includes(id))
+                  .map(tank => (
+                    <div className={styles.summaryTanksItem} key={tank.id}>
+                      <span className={styles.flag} style={{ backgroundImage: `url(/img/flag-${tank.nation}.png)` }}></span>
+                      {tank.short_name}
+                    </div>
+                  ))
+                }
               </div>
             </div>
-          }
-        </Modal>
-      }
+            <div className={styles.summaryItem}>
+              <b>Режим боя </b> {BATTLE_TYPES[values.battleType]}
+            </div>
+            <div className={styles.summaryItem}>
+              <b>Условие турнира </b> {CONDITION_TYPES[values.condition]}
+            </div>
+            <div className={styles.summaryItem}>
+              <b>Мин. кол-во боев </b> {values.minBattles}
+            </div>
+            <div className={styles.summaryItem}>
+              <b>Кол-во обнулений </b> {values.resetLimit}
+            </div>
+            <div className={styles.summaryItem}>
+              <b>Призовые места</b>
+              <ol>
+                {values.places.map((place, i) => (
+                  <li key={i}>{place}</li>
+                ))}
+              </ol>
+            </div>
+            <div className={styles.summaryItem}>
+              <Button type='button' onClick={handleCreateTournament}>Создать турнир</Button>
+            </div>
+          </div>
+        }
+      </Modal>
       <form className={styles.form} onSubmit={handleSubmit}>
         <div className={styles.formColumns}>
           <div className={styles.formLeft}>
