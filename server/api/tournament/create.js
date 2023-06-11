@@ -19,6 +19,9 @@ router.post('/', function(req, res) {
   data.level = parseInt(data.level)
   data.resetLimit = parseInt(data.resetLimit)
   data.tanks = tanksData.filter(tank => data.tanks.includes(tank.id))
+  // @TODO Исправить когда нужна будет возможность создавать турниры для
+  // разных кланов и общие турниры
+  data.clanId = 570514
   Tournament.create(data)
     .then(result => {
       res.status(200).json({

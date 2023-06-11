@@ -1,7 +1,7 @@
 import mongoose from 'mongoose'
 
 const tournamentSchema = new mongoose.Schema({
-  clan: String,
+  clanId: Number,
   startDate: {
     type: Date,
     required: true
