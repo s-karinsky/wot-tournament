@@ -63,7 +63,7 @@ export default function TournamentDetails({ id, onJoin, onReset }) {
               <span>Призовые места</span> 
               <ol className={styles.places}>
                 {(data.places || []).map(place => (
-                  <li>{place}</li>
+                  <li key={place}>{place}</li>
                 ))}
               </ol>
             </li>
