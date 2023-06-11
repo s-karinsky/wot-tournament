@@ -14,6 +14,8 @@ router.get('/', function(req, res) {
       const items = document.querySelectorAll('.preview_item')
       const news = []
       for (var i = 0; i < items.length; i++) {
+        const imageStyle = (items[i].querySelector('.preview_image-holder').getAttribute('style') || '').match(/url\((.*?)\)/)
+        const image = imageStyle && imageStyle[1]
         const link = items[i].querySelector('.preview_link').getAttribute('href')
         const title = items[i].querySelector('.preview_title').textContent
         const time = parseInt(items[i].querySelector('.preview_time').getAttribute('data-timestamp'))
@@ -21,7 +23,8 @@ router.get('/', function(req, res) {
           news.push({
             link,
             title,
-            time
+            time,
+            image
           })
         }
       }
@@ -31,7 +34,7 @@ router.get('/', function(req, res) {
       })
     })
     .catch(error => {
-      res.status(500).json(error)
+      res.status(500).json({ success: false, error: error.message })
     })
 })
 
