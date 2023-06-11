@@ -7,7 +7,6 @@ export const VALIDATION_MESSAGES = {
 }
 
 export const TANKS_TYPES = {
-  any: 'Любой тип',
   lightTank: 'Лёгкие',
   mediumTank: 'Средние',
   heavyTank: 'Тяжелые',

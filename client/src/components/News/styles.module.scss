@@ -1,14 +1,30 @@
+.news {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  margin-right: -10px;
+}
 .newsItem {
+  width: calc(50% - 10px);
+  margin: 0 10px 0 0;
   margin-bottom: 20px;
 }
 .newsDate {
   font-size: 12px;
   display: block;
+  text-decoration: none;
 }
 .newsLink {
   color: #fff;
+  text-decoration: none;
 
-  &:hover {
+  &:hover .newsTitle {
     text-decoration: none;
   }
+}
+.newsTitle {
+  text-decoration: underline;
+}
+.image {
+  width: 100%;
 }

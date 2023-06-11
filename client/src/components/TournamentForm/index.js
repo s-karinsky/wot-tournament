@@ -18,7 +18,7 @@ export default function TournamentForm() {
     endDate: '',
     battleType: 'random',
     minBattles: 5,
-    type: 'any',
+    type: 'lightTank',
     condition: 'damage',
     tier: 6,
     tanks: [],
@@ -31,7 +31,6 @@ export default function TournamentForm() {
   const [ isModal, setIsModal ] = useState(false)
   const navigate = useNavigate()
   const dispatch = useDispatch()
-  const clanName = useSelector(state => state.data?.clan?.name)
   const isCreating = useSelector(state => state.tournaments.isCreating)
 
   useLazyEffect(() => {
@@ -103,7 +102,7 @@ export default function TournamentForm() {
   }, [values, validationErros])
 
   const handleCreateTournament = useCallback(() => {
-    dispatch(createTournament({ ...values, clan: clanName }, result => {
+    dispatch(createTournament({ ...values }, result => {
       navigate(`/tournaments/${result._id}`)
     }))
   }, [values])

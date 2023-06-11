@@ -29,7 +29,7 @@ export default function Home() {
         <News list={news} />
       </div>
       <div className={styles.info}>
-        {isAuthorized && <div className='content-block'>
+        {isAuthorized && !!clan.description_html && <div className='content-block'>
           <div className='header'>Правила клана</div>
           <span dangerouslySetInnerHTML={{ __html: clan.description_html }}></span>
         </div>}
@@ -41,8 +41,8 @@ export default function Home() {
                 <Link to={`/tournaments/${item.id}`}>{item.name}</Link>
                 <span className={styles.tournamentsDate}>
                   {dayjs(item.startDate).isBefore(dayjs()) ?
-                    `Окончание через ${dayjs(item.endDate).fromNow()}` :
-                    `Начало через ${dayjs(item.startDate).fromNow()}`
+                    `Окончание ${dayjs(item.endDate).fromNow()}` :
+                    `Начало ${dayjs(item.startDate).fromNow()}`
                   }
                 </span>
               </li>
