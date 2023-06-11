@@ -1,5 +1,7 @@
 import axios from 'axios'
+import iconError from '../../../components/Icon/error.svg'
 import { getUserTournaments } from '../user'
+import { show } from '../modal'
 import {
   setIsCreating,
   setTournament,
@@ -57,11 +59,16 @@ export const getUsersByTournament = id => async (dispatch) => {
 export const joinTournament = id => async (dispatch) => {
   try {
     dispatch(setPendingJoin({ [id]: true }))
-    await axios.post('/api/tournament/join', { id })
-    await Promise.all([
-      dispatch(getUserTournaments(id)),
-      dispatch(getUsersByTournament(id))
-    ])
+    const response = await axios.post('/api/tournament/join', { id })
+    const { data } = response
+    if (!data.success) {
+      dispatch(show({ name: 'alert', icon: iconError, text: data.error }))
+    } else {
+      await Promise.all([
+        dispatch(getUserTournaments(id)),
+        dispatch(getUsersByTournament(id))
+      ])
+    }
     dispatch(setPendingJoin({ [id]: false }))
   } catch (e) {
     console.error(e)
