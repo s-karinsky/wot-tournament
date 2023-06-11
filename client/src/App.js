@@ -4,6 +4,8 @@ import { useSelector, useDispatch } from 'react-redux'
 import Header from './components/Header'
 import Footer from './components/Footer'
 import Loader from './components/Loader'
+import Modal from './components/Modal'
+import AlertMessage from './components/AlertMessage'
 import Home from './pages/Home'
 import TermsOfUse from './pages/TermsOfUse'
 import Tournaments from './pages/Tournaments'
@@ -32,6 +34,11 @@ export default function App() {
         <Route path="/terms-of-use" element={<TermsOfUse />} />
         <Route path="/tournaments/:page?" element={<Tournaments />} />
       </Routes>
+      <Modal
+        name='alert'
+      >
+        <AlertMessage />
+      </Modal>
       <Footer />
     </div> :
     <Loader />

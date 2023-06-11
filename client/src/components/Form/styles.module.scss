@@ -87,6 +87,12 @@
   cursor: pointer;
   transition: ease .3s box-shadow;
 
+  &_small {
+    height: 36px;
+    line-height: 36px;
+    font-size: 20px;
+  }
+
   &:hover {
     box-shadow: 0 0 9px 3px rgba(226, 30, 228, 0.24);
   }

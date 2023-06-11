@@ -1,0 +1,15 @@
+.message {
+  display: flex;
+  align-items: center;
+  margin: 20px 30px 20px 10px;
+}
+.text {
+  font-size: 18px;
+}
+.icon + .text {
+  margin-left: 15px;
+}
+.button {
+  width: 80px;
+  margin: 0 auto;
+}
