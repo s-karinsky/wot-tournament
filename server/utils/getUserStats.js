@@ -8,7 +8,7 @@ export default async (accountId, tanks) => {
   const data = (response.data?.data || {})[accountId]
 
   if (!data || !Array.isArray(data)) {
-    throw 'Can\'t fetch stats, try later'
+    throw new Error('Вы не можете принять участие в турнире, у вас нет подходящей техники')
   }
 
   const initialStats = data.reduce((acc, item) => {

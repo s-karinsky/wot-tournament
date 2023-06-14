@@ -22,6 +22,8 @@ router.post('/', async function(req, res) {
   // @TODO Исправить когда нужна будет возможность создавать турниры для
   // разных кланов и общие турниры
   data.clanId = 570514
+  data.clanName = 'KORM-Lite'
+
   try {
     const result = await Tournament.create(data)
     res.json({ success: true, result })

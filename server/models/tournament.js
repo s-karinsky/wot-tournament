@@ -2,6 +2,7 @@ import mongoose from 'mongoose'
 
 const tournamentSchema = new mongoose.Schema({
   clanId: Number,
+  clanName: String,
   startDate: {
     type: Date,
     required: true
@@ -78,9 +79,9 @@ const TANKS_OUTPUT = {
 }
 
 tournamentSchema.virtual('name').get(function() {
-  const { clan, tanks, type, tier } = this
+  const { clanName, tanks, type, tier } = this
   const tankNames = tanks.length > 1 ? 'Любой танк' : tanks.map(tank => tank.short_name).join(', ')
-  return [clan, tankNames, TANKS_OUTPUT[type], LEVEL_OUTPUT[tier]].join(' ')
+  return [clanName, tankNames, TANKS_OUTPUT[type], `${LEVEL_OUTPUT[tier]} ур.`].join(' ')
 })
 
 const Tournament = mongoose.model('Tournament', tournamentSchema)

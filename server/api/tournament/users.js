@@ -51,7 +51,7 @@ router.get('/', async function(req, res) {
         accountId,
         minBattles,
         battles,
-        value
+        value: Math.floor(value / battles)
       }
     })
     .sort((a, b) => a.value > b.value ? -1 : 1)
