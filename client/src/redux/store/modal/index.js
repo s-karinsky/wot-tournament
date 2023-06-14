@@ -30,4 +30,6 @@ export const {
 
 export * from './selectors'
 
+export * from './thunk'
+
 export default modalSlice.reducer

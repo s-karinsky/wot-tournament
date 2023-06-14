@@ -1,7 +1,6 @@
 import axios from 'axios'
-import iconError from '../../../components/Icon/error.svg'
 import { getUserTournaments } from '../user'
-import { show } from '../modal'
+import { alertResponseError } from '../modal'
 import {
   setIsCreating,
   setTournament,
@@ -17,11 +16,11 @@ export const createTournament = (data, onSuccess = () => {}) => async (dispatch)
   try {
     const result = await axios.post('/api/tournament/create', data)
     dispatch(setTournament(result.data?.result))
-    dispatch(setIsCreating(false))
     onSuccess(result.data?.result)
   } catch (e) {
-    console.error(e)
+    dispatch(alertResponseError(e))
   }
+  dispatch(setIsCreating(false))
 }
 
 export const getTournament = id => async (dispatch) => {
@@ -59,20 +58,15 @@ export const getUsersByTournament = id => async (dispatch) => {
 export const joinTournament = id => async (dispatch) => {
   try {
     dispatch(setPendingJoin({ [id]: true }))
-    const response = await axios.post('/api/tournament/join', { id })
-    const { data } = response
-    if (!data.success) {
-      dispatch(show({ name: 'alert', icon: iconError, text: data.error }))
-    } else {
-      await Promise.all([
-        dispatch(getUserTournaments(id)),
-        dispatch(getUsersByTournament(id))
-      ])
-    }
-    dispatch(setPendingJoin({ [id]: false }))
+    await axios.post('/api/tournament/join', { id })
+    await Promise.all([
+      dispatch(getUserTournaments(id)),
+      dispatch(getUsersByTournament(id))
+    ])
   } catch (e) {
-    console.error(e)
+    dispatch(alertResponseError(e))
   }
+  dispatch(setPendingJoin({ [id]: false }))
 }
 
 export const resetTournament = id => async (dispatch) => {
@@ -80,8 +74,8 @@ export const resetTournament = id => async (dispatch) => {
     dispatch(setPendingReset({ [id]: true }))
     await axios.post('/api/tournament/reset', { id })
     await dispatch(getUserTournaments(id))
-    dispatch(setPendingReset({ [id]: false }))
   } catch (e) {
-    console.error(e)
+    dispatch(alertResponseError(e))
   }
+  dispatch(setPendingReset({ [id]: false }))
 }

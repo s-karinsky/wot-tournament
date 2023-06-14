@@ -24,11 +24,10 @@ export const getClan = async (dispatch) => {
 
 export const getData = async (dispatch) => {
   dispatch(setLoading(true))
-  Promise.all([
+  await Promise.all([
     getClan(dispatch),
     getNews(dispatch)
-  ]).finally(() => {
-    dispatch(setLoading(false))
-    dispatch(setLoaded(true))
-  })
+  ])
+  dispatch(setLoading(false))
+  dispatch(setLoaded(true))
 }
