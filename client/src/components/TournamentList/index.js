@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import dayjs from 'dayjs'
 import { Button } from '../Form'
 import Table from '../Table'
-import { TANKS_TYPES, BATTLE_TYPES, CONDITION_TYPES } from '../../consts'
+import { TANKS_TYPES, CONDITION_TYPES } from '../../consts'
 import styles from './styles.module.scss'
 
 export default function TournamentList({ data }) {
@@ -18,7 +18,7 @@ export default function TournamentList({ data }) {
       },
       {
         Header: 'Клан',
-        accessor: 'clan'
+        accessor: 'clanName'
       },
       {
         Header: 'Дата начала',
@@ -48,10 +48,18 @@ export default function TournamentList({ data }) {
     []
   )
 
+  const active = data.filter(item => Date.now() <= new Date(item.endDate).getTime())
+  const ended = data.filter(item => Date.now() > new Date(item.endDate).getTime())
+
   return (
-    <div>
+    <div className={styles.tournamentList}>
       <Button to='/tournaments/create'>Создать турнир</Button>
-      <Table columns={columns} data={data} />
+
+      <h1 className={styles.header}>Активные турниры</h1>
+      <Table columns={columns} data={active} />
+
+      <h1 className={styles.header}>История турниров</h1>
+      <Table columns={columns} data={ended} />
     </div>
   )
 }
