@@ -11,7 +11,7 @@ router.get('/', function(req, res) {
 
   jwt.decode(JWT_SECRET, token, function(error, result) {
     if (error) {
-      res.status(500).json(error)
+      res.status(500).json({ success: false, error: error.message })
       return
     }
     axios.post(`/auth/logout/?application_id=${API_KEY}&access_token=${result.access_token}`)
@@ -22,7 +22,7 @@ router.get('/', function(req, res) {
         res.redirect(SITE_URL)
       })
       .catch(error => {
-        res.status(500).json(error)
+        res.status(500).json({ success: false, error: error.message })
       })
   })
 })

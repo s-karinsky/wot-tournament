@@ -11,14 +11,14 @@ router.get('/', async function(req, res) {
   const { id } = req.query
 
   if (!id) {
-    res.json({ success: false, error: 'Tournament id not passed' })
+    res.status(400).json({ success: false, error: 'Tournament id not passed' })
     return
   }
 
   const tournament = await Tournament.findById(id)
 
   if (!tournament) {
-    res.json({ success: false, error: 'Tournament not found' })
+    res.status(400).json({ success: false, error: 'Tournament not found' })
     return
   }
 

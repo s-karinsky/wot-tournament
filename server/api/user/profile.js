@@ -16,7 +16,7 @@ router.get('/', function(req, res) {
   
   jwt.decode(JWT_SECRET, token, async function(error, result) {
     if (error) {
-      res.status(500).json(error)
+      res.status(500).json({ success: false, error: error.message })
       return
     }
     try {
@@ -36,7 +36,7 @@ router.get('/', function(req, res) {
         res.json({ user, success: true })
       })
     } catch(error) {
-      res.status(500).json(error)
+      res.status(500).json({ success: false, error: error.message })
     }
   })
 })

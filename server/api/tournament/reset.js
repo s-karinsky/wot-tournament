@@ -13,7 +13,7 @@ router.post('/', async function(req, res) {
   const { user } = req.session
 
   if (!id) {
-    res.json({ success: false, error: 'Tournament id not passed' })
+    res.status(400).json({ success: false, error: 'Tournament id not passed' })
     return
   }
 
@@ -28,20 +28,20 @@ router.post('/', async function(req, res) {
       user: user.user_id
     })
     if (!tournamentUser) {
-      res.json({ success: false, error: 'Not joined' })
+      res.status(400).json({ success: false, error: 'Not joined' })
       return
     }
     const currentBattles = tournamentUser.currentStats?.random?.battles
     const initialBattles = tournamentUser.initialStats?.random?.battles
     if (currentBattles <= initialBattles) {
-      res.json({ success: false, error: 'Stats are empty' })
+      res.status(400).json({ success: false, error: 'Stats are empty' })
       return
     }
 
     const tournament = await Tournament.findById(id)
 
     if (!tournament) {
-      res.json({ success: false, error: 'Tournament not found' })
+      res.status(400).json({ success: false, error: 'Tournament not found' })
       return
     }
 
@@ -49,7 +49,7 @@ router.post('/', async function(req, res) {
     const resetCount = tournamentUser.resetCount
 
     if (resetCount >= resetLimit) {
-      res.json({ success: false, error: 'Reset limit reached' })
+      res.status(400).json({ success: false, error: 'Reset limit reached' })
       return
     }
 
@@ -63,7 +63,7 @@ router.post('/', async function(req, res) {
 
     res.json({ success: true })
   } catch (error) {
-    res.json({ success: false, error: error.message })
+    res.status(400).json({ success: false, error: error.message })
   }
 })
 

@@ -43,9 +43,9 @@ router.get('/', async function(req, res) {
 
   try {
     const tournaments = await Tournament.find(filter, null, options)
-    res.send({ success: true, tournaments })
-  } catch(error) {
-    res.send({ success: false, error })
+    res.json({ success: true, tournaments })
+  } catch (error) {
+    res.status(400).json({ success: false, error: error.message })
   }
 })
 

@@ -13,12 +13,12 @@ router.post('/', async function(req, res) {
   const { user } = req.session
 
   if (!id) {
-    res.json({ success: false, error: 'Tournament id not passed' })
+    res.status(400).json({ success: false, error: 'Tournament id not passed' })
     return
   }
 
   if (!user) {
-    res.json({ success: false, error: 'Not authorized' })
+    res.status(403).json({ success: false, error: 'Not authorized' })
     return
   }
 
@@ -28,14 +28,14 @@ router.post('/', async function(req, res) {
       user: user.user_id
     })
     if (tournamentUser.length > 0) {
-      res.json({ success: false, error: 'Already joined' })
+      res.status(400).json({ success: false, error: 'Already joined' })
       return
     }
 
     const tournament = await Tournament.findById(id)
 
     if (!tournament) {
-      res.json({ success: false, error: 'Tournament not found' })
+      res.status(400).json({ success: false, error: 'Tournament not found' })
       return
     }
 
@@ -52,7 +52,7 @@ router.post('/', async function(req, res) {
 
     res.json({ success: true, data: result })
   } catch (error) {
-    res.json({ success: false, error: error.message })
+    res.status(400).json({ success: false, error: error.message })
   }
 })
 

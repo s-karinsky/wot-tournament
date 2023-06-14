@@ -7,10 +7,10 @@ const router = express.Router()
 
 router.use(auth)
 
-router.post('/', function(req, res) {
+router.post('/', async function(req, res) {
   const { user } = req.session
   if (!user || !user.clan_id || !['commander', 'executive_officer'].includes(user.clan_role)) {
-    res.status(403).json({ success: false })
+    res.status(403).json({ success: false, error: 'Bad role' })
     return
   }
 
@@ -22,16 +22,12 @@ router.post('/', function(req, res) {
   // @TODO Исправить когда нужна будет возможность создавать турниры для
   // разных кланов и общие турниры
   data.clanId = 570514
-  Tournament.create(data)
-    .then(result => {
-      res.status(200).json({
-        success: true,
-        result
-      })
-    })
-    .catch(error => {
-      res.status(500).json({ error })
-    })
+  try {
+    const result = await Tournament.create(data)
+    res.json({ success: true, result })
+  } catch (error) {
+    res.status(400).json({ success: false, error: error.message })
+  }
 })
 
 export default router
