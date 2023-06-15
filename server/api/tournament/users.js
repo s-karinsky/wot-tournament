@@ -54,13 +54,24 @@ router.get('/', async function(req, res) {
         value: Math.floor(value / battles)
       }
     })
+
+  const ratedUsers = users
+    .filter(user => user.battles >= user.minBattles)
     .sort((a, b) => a.value > b.value ? -1 : 1)
     .map((item, pos) => ({
       ...item,
-      pos: item.battles > item.minBattles ? pos + 1 : '-'
+      pos: pos + 1
     }))
 
-  res.json({ success: true, users })
+  const unratedUsers = users
+    .filter(user => user.battles < user.minBattles)
+    .sort((a, b) => a.value > b.value ? -1 : 1)
+    .map(item => ({
+      ...item,
+      pos: '-'
+    }))
+
+  res.json({ success: true, users: ratedUsers.concat(unratedUsers) })
 })
 
 export default router

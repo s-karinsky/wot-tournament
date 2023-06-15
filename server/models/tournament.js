@@ -78,6 +78,13 @@ const TANKS_OUTPUT = {
   'AT-SPG': 'ПТ-САУ'
 }
 
+tournamentSchema.pre('save', function(next) {
+  this.endDate.setHours(23)
+  this.endDate.setMinutes(59)
+  this.endDate.setSeconds(59)
+  next()
+})
+
 tournamentSchema.virtual('name').get(function() {
   const { clanName, tanks, type, tier } = this
   const tankNames = tanks.length > 1 ? 'Любой танк' : tanks.map(tank => tank.short_name).join(', ')
