@@ -39,6 +39,7 @@ export default function Range({
         <span>
           <input
             type='number'
+            name={rest.name}
             value={value}
             min={min}
             max={max}
