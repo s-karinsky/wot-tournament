@@ -1,14 +1,21 @@
+import Tournament from '../models/tournament.js'
 import TournamentUser from '../models/tournamentUser.js'
 import getUserStats from './getUserStats.js'
 
 const { UPDATE_STATS_MINUTES_DELAY } = process.env
 
 export default async function(id, query) {
+  const now = Date.now()
+
+  const tournament = await Tournament.findById(id)
+  if (new Date(tournament.endDate) < now) {
+    return Promise.resolve()
+  }
+
   let tournamentUsers = await TournamentUser.find({ tournament: id, ...query })
     .populate('tournament')
     .populate('user')
 
-  const now = Date.now()
 
   const updateUsers = tournamentUsers
     .filter(tournamentUser => {
