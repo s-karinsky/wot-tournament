@@ -8,7 +8,7 @@ export default async function(id, query) {
   const now = Date.now()
 
   const tournament = await Tournament.findById(id)
-  if (new Date(tournament.endDate) < now) {
+  if (new Date(tournament.endDate) < now || new Date(tournament.startDate) > now) {
     return Promise.resolve()
   }
 

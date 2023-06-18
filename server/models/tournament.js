@@ -79,9 +79,12 @@ const TANKS_OUTPUT = {
 }
 
 tournamentSchema.pre('save', function(next) {
-  this.endDate.setHours(23)
-  this.endDate.setMinutes(59)
-  this.endDate.setSeconds(59)
+  this.startDate.setUTCHours(9)
+  this.startDate.setUTCMinutes(0)
+  this.startDate.setUTCSeconds(0)
+  this.endDate.setUTCHours(20)
+  this.endDate.setUTCMinutes(59)
+  this.endDate.setUTCSeconds(59)
   next()
 })
 
