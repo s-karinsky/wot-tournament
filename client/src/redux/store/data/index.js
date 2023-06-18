@@ -26,6 +26,8 @@ export const dataSlice = createSlice({
 
 export const { setLoading, setLoaded, setNews, setClan, setTournaments } = dataSlice.actions
 
+export * from './selectors'
+
 export * from './thunk'
 
 export default dataSlice.reducer
