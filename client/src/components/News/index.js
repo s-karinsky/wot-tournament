@@ -20,7 +20,7 @@ export default function News({ list = [] }) {
                 {item.title}
               </span>
               <span className={styles.newsDate}>
-                {dayjs(item.date).format('DD.MM.YYYY')}
+                {dayjs(item.time).format('DD.MM.YYYY')}
               </span>
             </a>
           </div>

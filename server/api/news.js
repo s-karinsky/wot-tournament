@@ -22,7 +22,7 @@ router.get('/', async function(req, res) {
         news.push({
           link,
           title,
-          time,
+          time: time * 1000,
           image
         })
       }
