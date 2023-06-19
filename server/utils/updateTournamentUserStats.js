@@ -8,7 +8,12 @@ export default async function(id, query) {
   const now = Date.now()
 
   const tournament = await Tournament.findById(id)
-  if (new Date(tournament.endDate) < now || new Date(tournament.startDate) > now) {
+
+  if (!tournament) {
+    return Promise.reject('Tournament not found')
+  }
+
+  if (new Date(tournament.endDate) < now) {
     return Promise.resolve()
   }
 
@@ -19,15 +24,22 @@ export default async function(id, query) {
 
   const updateUsers = tournamentUsers
     .filter(tournamentUser => {
-      const { currentStats = {} } = tournamentUser
+      const { currentStats = {}, initialStats = {} } = tournamentUser
+
+      if (new Date(initialStats.updatedAt).getTime() < new Date(tournament.startDate).getTime()) {
+        tournamentUser.updateInitial = true
+        return true
+      }
+
       return !currentStats.updatedAt ||
         now - new Date(currentStats.updatedAt) > UPDATE_STATS_MINUTES_DELAY * 60 * 1000
     })
     .map(tournamentUser => {
-      const { user: { accountId, _id }, tournament } = tournamentUser
+      const { user: { accountId, _id }, tournament, updateInitial } = tournamentUser
       return getUserStats(accountId, tournament.tanks).then(stats => ({
         userId: _id,
-        stats
+        stats,
+        updateInitial
       }))
     })
 
@@ -35,13 +47,17 @@ export default async function(id, query) {
 
   return Promise.all(
     updates.map(updateUser => {
-      const { userId, stats } = updateUser
+      const { userId, stats, updateInitial } = updateUser
+      const updateObj = {
+        currentStats: stats
+      }
+      if (updateInitial) {
+        updateObj.initialStats = stats
+      }
       return TournamentUser.findOneAndUpdate({
         tournament: id,
         user: userId
-      }, {
-        currentStats: stats
-      })
+      }, updateObj)
     })
   )
 }
