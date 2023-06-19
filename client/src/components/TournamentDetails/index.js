@@ -32,7 +32,8 @@ export default function TournamentDetails({ id, onJoin, onReset }) {
             {data.name}
           </div>
           <div className={styles.dates}>
-            Проводится с {dayjs(data.startDate).format('DD.MM.YYYY')} по {dayjs(data.endDate).format('DD.MM.YYYY')}
+            Проводится с 12:00:00 {dayjs(data.startDate).format('DD.MM.YYYY')}<br />
+            по 23:59:59 {dayjs(data.endDate).format('DD.MM.YYYY')} (время Мск)
           </div>
           <div className={styles.header}>
             Правила турнира

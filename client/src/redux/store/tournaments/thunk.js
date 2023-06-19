@@ -73,7 +73,8 @@ export const resetTournament = id => async (dispatch) => {
   try {
     dispatch(setPendingReset({ [id]: true }))
     await axios.post('/api/tournament/reset', { id })
-    await dispatch(getUserTournaments(id))
+    dispatch(getUsersByTournament(id))
+    dispatch(getUserTournaments(id))
   } catch (e) {
     dispatch(alertResponseError(e))
   }
