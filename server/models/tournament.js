@@ -30,7 +30,7 @@ const tournamentSchema = new mongoose.Schema({
   condition: {
     type: String,
     required: true,
-    enum: ['damage', 'damageHighlight', 'highlight', 'blocking', 'stun']
+    enum: ['damage', 'damageSpotted', 'spotted', 'blocked', 'stun']
   },
   tier: {
     type: Number,

@@ -17,6 +17,7 @@ export default async (accountId, tanks) => {
       acc.battles += all.battles
       acc.damage += all.damage_dealt
       acc.spotted += all.spotted
+      acc.damageSpotted += (all.damage_dealt + all.spotted)
       acc.blocked += all.avg_damage_blocked * all.battles
       acc.stun += all.stun_number
     }
@@ -25,6 +26,7 @@ export default async (accountId, tanks) => {
     battles: 0,
     damage: 0,
     spotted: 0,
+    damageSpotted: 0,
     blocked: 0,
     stun: 0
   })

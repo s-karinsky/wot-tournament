@@ -4,6 +4,7 @@ const statsMap = {
   battles: Number,
   damage: Number,
   spotted: Number,
+  damageSpotted: Number,
   blocked: Number,
   stun: Number
 }
