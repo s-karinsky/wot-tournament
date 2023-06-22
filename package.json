@@ -8,7 +8,9 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "cd client && npm run build",
     "dev": "nodemon -r dotenv/config server/index.js --ignore client/",
-    "start": "node -r dotenv/config server/index.js"
+    "start": "node -r dotenv/config server/index.js",
+    "runTournaments": "node -r dotenv/config checkTournaments.js --run",
+    "stopTournaments": "node -r dotenv/config checkTournaments.js --stop"
   },
   "keywords": [],
   "author": "",
