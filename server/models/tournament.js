@@ -83,10 +83,12 @@ tournamentSchema.pre('save', function(next) {
   this.startDate.setUTCHours(9)
   this.startDate.setUTCMinutes(0)
   this.startDate.setUTCSeconds(0)
+  this.startDate.setUTCMilliseconds(0)
   // 24:00 Мск
   this.endDate.setUTCHours(20)
   this.endDate.setUTCMinutes(59)
   this.endDate.setUTCSeconds(59)
+  this.endDate.setUTCMilliseconds(0)
   next()
 })
 

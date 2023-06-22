@@ -34,9 +34,9 @@ export default async function(id, query) {
       return !currentStats.updatedAt ||
         now - new Date(currentStats.updatedAt) > UPDATE_STATS_MINUTES_DELAY * 60 * 1000
     })
-    .map(tournamentUser => {
+    .map(async (tournamentUser) => {
       const { user: { accountId, _id }, tournament, updateInitial } = tournamentUser
-      return getUserStats(accountId, tournament.tanks).then(stats => ({
+      return await getUserStats(accountId, tournament.tanks).then(stats => ({
         userId: _id,
         stats,
         updateInitial
