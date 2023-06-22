@@ -4,8 +4,9 @@ import express from 'express'
 import cookieParser from 'cookie-parser'
 import morgan from 'morgan'
 import session from 'express-session'
-import mongoose from 'mongoose'
 import bodyParser from 'body-parser'
+
+import dbConnect from './middleware/dbConnect.js'
 
 import clanRouter from './api/clan.js'
 import newsRouter from './api/news.js'
@@ -41,14 +42,6 @@ app.get('*', (req, res) => {
   res.sendFile(path.resolve(__dirname, '../client/build', 'index.html'));
 })
 
-const start = async () => {
-  try {
-    await mongoose.connect(process.env.MONGODB_URL)
-    app.listen(PORT, () => console.log(`Server listening on ${PORT}`))
-  } catch (error) {
-    console.error(error)
-    process.exit(1)
-  }
-}
-
-start()
+dbConnect().then(() => {
+  app.listen(PORT, () => console.log(`Server listening on ${PORT}`))
+})
