@@ -22,9 +22,9 @@ export const BATTLE_TYPES = {
 
 export const CONDITION_TYPES = {
   damage: 'Урон',
-  damageSpotted: 'Урон + насвет',
-  highlight: 'Насвет',
-  blocking: 'Заблокированно броней',
+  // damageSpotted: 'Урон + насвет',
+  // spotted: 'Насвет',
+  blocked: 'Заблокированно броней',
   stun: 'Оглушение'
 }
 

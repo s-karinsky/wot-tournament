@@ -89,7 +89,7 @@ export default function TournamentDetails({ id, onJoin, onReset }) {
                 <span>Обнаружено противников</span> {currentStats?.spotted - initialStats?.spotted}
               </li>
               <li>
-                <span>Заблокировано урона</span> {Math.floor(currentStats?.blocked - initialStats?.blocked)}
+                <span>Заблокировано урона</span> {Math.max(0, Math.floor(currentStats?.blocked - initialStats?.blocked))}
               </li>
               <li>
                 <span>Оглушения</span> {currentStats?.stun - initialStats?.stun}
