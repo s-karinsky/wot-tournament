@@ -6,7 +6,7 @@ import morgan from 'morgan'
 import session from 'express-session'
 import bodyParser from 'body-parser'
 
-import dbConnect from './middleware/dbConnect.js'
+import dbConnect from './utils/dbConnect.js'
 
 import clanRouter from './api/clan.js'
 import newsRouter from './api/news.js'
