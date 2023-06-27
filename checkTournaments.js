@@ -1,4 +1,4 @@
-import dbConnect from './server/middleware/dbConnect.js'
+import dbConnect from './server/utils/dbConnect.js'
 
 import Tournament from './server/models/tournament.js'
 import TournamentUser from './server/models/tournamentUser.js'
