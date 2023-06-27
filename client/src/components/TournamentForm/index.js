@@ -20,7 +20,7 @@ export default function TournamentForm() {
     battleType: 'random',
     minBattles: 5,
     type: 'lightTank',
-    condition: 'damage',
+    conditions: [],
     tier: 6,
     tanks: [],
     resetLimit: 1,
@@ -58,7 +58,7 @@ export default function TournamentForm() {
 
   const handleSubmit = useCallback(e => {
     e.preventDefault()
-    const { startDate, endDate, tanks = [], places = [] } = values
+    const { startDate, endDate, tanks = [], places = [], conditions = [] } = values
     let erros = {}
     if (!startDate) erros.startDate = VALIDATION_MESSAGES.startDate
     if (!endDate) erros.endDate = VALIDATION_MESSAGES.endDate
@@ -66,6 +66,7 @@ export default function TournamentForm() {
       erros.invalidDateRange = VALIDATION_MESSAGES.invalidDateRange
     }
     if (!tanks.length) erros.tanks = VALIDATION_MESSAGES.tanks
+    if (!conditions.length) erros.conditions = VALIDATION_MESSAGES.conditions
     if (!places.reduce((res, place) => res && !!place, true)) {
       erros.places = VALIDATION_MESSAGES.places
     }
@@ -76,11 +77,24 @@ export default function TournamentForm() {
   }, [values])
 
   const handleChange = useCallback(e => {
-    const { name, value } = e.target
+    const { name, value, checked } = e.target
     if (Object.values(validationErros).length > 0) {
       setValidationErrors({})
     }
 
+    if (name === 'conditions') {
+      let newConditions = values.conditions
+      if (newConditions.includes(value) && !checked) {
+        newConditions = newConditions.filter(item => item !== value)
+      } else if (!newConditions.includes(value) && checked) {
+        newConditions.push(value)
+      }
+      setValues({
+        ...values,
+        conditions: newConditions
+      })
+      return
+    }
     if (name === 'tanks') {
       const tankId = parseInt(value)
       const newTanks = values.tanks.includes(tankId) ? values.tanks.filter(id => id !== tankId) : [...values.tanks, tankId]
@@ -152,7 +166,7 @@ export default function TournamentForm() {
               <b>Режим боя </b> {BATTLE_TYPES[values.battleType]}
             </div>
             <div className={styles.summaryItem}>
-              <b>Условие турнира </b> {CONDITION_TYPES[values.condition]}
+              <b>Условие турнира </b> {values.conditions.map(cond => CONDITION_TYPES[cond]).join(', ')}
             </div>
             <div className={styles.summaryItem}>
               <b>Мин. кол-во боев </b> {values.minBattles}
@@ -223,7 +237,7 @@ export default function TournamentForm() {
                 />
               </div>
             </div>
-            <div className={cn(styles.formBlock, styles.formBlock_bordered)}>
+            {/* <div className={cn(styles.formBlock, styles.formBlock_bordered)}>
               <Select
                 label='Режим боя'
                 name='battleType'
@@ -237,23 +251,25 @@ export default function TournamentForm() {
                   </option>
                 ))}
               </Select>
-            </div>
+            </div> */}
             <div className={cn(styles.formBlock, styles.formBlock_bordered)}>
-              <Select
-                label='Условие турнира'
-                name='condition'
-                value={values.condition}
-                onChange={handleChange}
-                width="320px"
-              >
+              <div>
+                <label>Условия турнира</label>
                 {Object.keys(CONDITION_TYPES)
-                  .filter(key => values.type === 'ATSPG' || key !== '5')
+                  // .filter(key => values.type === 'ATSPG' || key !== 'stun')
                   .map(type => (
-                    <option key={type} value={type}>
-                      {CONDITION_TYPES[type]}
-                    </option>
+                    <div key={type}>
+                      <Checkbox
+                        name='conditions'
+                        value={type}
+                        onChange={handleChange}
+                        checked={values.conditions.includes(type)}
+                      >
+                        {CONDITION_TYPES[type]}
+                      </Checkbox>
+                    </div>
                 ))}
-              </Select>
+              </div>
             </div>
           </div>
           <div className={styles.formRight}>
@@ -348,7 +364,7 @@ export default function TournamentForm() {
           {Object.keys(validationErros).map(key => {
             if (!validationErros[key]) return null
             return (
-              <div className={styles.errorMessage}>
+              <div key={key} className={styles.errorMessage}>
                 {validationErros[key]}
               </div>
             )

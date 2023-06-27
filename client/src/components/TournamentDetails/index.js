@@ -52,7 +52,7 @@ export default function TournamentDetails({ id, onJoin, onReset }) {
               <span>Уровень техники</span> {data.tier}
             </li>
             <li>
-              <span>Условия турнира</span> {CONDITION_TYPES[data.condition]}
+              <span>Условия турнира</span> {data.conditions.map(cond => CONDITION_TYPES[cond]).join(', ')}
             </li>
             <li>
               <span>Мин. кол-во боев</span> {data.minBattles}

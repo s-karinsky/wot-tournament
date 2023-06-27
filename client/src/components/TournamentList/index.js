@@ -37,8 +37,8 @@ export default function TournamentList({ data }) {
       },
       {
         Header: 'Условие',
-        accessor: 'condition',
-        Cell: ({ value }) => CONDITION_TYPES[value]
+        accessor: 'conditions',
+        Cell: ({ value }) => value.map(cond => CONDITION_TYPES[cond]).join(', ')
       },
       {
         Header: 'Тип танка',

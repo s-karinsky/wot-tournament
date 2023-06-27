@@ -3,7 +3,8 @@ export const VALIDATION_MESSAGES = {
   endDate: 'Не выбрана дата окончания турнира',
   invalidDateRange: 'Дата начала турнира должны быть меньше даты окончания',
   tanks: 'Не выбрана техника',
-  places: 'Не все призовые места описаны'
+  places: 'Не все призовые места описаны',
+  conditions: 'Не выбраны условия турнира'
 }
 
 export const TANKS_TYPES = {
