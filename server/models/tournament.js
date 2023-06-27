@@ -27,8 +27,8 @@ const tournamentSchema = new mongoose.Schema({
     required: true,
     enum: ['any', 'lightTank', 'mediumTank', 'heavyTank', 'SPG', 'AT-SPG']
   },
-  condition: {
-    type: String,
+  conditions: {
+    type: [String],
     required: true,
     enum: ['damage', 'damageSpotted', 'spotted', 'blocked', 'stun']
   },

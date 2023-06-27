@@ -31,7 +31,7 @@ router.get('/', async function(req, res) {
   const users = tournamentUsers
     .map(tournamentUser => {
       const { user, tournament, initialStats, currentStats = {} } = tournamentUser
-      const { battleType, condition, minBattles } = tournament
+      const { battleType, conditions, minBattles } = tournament
       const { accountId, nickname } = user
 
       const initialBattles = initialStats[battleType]?.battles
@@ -42,8 +42,12 @@ router.get('/', async function(req, res) {
         // @TODO
       }
 
-      const initialStat = (initialStats[battleType] || {})[condition]
-      const currentStat = (currentStats[battleType] || {})[condition]
+      const initialStat = conditions.reduce(
+        (sum, condition) => sum + (initialStats[battleType] || {})[condition]
+      , 0)
+      const currentStat = conditions.reduce(
+        (sum, condition) => sum + (currentStats[battleType] || {})[condition]
+      , 0)
       const value = currentStat - initialStat
 
       return {
