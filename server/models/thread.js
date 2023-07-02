@@ -18,6 +18,10 @@ const threadSchema = new mongoose.Schema({
     type: Date,
     required: true
   },
+  lastUpdateUser: {
+    type: mongoose.ObjectId,
+    ref: 'User'
+  },
   clan: Number,
   onlyAuthorized: Boolean,
 })

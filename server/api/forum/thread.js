@@ -71,16 +71,27 @@ router.get('/', async function(req, res) {
     res.json({ success: true, thread, lastView: threadViews, replies })
   } else {
     const threadViews = await ThreadViews.find({ user: user_id })
+    const mapThreadViews = threadViews.reduce((acc, item) => ({
+      ...acc,
+      [item.thread]: item
+    }), {})
   
     const queryThreadOr = [{ clan: null }]
     if (clan_id) queryThreadOr.push({ clan: clan_id })
-    const thread = await Thread.find({})
+    let threads = await Thread.find({})
       .or(queryThreadOr)
       .sort({ updatedAt: -1 })
       .skip(skip)
       .limit(limit)
+
+    threads = threads.map(thread => {
+      return {
+        ...thread._doc,
+        lastView: mapThreadViews[thread._id]?.lastView || null
+      }
+    })
   
-    res.json({ success: true, thread })
+    res.json({ success: true, threads })
   }
 })
 
