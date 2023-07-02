@@ -9,6 +9,7 @@ import bodyParser from 'body-parser'
 import dbConnect from './utils/dbConnect.js'
 
 import clanRouter from './api/clan.js'
+import forumRouter from './api/forum/index.js'
 import newsRouter from './api/news.js'
 import tanksRouter from './api/tanks.js'
 import tournamentRouter from './api/tournament/index.js'
@@ -33,6 +34,7 @@ app.use(session({
 app.use(express.static(path.resolve(__dirname, '../client/build')))
 
 app.use('/api/clan', clanRouter)
+app.use('/api/forum', forumRouter)
 app.use('/api/news', newsRouter)
 app.use('/api/tanks', tanksRouter)
 app.use('/api/tournament', tournamentRouter)
