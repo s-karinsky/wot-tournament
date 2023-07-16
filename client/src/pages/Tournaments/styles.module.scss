@@ -1,0 +1,26 @@
+.tabs {
+  display: flex;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.tab {
+  flex: 1 1 0;
+  text-align: center;
+  padding: 10px 0;
+
+  a {
+    font-size: 24px;
+    font-weight: bold;
+    color: #fff;
+    text-decoration: underline;
+  }
+
+  &.active {
+    background: rgba(8, 22, 36, 0.7);
+    
+    a {
+      text-decoration: none;
+    }
+  }
+}
