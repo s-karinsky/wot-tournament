@@ -15,67 +15,71 @@ router.get('/', async function(req, res) {
     return
   }
 
-  const tournament = await Tournament.findById(id)
-
-  if (!tournament) {
-    res.status(400).json({ success: false, error: 'Tournament not found' })
-    return
+  try {
+    const tournament = await Tournament.findById(id)
+  
+    if (!tournament) {
+      res.status(400).json({ success: false, error: 'Tournament not found' })
+      return
+    }
+  
+    await updateTournamentUserStats(id)
+  
+    const tournamentUsers = await TournamentUser.find({ tournament: id })
+      .populate('tournament')
+      .populate('user')
+  
+    const users = tournamentUsers
+      .map(tournamentUser => {
+        const { user, tournament, initialStats, currentStats = {} } = tournamentUser
+        const { battleType, conditions, minBattles } = tournament
+        const { accountId, nickname } = user
+  
+        const initialBattles = initialStats[battleType]?.battles
+        const currentBattles = currentStats[battleType]?.battles
+        const battles = currentBattles - initialBattles
+  
+        if (battles < minBattles) {
+          // @TODO
+        }
+  
+        const initialStat = conditions.reduce(
+          (sum, condition) => sum + (initialStats[battleType] || {})[condition]
+        , 0)
+        const currentStat = conditions.reduce(
+          (sum, condition) => sum + (currentStats[battleType] || {})[condition]
+        , 0)
+        const value = currentStat - initialStat
+  
+        return {
+          nickname,
+          accountId,
+          minBattles,
+          battles,
+          value: Math.floor(value / battles)
+        }
+      })
+  
+    const ratedUsers = users
+      .filter(user => user.battles >= user.minBattles)
+      .sort((a, b) => a.value > b.value ? -1 : 1)
+      .map((item, pos) => ({
+        ...item,
+        pos: pos + 1
+      }))
+  
+    const unratedUsers = users
+      .filter(user => user.battles < user.minBattles)
+      .sort((a, b) => a.value > b.value ? -1 : 1)
+      .map(item => ({
+        ...item,
+        pos: '-'
+      }))
+  
+    res.json({ success: true, users: ratedUsers.concat(unratedUsers) })
+  } catch (error) {
+    res.status(400).json({ success: false, error: error.message })
   }
-
-  await updateTournamentUserStats(id)
-
-  const tournamentUsers = await TournamentUser.find({ tournament: id })
-    .populate('tournament')
-    .populate('user')
-
-  const users = tournamentUsers
-    .map(tournamentUser => {
-      const { user, tournament, initialStats, currentStats = {} } = tournamentUser
-      const { battleType, conditions, minBattles } = tournament
-      const { accountId, nickname } = user
-
-      const initialBattles = initialStats[battleType]?.battles
-      const currentBattles = currentStats[battleType]?.battles
-      const battles = currentBattles - initialBattles
-
-      if (battles < minBattles) {
-        // @TODO
-      }
-
-      const initialStat = conditions.reduce(
-        (sum, condition) => sum + (initialStats[battleType] || {})[condition]
-      , 0)
-      const currentStat = conditions.reduce(
-        (sum, condition) => sum + (currentStats[battleType] || {})[condition]
-      , 0)
-      const value = currentStat - initialStat
-
-      return {
-        nickname,
-        accountId,
-        minBattles,
-        battles,
-        value: Math.floor(value / battles)
-      }
-    })
-
-  const ratedUsers = users
-    .filter(user => user.battles >= user.minBattles)
-    .sort((a, b) => a.value > b.value ? -1 : 1)
-    .map((item, pos) => ({
-      ...item,
-      pos: pos + 1
-    }))
-
-  const unratedUsers = users
-    .filter(user => user.battles < user.minBattles)
-    .sort((a, b) => a.value > b.value ? -1 : 1)
-    .map(item => ({
-      ...item,
-      pos: '-'
-    }))
-
-  res.json({ success: true, users: ratedUsers.concat(unratedUsers) })
 })
 
 export default router
