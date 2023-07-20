@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import axios from 'axios'
-import { Link, useSearchParams, useLocation } from 'react-router-dom'
+import { Link, useSearchParams, useLocation, useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { Helmet } from 'react-helmet'
 import cn from 'classnames'
@@ -13,6 +13,7 @@ export default function Forum() {
   const [ threads, setThreads ] = useState([])
   const { page = 1 } = useSearchParams()
   const { pathname } = useLocation()
+  const navigate = useNavigate()
   const authorized = useSelector(state => state.user.authorized)
 
   useEffect(() => {
@@ -29,7 +30,10 @@ export default function Forum() {
       <div className="container content-block">
         {authorized &&
           <ForumForm
-            onSubmit={values => axios.post('/api/forum/thread', values)}
+            onSubmit={values =>
+              axios.post('/api/forum/thread', values)
+                .then(({ data }) => data?.thread?._id && navigate(`/forum/${data.thread._id}`))
+            }
             inputLabel='Название темы'
             submitLabel='Создать тему'
             withTitle

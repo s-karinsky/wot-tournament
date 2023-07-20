@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useCallback } from 'react'
 import ReactQuill from 'react-quill'
 import { Button, Input } from '../Form'
 import styles from './styles.module.scss'
@@ -29,12 +29,18 @@ export default function ForumForm({
 }) {
   const [ title, setTitle ] = useState('')
   const [ value, setValue ] = useState('')
+
+  const reset = useCallback(() => {
+    setTitle('')
+    setValue('')
+  }, [setTitle, setValue])
+
   return (
     <form
       className={styles.form}
       onSubmit={e => {
         e.preventDefault()
-        onSubmit({ title, text: value })
+        onSubmit({ title, text: value }, reset)
       }}
     >
       {withTitle && <div className={styles.title}>

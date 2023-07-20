@@ -38,9 +38,12 @@ export default function Thread() {
         Форма ответа
         <ForumForm
           onSubmit={
-            values =>
+            (values, reset) =>
               axios.post('/api/forum/reply', { ...values, thread_id: threadId })
-                .then(() => loadThreads(threadId))
+                .then(() => {
+                  reset()
+                  loadThreads(threadId)
+                })
           }
           submitLabel='Ответить'
         />
