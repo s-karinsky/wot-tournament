@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
 import cn from 'classnames'
 import dayjs from 'dayjs'
+import { Helmet } from 'react-helmet'
 import News from '../../components/News'
 import { getTournaments, getList } from '../../redux/store/tournaments'
 import styles from './styles.module.scss'
@@ -24,32 +25,37 @@ export default function Home() {
   }, [])
 
   return (
-    <div className={cn('container', styles.home)}>
-      <div className={styles.news}>
-        <News list={news} />
-      </div>
-      <div className={styles.info}>
-        {isAuthorized && !!clan.description_html && <div className='content-block'>
-          <div className='header'>Правила клана</div>
-          <span dangerouslySetInnerHTML={{ __html: clan.description_html }}></span>
-        </div>}
-        <div className='content-block'>
-          <div className='header'>Активные турниры</div>
-          <ul className={styles.tournaments}>
-            {list.map(item => (
-              <li key={item.id}>
-                <Link to={`/tournaments/${item.id}`}>{item.name}</Link>
-                <span className={styles.tournamentsDate}>
-                  {dayjs(item.startDate).isBefore(dayjs()) ?
-                    `Окончание ${dayjs(item.endDate).fromNow()}` :
-                    `Начало ${dayjs(item.startDate).fromNow()}`
-                  }
-                </span>
-              </li>
-            ))}
-          </ul>
+    <>
+      <Helmet>
+        <title>The tank brothers</title>
+      </Helmet>
+      <div className={cn('container', styles.home)}>
+        <div className={styles.news}>
+          <News list={news} />
+        </div>
+        <div className={styles.info}>
+          {isAuthorized && !!clan.description_html && <div className='content-block'>
+            <div className='header'>Правила клана</div>
+            <span dangerouslySetInnerHTML={{ __html: clan.description_html }}></span>
+          </div>}
+          <div className='content-block'>
+            <div className='header'>Активные турниры</div>
+            <ul className={styles.tournaments}>
+              {list.map(item => (
+                <li key={item.id}>
+                  <Link to={`/tournaments/${item.id}`}>{item.name}</Link>
+                  <span className={styles.tournamentsDate}>
+                    {dayjs(item.startDate).isBefore(dayjs()) ?
+                      `Окончание ${dayjs(item.endDate).fromNow()}` :
+                      `Начало ${dayjs(item.startDate).fromNow()}`
+                    }
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
       </div>
-    </div>
+    </>
   )
 }

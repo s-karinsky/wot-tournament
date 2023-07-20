@@ -1,6 +1,7 @@
 import { useEffect, useCallback } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
+import { Helmet } from 'react-helmet'
 import cn from 'classnames'
 import TournamentForm from '../../components/TournamentForm'
 import TournamentList from '../../components/TournamentList'
@@ -50,6 +51,9 @@ export default function Tournaments() {
 
   return (
     <>
+      <Helmet>
+        <title>The tank brothers. Tournaments</title>
+      </Helmet>
       {isAdmin && (!page || page === 'archive') &&
         <div
           className="container"

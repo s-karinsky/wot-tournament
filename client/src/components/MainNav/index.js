@@ -47,7 +47,7 @@ export default function MainNav({
               <a className={styles.logoutLink} href={`${API_URL}/api/user/logout`}>Выход</a>
             </span>) :
             (<a className={styles.navLink} href={`${API_URL}/api/user/auth`}>
-              Войти или зарегистрироваться
+              Войти
             </a>)
           }
         </li>

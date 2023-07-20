@@ -1,0 +1,29 @@
+.threads {
+  margin-top: 40px;
+}
+.thread {
+  padding-bottom: 30px;
+}
+.threadTitle {
+  font-size: 18px;
+
+  &_updated {
+    font-weight: bold;
+  }
+}
+.threadLink {
+  color: #fff;
+}
+.threadDetails {
+  display: flex;
+  font-size: 14px;
+  margin-top: 10px;
+}
+.lastMessage {
+  display: inline-block;
+  margin-left: .3em;
+
+  a {
+    color: #fff;
+  }
+}
