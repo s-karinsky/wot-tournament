@@ -23,7 +23,10 @@ const threadSchema = new mongoose.Schema({
     ref: 'User'
   },
   clan: Number,
-  onlyAuthorized: Boolean,
+  onlyAuthorized: {
+    type: Boolean,
+    default: false
+  }
 })
 
 const Thread = mongoose.model('Thread', threadSchema)

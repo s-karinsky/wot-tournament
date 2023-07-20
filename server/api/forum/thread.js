@@ -9,7 +9,7 @@ const router = express.Router()
 router.use(auth)
 
 router.post('/', async function(req, res) {
-  const { title, text, onlyClan, onlyAuthorized } = req.query
+  const { title, text, onlyClan, onlyAuthorized } = req.body
   const { user: { user_id, clan_id } = {} } = req.session
 
   if (!user_id) {
@@ -46,52 +46,74 @@ router.get('/', async function(req, res) {
   const { id, skip = 0, limit = 20 } = req.query
   const { user: { user_id, clan_id } = {} } = req.session
 
-  if (id) {
-    const thread = await Thread.findById(id)
-    if (!thread) {
-      res.status(404).json({ success: false, error: 'Thread not found' })
-      return
-    }
-    if (thread.onlyAuthorized && !user_id) {
-      res.status(403).json({ success: false, error: 'Thread available for authorized users only' })
-      return
-    }
-    if (thread.clan && thread.clan !== clanId) {
-      res.status(403).json({ success: false, error: 'You have no access to this thread' })
-      return
-    }
+  try {
 
-    const [ threadViews, replies ] = await Promise.all([
-      ThreadViews.findOne({ user: user_id, thread: id }),
-      Reply.find({ thread: id }).sort({ createdAt: 1 })
-    ])
-
-    await ThreadViews.findOneAndUpdate({ user: user_id, thread: id }, { lastView: Date.now() })
-
-    res.json({ success: true, thread, lastView: threadViews, replies })
-  } else {
-    const threadViews = await ThreadViews.find({ user: user_id })
-    const mapThreadViews = threadViews.reduce((acc, item) => ({
-      ...acc,
-      [item.thread]: item
-    }), {})
-  
-    const queryThreadOr = [{ clan: null }]
-    if (clan_id) queryThreadOr.push({ clan: clan_id })
-    let threads = await Thread.find({})
-      .or(queryThreadOr)
-      .sort({ updatedAt: -1 })
-      .skip(skip)
-      .limit(limit)
-
-    threads = threads.map(thread => {
-      return {
-        ...thread._doc,
-        lastView: mapThreadViews[thread._id]?.lastView || null
+    if (id) {
+      const thread = await Thread.findById(id)
+      if (!thread) {
+        res.status(404).json({ success: false, error: 'Thread not found' })
+        return
       }
-    })
+      if (thread.onlyAuthorized && !user_id) {
+        res.status(403).json({ success: false, error: 'Thread available for authorized users only' })
+        return
+      }
+      if (thread.clan && thread.clan !== clanId) {
+        res.status(403).json({ success: false, error: 'You have no access to this thread' })
+        return
+      }
   
-    res.json({ success: true, threads })
+      const [ threadViews, replies ] = await Promise.all([
+        ThreadViews.findOne({ user: user_id, thread: id }),
+        Reply.find({ thread: id }).populate('user').sort({ createdAt: 1 })
+      ])
+  
+      await ThreadViews.findOneAndUpdate({ user: user_id, thread: id }, { lastView: Date.now() })
+  
+      res.json({ success: true, thread, lastView: threadViews, replies })
+    } else {
+      const threadViews = await ThreadViews.find({ user: user_id })
+      const mapThreadViews = threadViews.reduce((acc, item) => ({
+        ...acc,
+        [item.thread]: item
+      }), {})
+    
+      const query = {}
+      if (!user_id) query.onlyAuthorized = false
+      const queryThreadOr = [{ clan: null }]
+      if (clan_id) queryThreadOr.push({ clan: clan_id })
+
+      const threadsResult = await Thread.find(query)
+        .or(queryThreadOr)
+        .sort({ updatedAt: -1 })
+        .skip(skip)
+        .limit(limit)
+        .populate('author')
+
+      const threadsUnsorted = await Promise.all(
+        threadsResult.map(thread =>
+          Reply.findOne({ thread: thread._id })
+            .sort({ createdAt: -1 })
+            .populate('user')
+            .then(reply => ({
+              ...thread._doc,
+              lastView: mapThreadViews[thread._id]?.lastView || null,
+              lastReply: reply
+            }))
+          // Reply.countDocuments({ thread: thread._id }).then(repliesCount => ({
+          //   ...thread._doc,
+          //   lastView: mapThreadViews[thread._id]?.lastView || null,
+          //   repliesCount
+          // }))
+        )
+      )
+      
+      const threads = threadsUnsorted.sort((thread1, thread2) => thread1.updatedAt > thread2.updatedAt ? -1 : 1)
+    
+      res.json({ success: true, threads })
+    }
+  } catch (error) {
+    res.status(500).json({ success: false, error: error.message })
   }
 })
 
