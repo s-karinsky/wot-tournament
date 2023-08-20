@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom'
 import { useLazyEffect } from '../../utils/hooks'
 import { createTournament } from '../../redux/store/tournaments'
 import { show, hide } from '../../redux/store/modal'
-import { Button, Checkbox, Input, Select, Range } from '../Form'
+import { Button, Checkbox, Input, Select, Radio, Range } from '../Form'
 import Loader from '../Loader'
 import Modal from '../Modal'
 import styles from './styles.module.scss'
@@ -288,7 +288,7 @@ export default function TournamentForm() {
                 </Checkbox>
                 <div className={styles.tanksList}>
                   {tanks.map(tank => (
-                    <Checkbox
+                    <Radio
                       key={tank.id}
                       name='tanks'
                       value={tank.id}
@@ -298,7 +298,7 @@ export default function TournamentForm() {
                     >
                       <span className={styles.flag} style={{ backgroundImage: `url(/img/flag-${tank.nation}.png)` }}></span>
                       {tank.short_name}
-                    </Checkbox>
+                    </Radio>
                   ))}
                 </div>
               </>}

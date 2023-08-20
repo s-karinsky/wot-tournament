@@ -1,7 +1,7 @@
 import React from 'react'
 import styles from './styles.module.scss'
 
-export default function Checkbox({
+export default function Radio({
   children,
   className,
   ...rest
@@ -10,10 +10,10 @@ export default function Checkbox({
     <label className={className}>
       <input
         {...rest}
-        type='checkbox'
-        className={styles.checkboxInput}
+        type='radio'
+        className={styles.radioInput}
       />
-      <span className={styles.checkboxLabel}>
+      <span className={styles.radioLabel}>
         {children}
       </span>
     </label>

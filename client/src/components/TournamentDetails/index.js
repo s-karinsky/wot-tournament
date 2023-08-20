@@ -12,7 +12,7 @@ import styles from './styles.module.scss'
 export default function TournamentDetails({ id, onJoin, onReset }) {
   const dispatch = useDispatch()
   const data = useSelector(state => state.tournaments.map[id])
-  const users = useSelector(state => state.tournaments.mapUsersByTournament[id])
+  let users = useSelector(state => state.tournaments.mapUsersByTournament[id])
   const isJoining = useSelector(state => state.tournaments.pendingJoin[id])
   const isReseting = useSelector(state => state.tournaments.pendingReset[id])
   const userTournament = useSelector(state => selectUserTournament(state, id))
@@ -23,6 +23,13 @@ export default function TournamentDetails({ id, onJoin, onReset }) {
     dispatch(getTournament(id))
   }, [data])
 
+  const isFinished = data && dayjs(data.endDate).isBefore(Date.now())
+  const startDate = data && dayjs(data.startDate).format('DD.MM.YYYY')
+  const endDate = data && dayjs(data.endDate).format('DD.MM.YYYY')
+  if (isFinished) {
+    users = users.filter(user => user.pos !== '-')
+  }
+
   return !data ?
     <Loader /> :
     <div>
@@ -32,8 +39,11 @@ export default function TournamentDetails({ id, onJoin, onReset }) {
             {data.name}
           </div>
           <div className={styles.dates}>
-            Проводится с 12:00:00 {dayjs(data.startDate).format('DD.MM.YYYY')}<br />
-            по 23:59:59 {dayjs(data.endDate).format('DD.MM.YYYY')} (время Мск)
+            {isFinished && `Проводился с ${startDate} по ${endDate}`}
+            {!isFinished && <>
+              Проводится с 12:00:00 {startDate}<br />
+              по 23:59:59 {endDate} (время Мск)
+            </>}
           </div>
           <div className={styles.header}>
             Правила турнира
@@ -57,17 +67,17 @@ export default function TournamentDetails({ id, onJoin, onReset }) {
             <li>
               <span>Мин. кол-во боев</span> {data.minBattles}
             </li>
-            <li>
+            {!isFinished && <li>
               <span>Кол-во обнулений</span> {data.resetLimit}
-            </li>
-            <li>
+            </li>}
+            {!isFinished && <li>
               <span>Призовые места</span> 
               <ol className={styles.places}>
                 {(data.places || []).map(place => (
                   <li key={place}>{place}</li>
                 ))}
               </ol>
-            </li>
+            </li>}
           </ul>
         </div>
         {!!userTournament &&
@@ -75,9 +85,9 @@ export default function TournamentDetails({ id, onJoin, onReset }) {
             <div className={styles.header}>
               Ваша статистика
             </div>
-            <div className={styles.dates}>
+            {!isFinished && <div className={styles.dates}>
               В турнире с {dayjs(userTournament.date).format('DD.MM.YYYY')}
-            </div>
+            </div>}
             <ul className={styles.list}>
               <li>
                 <span>Кол-во боев</span> {currentStats?.battles - initialStats?.battles}
@@ -94,11 +104,11 @@ export default function TournamentDetails({ id, onJoin, onReset }) {
               <li>
                 <span>Оглушения</span> {currentStats?.stun - initialStats?.stun}
               </li>
-              <li>
+              {!isFinished && <li>
                 <span>Доступные обнуления</span> {data.resetLimit - userTournament.resetCount}
-              </li>
+              </li>}
             </ul>
-            {data.resetLimit - userTournament.resetCount > 0 && <div>
+            {data.resetLimit - userTournament.resetCount > 0 && !isFinished && <div>
               <Button
                 onClick={onReset}
                 disabled={isReseting}
@@ -131,11 +141,11 @@ export default function TournamentDetails({ id, onJoin, onReset }) {
             'Принять участие'
           }
         </Button>
-      }
+      } 
 
       <div className={styles.table}>
         <div className={styles.header}>
-          Участники
+          {isFinished ? 'Победители' : 'Участники'}
         </div>
         <TournamentUsers users={users} />
       </div>
