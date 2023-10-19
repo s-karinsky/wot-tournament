@@ -1,6 +1,7 @@
 import * as url from 'url'
 import path from 'path'
 import express from 'express'
+import fs from 'fs'
 import https from 'https'
 import cookieParser from 'cookie-parser'
 import morgan from 'morgan'
@@ -19,7 +20,12 @@ import userRouter from './api/user/index.js'
 const __filename = url.fileURLToPath(import.meta.url)
 const __dirname = url.fileURLToPath(new URL('.', import.meta.url))
 
+const key = fs.readFileSync(__dirname + 'cert/www.tankbrothers.ru.key');
+const cert = fs.readFileSync(__dirname + 'cert/www.tankbrothers.ru.crt');
+
 const PORT = process.env.PORT || 3001
+
+const credentials = { key, cert }
 
 const app = express()
 
@@ -45,10 +51,10 @@ app.get('*', (req, res) => {
   res.sendFile(path.resolve(__dirname, '../client/build', 'index.html'));
 })
 
+var httpsServer = https.createServer(credentials, app)
+
 dbConnect().then(() => {
-  if (process.env.NODE_ENV === 'development') {
-    app.listen(PORT, () => console.log(`Server listening on ${PORT}`))
-  } else {
-    https.createServer(app).listen(PORT, () => console.log(`Server listening on ${PORT}`))
-  }
+  httpsServer.listen(PORT, () => {
+    console.log("Https server listing on port : " + PORT)
+  })
 })
