@@ -1,6 +1,7 @@
 import * as url from 'url'
 import path from 'path'
 import express from 'express'
+import https from 'https'
 import cookieParser from 'cookie-parser'
 import morgan from 'morgan'
 import session from 'express-session'
@@ -45,5 +46,9 @@ app.get('*', (req, res) => {
 })
 
 dbConnect().then(() => {
-  app.listen(PORT, () => console.log(`Server listening on ${PORT}`))
+  if (process.env.NODE_ENV === 'development') {
+    app.listen(PORT, () => console.log(`Server listening on ${PORT}`))
+  } else {
+    https.createServer(app).listen(PORT, () => console.log(`Server listening on ${PORT}`))
+  }
 })
