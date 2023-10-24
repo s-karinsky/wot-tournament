@@ -8,7 +8,7 @@ router.use(auth)
 
 router.get('/', async function(req, res) {
   const { id, dateRange, limit } = req.query
-  const { user: { clan_id } = {} } = req.session
+  const clan_id = req.session?.user?.clan_id
 
   if (id) {
     try {
