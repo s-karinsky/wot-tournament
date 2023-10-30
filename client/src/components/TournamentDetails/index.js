@@ -12,7 +12,7 @@ import styles from './styles.module.scss'
 export default function TournamentDetails({ id, onJoin, onReset }) {
   const dispatch = useDispatch()
   const data = useSelector(state => state.tournaments.map[id])
-  let users = useSelector(state => state.tournaments.mapUsersByTournament[id])
+  let users = useSelector(state => state.tournaments.mapUsersByTournament[id] || [])
   const isJoining = useSelector(state => state.tournaments.pendingJoin[id])
   const isReseting = useSelector(state => state.tournaments.pendingReset[id])
   const userTournament = useSelector(state => selectUserTournament(state, id))
