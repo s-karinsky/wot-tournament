@@ -51,6 +51,13 @@ const tournamentSchema = new mongoose.Schema({
   places: {
     type: [String],
     required: true
+  },
+  index: {
+    type: Number
+  },
+  createdAt: {
+    type: Date,
+    default: Date.now
   }
 }, {
   toObject: {
