@@ -21,8 +21,7 @@ export default function MainNav({
             })}
             title="Сайт для настоящих танкистов"
             to="/"
-          >
-            ТаВ
+          > <img src="/log.png" width="100" height="90" />
           </Link>
         </li>
         {nav.map(item => (
