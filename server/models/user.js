@@ -12,6 +12,17 @@ const userSchema = new mongoose.Schema({
   },
   clanId: {
     type: String
+  },
+  isBanned: {
+    type: Boolean
+  },
+  lastVisit: {
+    type: Date
+  },
+  role: {
+    type: String,
+    enum: ['admin', 'moderator', 'user'],
+    default: 'user'
   }
 })
 

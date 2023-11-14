@@ -1,6 +1,6 @@
 import { useEffect, useState, useCallback } from 'react'
 import { useParams } from 'react-router-dom'
-import axios from 'axios'
+import axios from '../../utils/axios'
 import ForumForm from '../../components/ForumForm'
 import Loader from '../../components/Loader'
 import Reply from '../../components/Reply'

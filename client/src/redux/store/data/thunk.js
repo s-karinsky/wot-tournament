@@ -1,4 +1,4 @@
-import axios from 'axios'
+import axios from '../../../utils/axios'
 import { setLoaded, setLoading, setNews, setClan } from '.'
 
 export const getNews = async (dispatch) => {

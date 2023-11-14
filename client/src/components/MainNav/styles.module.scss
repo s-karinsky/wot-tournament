@@ -1,6 +1,13 @@
+.mainNavWrapper {
+  height: 62px;
+}
 .mainNav {
   background: rgba(#081624, .5);
   box-shadow: 0 0 9px 3px rgba(226, 30, 228, 0.24);
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
 }
 .navList {
   padding: 0;
@@ -12,7 +19,7 @@
   font-size: 18px;
   margin: 0 15px;
   text-transform: uppercase;
-  align-self: center;
+  align-self: flex-end;
 }
 .navLink {
   display: block;
@@ -30,17 +37,22 @@
   }
   
   &Logo {
+    display: inline-block;
+    padding: 5px 0;
     border: none;
     text-transform: none;
-    font-size: 32px;
+    font-size: 0;
     font-weight: bold;
-    padding: 0;
     transition-property: text-shadow;
     
     &_active,
     &:hover {
       text-shadow: 0 0 5px #b01ba5;
       color: #fff;
+    }
+
+    img {
+      width: 60px;
     }
   }
 }

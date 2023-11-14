@@ -1,4 +1,4 @@
-import axios from 'axios'
+import axios from '../../../utils/axios'
 import { setLoaded, setLoading, setProfile, setTournaments } from '.'
 
 export const getProfile = async (dispatch) => {
