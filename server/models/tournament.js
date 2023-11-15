@@ -1,4 +1,5 @@
 import mongoose from 'mongoose'
+import { localeMonths } from '../const.js'
 
 const tournamentSchema = new mongoose.Schema({
   clanId: Number,
@@ -55,9 +56,9 @@ const tournamentSchema = new mongoose.Schema({
   index: {
     type: Number
   },
-  createdAt: {
-    type: Date,
-    default: Date.now
+  isLastCreated: {
+    type: Boolean,
+    default: true
   }
 }, {
   toObject: {
@@ -100,7 +101,15 @@ tournamentSchema.pre('save', function(next) {
 })
 
 tournamentSchema.virtual('name').get(function() {
-  const { clanName, tanks, type, tier } = this
+  const { clanName, tanks, type, tier, startDate, endDate, clanId, index } = this
+  if (index) {
+    const dateStart = new Date(startDate)
+    const dateEnd = new Date(endDate)
+    const monthStart = localeMonths[dateStart.getMonth()]
+    const monthEnd = localeMonths[dateEnd.getMonth()]
+    const month = monthStart === monthEnd ? monthStart : `${monthStart}-${monthEnd}`
+    return `${clanId ? 'Клановый турнир' : 'Турнир'} № ${index} (${month} ${dateStart.getFullYear()})`
+  }
   const tankNames = tanks.length > 1 ? 'Любой танк' : tanks.map(tank => tank.short_name).join(', ')
   return [clanName, tankNames, TANKS_OUTPUT[type], `${LEVEL_OUTPUT[tier]} ур.`].join(' ')
 })
