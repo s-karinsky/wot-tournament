@@ -21,7 +21,6 @@ export default async function(id, query) {
     .populate('tournament')
     .populate('user')
 
-
   const updateUsers = tournamentUsers
     .filter(tournamentUser => {
       const { currentStats = {}, initialStats = {} } = tournamentUser

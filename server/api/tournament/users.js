@@ -23,7 +23,13 @@ router.get('/', async function(req, res) {
       return
     }
   
-    await updateTournamentUserStats(id)
+    try {
+      await updateTournamentUserStats(id)
+    } catch (e) {
+      if (e.name !== 'Error') {
+        console.warn(e)
+      }
+    }
   
     const tournamentUsers = await TournamentUser.find({ tournament: id })
       .populate('tournament')
