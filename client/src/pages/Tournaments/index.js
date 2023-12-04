@@ -30,7 +30,7 @@ export default function Tournaments() {
   const ended = list.filter(item => Date.now() > new Date(item.endDate).getTime())
 
   useEffect(() => {
-    if (!page) {
+    if (!page || page === 'archive') {
       dispatch(getTournaments('common'))
       dispatch(getUserTournaments())
     }
@@ -75,7 +75,10 @@ export default function Tournaments() {
         </div>
       }
       <div className="container content-block">
-        {(!page || page === 'archive') && <TournamentList data={!page ? active : ended} />}
+        {(!page || page === 'archive') && <TournamentList
+          data={!page ? active : ended}
+          isArchive={page === 'archive'}
+        />}
         {page === 'create' && <TournamentForm />}
         {!!page && page !== 'create' && page !== 'archive' &&
           <TournamentDetails
