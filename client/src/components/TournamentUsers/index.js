@@ -8,6 +8,11 @@ export default function TournamentUsers({
   const columns = useMemo(
     () => [
       {
+        Header: '№',
+        className: styles.cell__name,
+        Cell: ({ value, row }) => row.index + 1
+      },
+      {
         Header: 'Место',
         accessor: 'pos'
       },
