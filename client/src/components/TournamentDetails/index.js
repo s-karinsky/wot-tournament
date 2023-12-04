@@ -88,7 +88,7 @@ export default function TournamentDetails({ id, onJoin, onReset }) {
             {!isFinished && <div className={styles.dates}>
               В турнире с {dayjs(userTournament.date).format('DD.MM.YYYY')}
             </div>}
-            <ul className={styles.list}>
+            {!isFinished && <ul className={styles.list}>
               <li>
                 <span>Кол-во боев</span> {currentStats?.battles - initialStats?.battles}
               </li>
@@ -107,7 +107,7 @@ export default function TournamentDetails({ id, onJoin, onReset }) {
               {!isFinished && <li>
                 <span>Доступные обнуления</span> {data.resetLimit - userTournament.resetCount}
               </li>}
-            </ul>
+            </ul>}
             {data.resetLimit - userTournament.resetCount > 0 && !isFinished && <div>
               <Button
                 onClick={onReset}
