@@ -12,3 +12,5 @@ export const localeMonths = [
   'ноябрь',
   'декабрь'
 ]
+
+export const ADMIN_ROLES = ['commander', 'executive_officer', 'personnel_officer', 'combat_officer']

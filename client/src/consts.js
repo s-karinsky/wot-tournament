@@ -1,3 +1,5 @@
+export const ADMIN_ROLES = ['commander', 'executive_officer', 'personnel_officer', 'combat_officer']
+
 export const VALIDATION_MESSAGES = {
   startDate: 'Не выбрана дата начала турнира',
   endDate: 'Не выбрана дата окончания турнира',

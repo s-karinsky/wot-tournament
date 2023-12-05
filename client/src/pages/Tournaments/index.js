@@ -16,6 +16,7 @@ import {
   joinTournament,
   resetTournament
 } from '../../redux/store/tournaments'
+import { ADMIN_ROLES } from '../../consts'
 import styles from './styles.module.scss'
 
 export default function Tournaments() {
@@ -24,7 +25,7 @@ export default function Tournaments() {
   const list = useSelector(state => getList(state, 'common'))
   const userId = useSelector(state => state.user.profile?.account_id)
   const clanRole = useSelector(state => getClanRole(state, userId))
-  const isAdmin = ['commander', 'executive_officer'].includes(clanRole)
+  const isAdmin = ADMIN_ROLES.includes(clanRole)
 
   const active = list.filter(item => Date.now() <= new Date(item.endDate).getTime())
   const ended = list.filter(item => Date.now() > new Date(item.endDate).getTime())

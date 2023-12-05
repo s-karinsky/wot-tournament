@@ -1,6 +1,7 @@
 import express from 'express'
 import auth from '../../middleware/auth.js'
 import Tournament from '../../models/tournament.js'
+import { ADMIN_ROLES } from '../../const.js'
 import tanksData from '../../json/tanks.json' assert { type: 'json' }
 
 const router = express.Router()
@@ -9,7 +10,7 @@ router.use(auth)
 
 router.post('/', async function(req, res) {
   const { user } = req.session
-  if (!user || !user.clan_id || !['commander', 'executive_officer'].includes(user.clan_role)) {
+  if (!user || !user.clan_id || !ADMIN_ROLES.includes(user.clan_role)) {
     res.status(403).json({ success: false, error: 'Bad role' })
     return
   }
