@@ -58,7 +58,8 @@ export default function TournamentForm() {
 
   const handleSubmit = useCallback(e => {
     e.preventDefault()
-    const { startDate, endDate, tanks = [], places = [], conditions = [] } = values
+    const { startDate, endDate, places = [], conditions = [] } = values
+    const tanks = [].concat(values.tanks)
     let erros = {}
     if (!startDate) erros.startDate = VALIDATION_MESSAGES.startDate
     if (!endDate) erros.endDate = VALIDATION_MESSAGES.endDate
@@ -97,10 +98,9 @@ export default function TournamentForm() {
     }
     if (name === 'tanks') {
       const tankId = parseInt(value)
-      const newTanks = values.tanks.includes(tankId) ? values.tanks.filter(id => id !== tankId) : [...values.tanks, tankId]
       setValues({
         ...values,
-        tanks: newTanks
+        tanks: tankId
       })
       return
     }
@@ -122,7 +122,8 @@ export default function TournamentForm() {
   }, [values, validationErros])
 
   const handleCreateTournament = useCallback(() => {
-    dispatch(createTournament({ ...values }, result => {
+    const tanks = [].concat(values.tanks)
+    dispatch(createTournament({ ...values, tanks }, result => {
       navigate(`/tournaments/${result._id}`)
     }))
   }, [values])
@@ -152,7 +153,7 @@ export default function TournamentForm() {
               <b>Техника</b>
               <div className={styles.summaryTanks}>
                 {tanks
-                  .filter(({ id }) => values.tanks.includes(id))
+                  .filter(({ id }) => [].concat(values.tanks).includes(id))
                   .map(tank => (
                     <div className={styles.summaryTanksItem} key={tank.id}>
                       <span className={styles.flag} style={{ backgroundImage: `url(/img/flag-${tank.nation}.png)` }}></span>
@@ -279,10 +280,10 @@ export default function TournamentForm() {
               {!isTanksLoading && <>
                 <Checkbox
                   onChange={e => {
-                    const newTanks = values.tanks.length === tanks.length ? [] : tanks.map(tank => tank.id)
-                    setValues({ ...values, tanks: newTanks })
+                    // if (e.target.checked) return
+                    setValues({ ...values, tanks: tanks.map(tank => tank.id) })
                   }}
-                  checked={values.tanks.length === tanks.length}
+                  checked={[].concat(values.tanks).length === tanks.length}
                 >
                   Выделить все
                 </Checkbox>
@@ -293,7 +294,7 @@ export default function TournamentForm() {
                       name='tanks'
                       value={tank.id}
                       onChange={handleChange}
-                      checked={values.tanks.includes(tank.id)}
+                      checked={values.tanks === tank.id}
                       className={styles.tanksItem}
                     >
                       <span className={styles.flag} style={{ backgroundImage: `url(/img/flag-${tank.nation}.png)` }}></span>
@@ -339,7 +340,7 @@ export default function TournamentForm() {
                     name={`place_${i}`}
                     value={place}
                     onChange={handleChange}
-                    width="860px"
+                    width="820px"
                   />  
                 </span>
                 <span
