@@ -24,7 +24,7 @@ router.get('/', async function(req, res) {
       if (!user.clan_role && userInClan) {
         jwt.decode(JWT_SECRET, token, function(error, result) {
           if (!error) {
-            jwt.encode(JWT_SECRET, { ...result, clan_role: userInClan.role }, function(err, newToken) {
+            jwt.encode(JWT_SECRET, { ...result, clan_role: userInClan.role, clan_name: clan.name }, function(err, newToken) {
               res.cookie('token', newToken)
               res.json({ success: true, clan })
             })

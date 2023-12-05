@@ -25,12 +25,14 @@ export default function TournamentForm() {
     tanks: [],
     resetLimit: 1,
     places: [''],
+    clanOnly: false
   })
   const [ tanks, setTanks ] = useState([])
   const [ isTanksLoading, setIsTanksLoading ] = useState(true)
   const [ validationErros, setValidationErrors ] = useState({})
   const navigate = useNavigate()
   const dispatch = useDispatch()
+  const clan = useSelector(state => state.data.clan)
   const isCreating = useSelector(state => state.tournaments.isCreating)
 
   useEffect(() => {
@@ -83,6 +85,13 @@ export default function TournamentForm() {
       setValidationErrors({})
     }
 
+    if (name === 'clanOnly') {
+      setValues({
+        ...values,
+        clanOnly: checked
+      })
+      return
+    }
     if (name === 'conditions') {
       let newConditions = values.conditions
       if (newConditions.includes(value) && !checked) {
@@ -190,6 +199,15 @@ export default function TournamentForm() {
         }
       </Modal>
       <form className={styles.form} onSubmit={handleSubmit}>
+        {!!clan && <div className={styles.formColumns}>
+          <Checkbox
+            style={{ width: 24, height: 24 }}
+            name='clanOnly'
+            onChange={handleChange}
+          >
+            <span style={{ fontSize: 24 }}> Турнир только для клана «{clan.name}»</span>
+          </Checkbox>
+        </div>}
         <div className={styles.formColumns}>
           <div className={styles.formLeft}>
             <div className={cn(styles.formBlock, styles.formBlock_bordered)}>
@@ -315,7 +333,7 @@ export default function TournamentForm() {
               max={100}
               value={values.minBattles}
               onChange={handleChange}
-              width="450px"
+              width="430px"
             />
           </div>
           <div className={styles.formBlock}>
@@ -326,7 +344,7 @@ export default function TournamentForm() {
               max={100}
               value={values.resetLimit}
               onChange={handleChange}
-              width="450px"
+              width="430px"
             />
           </div>
         </div>

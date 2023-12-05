@@ -14,15 +14,15 @@ router.post('/', async function(req, res) {
     return
   }
 
-  const data = req.body
+  const { clanOnly, ...data } = req.body
   data.minBattles = parseInt(data.minBattles)
   data.level = parseInt(data.level)
   data.resetLimit = parseInt(data.resetLimit)
   data.tanks = tanksData.filter(tank => data.tanks.includes(tank.id))
-  // @TODO Исправить когда нужна будет возможность создавать турниры для
-  // разных кланов и общие турниры
-  data.clanId = 570514
-  data.clanName = 'KORM-Lite'
+  if (clanOnly) {
+    data.clanId = user.clan_id
+    data.clanName = user.clan_name
+  }
 
   try {
     const last = await Tournament.findOneAndUpdate({ isLastCreated: true }, { isLastCreated: false })
