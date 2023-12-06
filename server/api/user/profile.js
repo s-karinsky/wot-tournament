@@ -25,6 +25,10 @@ router.get('/', function(req, res) {
       const { account_id, clan_id, nickname } = user
       let userDb = await User.findOne({ accountId: result.account_id })
       if (!userDb) {
+        if (!account_id || !nickname) {
+          throw new Error('empty_account')
+        }
+
         userDb = await User.create({
           accountId: account_id,
           clanId: clan_id,

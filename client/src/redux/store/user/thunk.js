@@ -1,5 +1,10 @@
+import Cookies from 'universal-cookie'
 import axios from '../../../utils/axios'
+import { show } from '../modal'
+import iconError from '../../../components/Icon/error.svg'
 import { setLoaded, setLoading, setProfile, setTournaments } from '.'
+
+const cookies = new Cookies(null, { path: '/' })
 
 export const getProfile = async (dispatch) => {
   dispatch(setLoading(true))
@@ -9,7 +14,11 @@ export const getProfile = async (dispatch) => {
     if (!success) return
     dispatch(setProfile({ ...user, authorized: true }))
   } catch(e) {
-    console.error(e)
+    const error = e.response?.data?.error
+    if (error === 'empty_account') {
+      dispatch(show({ name: 'alert', icon: iconError, text: 'К вашему аккаунту не привязан профиль «Мира Танков»' }))
+      cookies.remove('token')
+    }
   }
   dispatch(setLoading(false))
   dispatch(setLoaded(true))
