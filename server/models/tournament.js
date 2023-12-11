@@ -86,20 +86,6 @@ const TANKS_OUTPUT = {
   'AT-SPG': 'ПТ-САУ'
 }
 
-tournamentSchema.pre('save', function(next) {
-  // 12:00 Мск
-  this.startDate.setUTCHours(9)
-  this.startDate.setUTCMinutes(0)
-  this.startDate.setUTCSeconds(0)
-  this.startDate.setUTCMilliseconds(0)
-  // 24:00 Мск
-  this.endDate.setUTCHours(20)
-  this.endDate.setUTCMinutes(59)
-  this.endDate.setUTCSeconds(59)
-  this.endDate.setUTCMilliseconds(0)
-  next()
-})
-
 tournamentSchema.virtual('name').get(function() {
   const { clanName, tanks, type, tier, startDate, endDate, clanId, index } = this
   if (index) {

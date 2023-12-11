@@ -26,10 +26,10 @@ export default function TournamentDetails({ id, onJoin, onReset }) {
 
   const isFinished = data && dayjs(data.endDate).isBefore(Date.now())
   const startDate = data && dayjs(data.startDate).format('DD.MM.YYYY')
-  const endDate = data && dayjs(data.endDate).subtract(1, 'day').format('DD.MM.YYYY')
-  // if (isFinished) {
-  //   users = users.filter(user => user.pos !== '-')
-  // }
+  const endDate = data && dayjs(data.endDate).format('DD.MM.YYYY')
+  if (isFinished) {
+    users = users.filter(user => user.pos !== '-')
+  }
 
   return !data ?
     <Loader /> :
