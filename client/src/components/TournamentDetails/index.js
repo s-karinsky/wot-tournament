@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
+import cn from 'classnames'
 import dayjs from 'dayjs'
 import { Button } from '../Form'
 import Loader from '../Loader'
@@ -26,9 +27,9 @@ export default function TournamentDetails({ id, onJoin, onReset }) {
   const isFinished = data && dayjs(data.endDate).isBefore(Date.now())
   const startDate = data && dayjs(data.startDate).format('DD.MM.YYYY')
   const endDate = data && dayjs(data.endDate).subtract(1, 'day').format('DD.MM.YYYY')
-  if (isFinished) {
-    users = users.filter(user => user.pos !== '-')
-  }
+  // if (isFinished) {
+  //   users = users.filter(user => user.pos !== '-')
+  // }
 
   return !data ?
     <Loader /> :
@@ -143,11 +144,11 @@ export default function TournamentDetails({ id, onJoin, onReset }) {
         </Button>
       } 
 
-      <div className={styles.table}>
+      <div className={cn(styles.table, { [styles.table_finished]: isFinished })}>
         <div className={styles.header}>
           {isFinished ? 'Победители' : 'Участники'}
         </div>
-        <TournamentUsers users={users} />
+        <TournamentUsers users={users} isFinished={isFinished} />
       </div>
     </div>
 }

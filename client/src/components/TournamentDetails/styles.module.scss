@@ -36,8 +36,17 @@
     margin-bottom: 20px;
   }
 
-  th:nth-child(2) {
+  th:nth-child(3) {
     text-align: left;
+  }
+
+  &_finished {
+    th:nth-child(2) {
+      text-align: left;
+    }
+    th:nth-child(3) {
+      text-align: center;
+    }
   }
 }
 .places {
