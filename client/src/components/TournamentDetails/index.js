@@ -24,7 +24,7 @@ export default function TournamentDetails({ id, onJoin, onReset }) {
     dispatch(getTournament(id))
   }, [data])
 
-  const isFinished = data && dayjs(data.endDate).isBefore(Date.now())
+  const isFinished = data && dayjs(data.endDate).add(1, 'day').isBefore(Date.now())
   const startDate = data && dayjs(data.startDate).format('DD.MM.YYYY')
   const endDate = data && dayjs(data.endDate).format('DD.MM.YYYY')
   if (isFinished) {
@@ -128,7 +128,7 @@ export default function TournamentDetails({ id, onJoin, onReset }) {
         }
       </div>
 
-      {!userTournament && dayjs().isBefore(data.endDate) &&
+      {!userTournament && dayjs().isBefore(dayjs(data.endDate).add(1, 'd')) &&
         <Button
           onClick={onJoin}
           disabled={isJoining}
