@@ -54,6 +54,11 @@ router.post('/', async function(req, res) {
     }
 
     const stats = await getUserStats(user.account_id, tournament.tanks)
+
+    if (!stats) {
+      res.status(400).json({ success: false, error: 'Ошибка получения текущей статистики, попробуйте позже' })
+      return
+    }
     
     tournamentUser.initialStats = stats
     tournamentUser.currentStats = stats

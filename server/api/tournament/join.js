@@ -41,6 +41,11 @@ router.post('/', async function(req, res) {
 
     const initialStats = await getUserStats(user.account_id, tournament.tanks)
 
+    if (!initialStats) {
+      res.status(400).json({ success: false, error: 'Вы не можете принять участие в турнире, у вас нет подходящей техники' })
+      return
+    }
+
     const result = await TournamentUser.create({
       user: user.user_id,
       tournament: id,

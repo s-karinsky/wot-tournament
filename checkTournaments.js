@@ -28,11 +28,11 @@ dbConnect().then(async () => {
       const stats = await Promise.all(
         tournamentUsers.map(async (tournamentUser) => {
           const user = await User.findById(tournamentUser.user)
-          return getUserStats(user.accountId, tanks).then(res => ({ id: tournamentUser.user, ...res }))
+          return getUserStats(user.accountId, tanks).then(res => res ? ({ id: tournamentUser.user, ...res }) : null)
         })
       )
       await Promise.all(
-        stats.map(result => {
+        stats.filter(item => item).map(result => {
           const { id, ...stat } = result
           return TournamentUser.findOneAndUpdate({
             user: id
@@ -62,11 +62,11 @@ dbConnect().then(async () => {
       const stats = await Promise.all(
         tournamentUsers.map(async (tournamentUser) => {
           const user = await User.findById(tournamentUser.user)
-          return getUserStats(user.accountId, tanks).then(res => ({ id: tournamentUser.user, ...res }))
+          return getUserStats(user.accountId, tanks).then(res => res ? ({ id: tournamentUser.user, ...res }) : null)
         })
       )
       await Promise.all(
-        stats.map(result => {
+        stats.filter(item => item).map(result => {
           const { id, ...stat } = result
           return TournamentUser.findOneAndUpdate({
             user: id

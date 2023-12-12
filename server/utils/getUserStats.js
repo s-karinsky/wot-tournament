@@ -6,9 +6,8 @@ export default async (accountId, tanks) => {
   const tanksId = tanks.map(tank => tank.id).join(',')
   const response = await axios.get(`/tanks/stats/?application_id=${API_KEY}&account_id=${accountId}&tank_id=${tanksId}`)
   const data = (response.data?.data || {})[accountId]
-
   if (!data || !Array.isArray(data)) {
-    throw new Error('Вы не можете принять участие в турнире, у вас нет подходящей техники')
+    return null
   }
 
   const initialStats = data.reduce((acc, item) => {

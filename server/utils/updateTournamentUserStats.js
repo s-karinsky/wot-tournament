@@ -35,12 +35,13 @@ export default async function(id, query) {
     })
     .map(async (tournamentUser) => {
       const { user: { accountId, _id }, tournament, updateInitial } = tournamentUser
-      return await getUserStats(accountId, tournament.tanks).then(stats => ({
+      return await getUserStats(accountId, tournament.tanks).then(stats => stats ? ({
         userId: _id,
         stats,
         updateInitial
-      }))
+      }) : null)
     })
+    .filter(item => item)
 
   const updates = await Promise.all(updateUsers)
 
