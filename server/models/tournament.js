@@ -1,15 +1,20 @@
 import mongoose from 'mongoose'
+import { numberToDate, dateToNumber } from '../utils/utils.js'
 import { localeMonths } from '../const.js'
 
 const tournamentSchema = new mongoose.Schema({
   clanId: Number,
   clanName: String,
   startDate: {
-    type: Date,
+    type: Number,
+    get: numberToDate,
+    set: dateToNumber,
     required: true
   },
   endDate: {
-    type: Date,
+    type: Number,
+    get: numberToDate,
+    set: dateToNumber,
     required: true
   },
   battleType: {
@@ -65,7 +70,8 @@ const tournamentSchema = new mongoose.Schema({
     virtuals: true
   },
   toJSON: {
-    virtuals: true
+    virtuals: true,
+    getters: true
   }
 })
 

@@ -1,6 +1,7 @@
 import express from 'express'
 import Tournament from '../../models/tournament.js'
 import auth from '../../middleware/auth.js'
+import { dateToNumber } from '../../utils/utils.js'
 
 const router = express.Router()
 
@@ -27,8 +28,8 @@ router.get('/', async function(req, res) {
   const options = {}
   if (dateRange && dateRange.split(';').length === 2) {
     const dates = dateRange.split(';')
-    const startDate = new Date(dates[0])
-    const endDate = new Date(dates[1])
+    const startDate = dateToNumber(dates[0])
+    const endDate = dateToNumber(dates[1])
     filter.startDate = { '$lte': endDate }
     filter.endDate = { '$gte': startDate }
   }

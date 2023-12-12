@@ -1,9 +1,9 @@
 import dbConnect from './server/utils/dbConnect.js'
-
 import Tournament from './server/models/tournament.js'
 import TournamentUser from './server/models/tournamentUser.js'
 import User from './server/models/user.js'
 import getUserStats from './server/utils/getUserStats.js'
+import { dateToNumber } from './server/utils/utils.js'
 
 const args = process.argv.slice(2)
 const isRun = args[0] === '--run'
@@ -11,14 +11,10 @@ const isRun = args[0] === '--run'
 dbConnect().then(async () => {
   console.log('Db connected success')
   if (isRun) {
-    const startDate = new Date()
-    startDate.setUTCHours(9)
-    startDate.setUTCMinutes(0)
-    startDate.setUTCSeconds(0)
-    startDate.setUTCMilliseconds(0)
+    const startDate = dateToNumber(new Date().toISOString())
     const tournaments = await Tournament.find({ startDate })
     if (!tournaments.length) {
-      console.log('Not found tournaments for stopping')
+      console.log('Not found tournaments for running')
       process.exit(0)
     }
     await Promise.all(tournaments.map(async (tournament) => {
@@ -45,11 +41,7 @@ dbConnect().then(async () => {
       process.exit(0)
     }))
   } else {
-    const endDate = new Date()
-    endDate.setUTCHours(20)
-    endDate.setUTCMinutes(59)
-    endDate.setUTCSeconds(59)
-    endDate.setUTCMilliseconds(0)
+    const endDate = dateToNumber(new Date().toISOString())
     const tournaments = await Tournament.find({ endDate })
     if (!tournaments.length) {
       console.log('Not found tournaments for stopping')
