@@ -11,7 +11,6 @@ export default function Header() {
             © 2023 ТВ (12+)
           </div>
           <div className={styles.footer__share}>
-            <span>Поделиться</span>
             <a target='_blank' href={`https://api.whatsapp.com/send?text=${encodeURIComponent(document.URL)}`}>
               <FaWhatsappSquare size={24} color='#25D366' />
             </a>
