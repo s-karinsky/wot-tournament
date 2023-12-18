@@ -1,6 +1,7 @@
 import express from 'express'
 import jwt from 'json-web-token'
 import User from '../../models/user.js'
+import UserVisits from '../../models/userVisits.js'
 import axios from '../../utils/axios.js'
 
 const { JWT_SECRET, API_KEY } = process.env
@@ -13,7 +14,7 @@ router.get('/', function(req, res) {
     res.status(403).json({ success: false, error: 403 })
     return
   }
-  
+
   jwt.decode(JWT_SECRET, token, async function(error, result) {
     if (error) {
       res.status(500).json({ success: false, error: error.message })
@@ -33,6 +34,24 @@ router.get('/', function(req, res) {
           accountId: account_id,
           clanId: clan_id,
           nickname
+        })
+      }
+
+      const visit  = {
+        user: userDb._id,
+        ip: req.headers['x-forwarded-for']?.split(',').shift() || req.socket?.remoteAddress,
+        userAgent: req.headers['user-agent']
+      }
+      // Проверка посещений с теми же данными последние 10 минут
+      // Если такое посещение было, новое не пишется
+      const lastVisit = await UserVisits.findOne({
+        ...visit,
+        date: { '$gte': Date.now() - 10 * 60 * 1000 }
+      })
+      if (!lastVisit) {
+        await UserVisits.create({
+          ...visit,
+          date: Date.now()
         })
       }
       jwt.encode(JWT_SECRET, { ...result, clan_id, user_id: userDb._id }, function(err, newToken) {
