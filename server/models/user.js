@@ -13,9 +13,6 @@ const userSchema = new mongoose.Schema({
   clanId: {
     type: String
   },
-  isBanned: {
-    type: Boolean
-  },
   lastVisit: {
     type: Date
   },

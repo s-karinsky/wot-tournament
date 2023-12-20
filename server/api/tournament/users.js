@@ -1,4 +1,5 @@
 import express from 'express'
+import Ban from '../../models/ban.js'
 import Tournament from '../../models/tournament.js'
 import TournamentUser from '../../models/tournamentUser.js'
 import updateTournamentUserStats from '../../utils/updateTournamentUserStats.js'
@@ -30,12 +31,20 @@ router.get('/', async function(req, res) {
         console.warn(e)
       }
     }
+
+    const bans = await Ban.find({ endDate: { $gte: Date.now() } })
+    const bansClan = bans.filter(item => item.type === 'clan').map(item => item.id)
+    const bansUser = bans.filter(item => item.type === 'user').map(item => item.id)
   
     const tournamentUsers = await TournamentUser.find({ tournament: id })
       .populate('tournament')
       .populate('user')
   
     const users = tournamentUsers
+      .filter(tournamentUser => {
+        const { user: { accountId, clanId } = {} } = tournamentUser
+        return !bansClan.includes(clanId) && !bansUser.includes(accountId)
+      })
       .map(tournamentUser => {
         const { user, tournament, initialStats, currentStats = {} } = tournamentUser
         const { battleType, conditions, minBattles } = tournament

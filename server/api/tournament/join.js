@@ -3,6 +3,7 @@ import auth from '../../middleware/auth.js'
 import Tournament from '../../models/tournament.js'
 import TournamentUser from '../../models/tournamentUser.js'
 import getUserStats from '../../utils/getUserStats.js'
+import { getTournamentsBan } from '../../utils/queries.js'
 
 const router = express.Router()
 
@@ -19,6 +20,12 @@ router.post('/', async function(req, res) {
 
   if (!user) {
     res.status(403).json({ success: false, error: 'Not authorized' })
+    return
+  }
+
+  const ban = await getTournamentsBan(user.account_id, user.clan_id)
+  if (ban) {
+    res.status(403).json({ success: false, error: 'User banned' })
     return
   }
 

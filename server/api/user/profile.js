@@ -3,6 +3,7 @@ import jwt from 'json-web-token'
 import User from '../../models/user.js'
 import UserVisits from '../../models/userVisits.js'
 import axios from '../../utils/axios.js'
+import { getTournamentsBan } from '../../utils/queries.js'
 
 const { JWT_SECRET, API_KEY } = process.env
 
@@ -54,6 +55,15 @@ router.get('/', function(req, res) {
           date: Date.now()
         })
       }
+
+      const ban = await getTournamentsBan(account_id, clan_id)
+      if (ban) {
+        user.isBanned = true
+        user.banType = ban.type
+        user.banEndDate = ban.endDate
+        user.banReason = ban.reason
+      }
+
       jwt.encode(JWT_SECRET, { ...result, clan_id, user_id: userDb._id }, function(err, newToken) {
         res.cookie('token', newToken)
         res.json({ user, success: true })
