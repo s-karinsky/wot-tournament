@@ -12,6 +12,9 @@ export const getProfile = async (dispatch) => {
     const res = await axios.get('/api/user/profile')
     const { data: { success, user } = {} } = res
     if (!success) return
+    if (user.isBanned) {
+      dispatch(show({ name: 'alert', icon: iconError, text: `Ваш ${user.banType === 'user' ? 'профиль' : 'клан'} забанен до ${user.banEndDate}. Причина: ${user.banReason}` }))
+    }
     dispatch(setProfile({ ...user, authorized: true }))
   } catch(e) {
     const error = e.response?.data?.error

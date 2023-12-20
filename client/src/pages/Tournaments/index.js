@@ -24,6 +24,7 @@ export default function Tournaments() {
   const dispatch = useDispatch()
   const list = useSelector(state => getList(state, 'common'))
   const userId = useSelector(state => state.user.profile?.account_id)
+  const isBanned = useSelector(state => state.user.profile?.isBanned)
   const clanRole = useSelector(state => getClanRole(state, userId))
   const isAdmin = ADMIN_ROLES.includes(clanRole)
 
@@ -55,7 +56,7 @@ export default function Tournaments() {
       <Helmet>
         <title>The tank brothers. Tournaments</title>
       </Helmet>
-      {isAdmin && (!page || page === 'archive') &&
+      {isAdmin && !isBanned && (!page || page === 'archive') &&
         <div
           className="container"
           style={{ marginBottom: 20 }}

@@ -12,6 +12,7 @@ import styles from './styles.module.scss'
 
 export default function TournamentDetails({ id, onJoin, onReset }) {
   const dispatch = useDispatch()
+  const isBanned = useSelector(state => state.user.profile?.isBanned)
   const data = useSelector(state => state.tournaments.map[id])
   let users = useSelector(state => state.tournaments.mapUsersByTournament[id] || [])
   const isJoining = useSelector(state => state.tournaments.pendingJoin[id])
@@ -109,7 +110,7 @@ export default function TournamentDetails({ id, onJoin, onReset }) {
                 <span>Доступные обнуления</span> {data.resetLimit - userTournament.resetCount}
               </li>}
             </ul>}
-            {data.resetLimit - userTournament.resetCount > 0 && !isFinished && <div>
+            {data.resetLimit - userTournament.resetCount > 0 && !isFinished && !isBanned && <div>
               <Button
                 onClick={onReset}
                 disabled={isReseting}
@@ -128,7 +129,7 @@ export default function TournamentDetails({ id, onJoin, onReset }) {
         }
       </div>
 
-      {!userTournament && dayjs().isBefore(dayjs(data.endDate).add(1, 'd')) &&
+      {!userTournament && !isBanned && dayjs().isBefore(dayjs(data.endDate).add(1, 'd')) &&
         <Button
           onClick={onJoin}
           disabled={isJoining}
