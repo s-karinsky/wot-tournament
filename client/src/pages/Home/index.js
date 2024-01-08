@@ -38,7 +38,7 @@ export default function Home() {
             <div className='header'>Правила клана</div>
             <span dangerouslySetInnerHTML={{ __html: clan.description_html }}></span>
           </div>}
-          <div className='content-block'>
+          {isAuthorized && list.length > 0 && <div className='content-block'>
             <div className='header'>Активные турниры</div>
             <ul className={styles.tournaments}>
               {list.map(item => (
@@ -53,7 +53,13 @@ export default function Home() {
                 </li>
               ))}
             </ul>
-          </div>
+          </div>}
+          {!isAuthorized && <div className='content-block'>
+            <div className='header'>Дорогие друзья, приветствую Вас на сайте для настоящих танкистов!</div>
+            <span>
+              Этот сайт создан для игроков из "Мир Танков". Любая активность возможна только после входа, допуск на сайт осуществляется через "LESTA GAMES" под своим аккаунтом. Согласно безопасности "LESTA GAMES" сайту не будет предоставлен доступ к Вашим Email, паролю и номеру телефона.
+            </span>
+          </div>}
         </div>
       </div>
     </>

@@ -10,7 +10,7 @@ export default function MainNav({
 }) {
   const user = useSelector(state => state.user)
   const { pathname } = useLocation()
-  const nav = user.authorized ? items : items.slice(2)
+  const nav = user.authorized ? items : []
   return (
     <div className={styles.mainNavWrapper}>
       <div className={styles.mainNav}>
