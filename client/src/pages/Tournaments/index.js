@@ -3,6 +3,7 @@ import { useParams, Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { Helmet } from 'react-helmet'
 import cn from 'classnames'
+import { getEndTimeTZ } from '../../utils/utils'
 import TournamentForm from '../../components/TournamentForm'
 import TournamentList from '../../components/TournamentList'
 import TournamentDetails from '../../components/TournamentDetails'
@@ -28,8 +29,8 @@ export default function Tournaments() {
   const clanRole = useSelector(state => getClanRole(state, userId))
   const isAdmin = ADMIN_ROLES.includes(clanRole)
 
-  const active = list.filter(item => Date.now() <= new Date(item.endDate).getTime())
-  const ended = list.filter(item => Date.now() > new Date(item.endDate).getTime())
+  const active = list.filter(item => Date.now() <= getEndTimeTZ(item.endDate).valueOf())
+  const ended = list.filter(item => Date.now() > getEndTimeTZ(item.endDate).valueOf())
 
   useEffect(() => {
     if (!page || page === 'archive') {

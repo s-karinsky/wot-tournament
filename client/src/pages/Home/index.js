@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
 import cn from 'classnames'
 import dayjs from 'dayjs'
+import { getStartTimeTZ, getEndTimeTZ } from '../../utils/utils'
 import { Helmet } from 'react-helmet'
 import News from '../../components/News'
 import { getTournaments, getList } from '../../redux/store/tournaments'
@@ -45,9 +46,9 @@ export default function Home() {
                 <li key={item.id}>
                   <Link to={`/tournaments/${item.id}`}>{item.name}</Link>
                   <span className={styles.tournamentsDate}>
-                    {dayjs(item.startDate).isBefore(dayjs()) ?
-                      `Окончание ${dayjs(item.endDate).fromNow()}` :
-                      `Начало ${dayjs(item.startDate).fromNow()}`
+                    {getStartTimeTZ(item.startDate).isBefore(dayjs()) ?
+                      `Окончание ${getEndTimeTZ(item.endDate).fromNow()}` :
+                      `Начало ${getStartTimeTZ(item.startDate).fromNow()}`
                     }
                   </span>
                 </li>
