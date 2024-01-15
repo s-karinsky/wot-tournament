@@ -3,12 +3,14 @@ import { Link, useLocation } from 'react-router-dom'
 import cn from 'classnames'
 import { useSelector } from 'react-redux'
 import { API_URL } from '../../consts'
+import { getClanRole } from '../../redux/store/data'
 import styles from './styles.module.scss'
 
 export default function MainNav({
   items = []
 }) {
   const user = useSelector(state => state.user)
+  const role = useSelector(state => getClanRole(state, user.profile?.account_id))
   const { pathname } = useLocation()
   const nav = user.authorized ? items : []
   return (
@@ -42,7 +44,7 @@ export default function MainNav({
             {user.authorized ?
               (<span>
                 <Link className={cn(styles.accountLink)} to="/account">
-                  {user.profile?.nickname}
+                  {role.role_i18n} {user.profile?.nickname}
                 </Link>
                 <br />
                 <a className={styles.logoutLink} href={`${API_URL}/api/user/logout`}>Выход</a>

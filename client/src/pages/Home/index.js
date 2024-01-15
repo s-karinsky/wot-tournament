@@ -36,7 +36,7 @@ export default function Home() {
         </div>
         <div className={styles.info}>
           {isAuthorized && !!clan.description_html && <div className='content-block'>
-            <div className='header'>Правила клана</div>
+            <div className='header'>Правила клана {clan.name}</div>
             <span dangerouslySetInnerHTML={{ __html: clan.description_html }}></span>
           </div>}
           {isAuthorized && list.length > 0 && <div className='content-block'>

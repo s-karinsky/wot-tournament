@@ -27,7 +27,7 @@ export default function Tournaments() {
   const userId = useSelector(state => state.user.profile?.account_id)
   const isBanned = useSelector(state => state.user.profile?.isBanned)
   const clanRole = useSelector(state => getClanRole(state, userId))
-  const isAdmin = ADMIN_ROLES.includes(clanRole)
+  const isAdmin = ADMIN_ROLES.includes(clanRole?.role)
 
   const active = list.filter(item => Date.now() <= getEndTimeTZ(item.endDate).valueOf())
   const ended = list.filter(item => Date.now() > getEndTimeTZ(item.endDate).valueOf())
