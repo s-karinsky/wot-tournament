@@ -47,6 +47,9 @@ export default function TournamentDetails({ id, onJoin, onReset }) {
               по 23:59:59 {endDate} (время Мск)
             </>}
           </div>
+          {!!data.creator && <div className={styles.creator}>
+            <b>Турнир создал </b> {data.creator?.nickname}
+          </div>}
           <div className={styles.header}>
             Правила турнира
           </div>
