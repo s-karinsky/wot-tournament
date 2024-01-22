@@ -35,7 +35,7 @@ router.post('/', async function(req, res) {
   try {
     const last = await Tournament.findOneAndUpdate({ isLastCreated: true }, { isLastCreated: false })
     const index = last && last.index ? last.index + 1 : 1
-    const result = await Tournament.create({ ...data, index })
+    const result = await Tournament.create({ ...data, creator: user.user_id, index })
     res.json({ success: true, result })
   } catch (error) {
     res.status(400).json({ success: false, error: error.message })

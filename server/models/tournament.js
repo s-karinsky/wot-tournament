@@ -5,6 +5,11 @@ import { localeMonths } from '../const.js'
 const tournamentSchema = new mongoose.Schema({
   clanId: Number,
   clanName: String,
+  creator: {
+    type: mongoose.ObjectId,
+    ref: 'User',
+    required: true
+  },
   startDate: {
     type: Number,
     get: numberToDate,

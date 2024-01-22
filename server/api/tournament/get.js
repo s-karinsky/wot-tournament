@@ -13,7 +13,7 @@ router.get('/', async function(req, res) {
 
   if (id) {
     try {
-      const tournament = await Tournament.findById(id)
+      const tournament = await Tournament.findById(id).populate('creator')
       if (tournament.clanId && tournament.clanId !== clan_id) {
         res.json({ success: false, error: 'You have not access to this tournament' })
       } else {
@@ -43,7 +43,7 @@ router.get('/', async function(req, res) {
   }
 
   try {
-    const tournaments = await Tournament.find(filter, null, options)
+    const tournaments = await Tournament.find(filter, null, options).populate('creator')
     res.json({ success: true, tournaments })
   } catch (error) {
     res.status(400).json({ success: false, error: error.message })
