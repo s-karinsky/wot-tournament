@@ -1,6 +1,7 @@
 import express from 'express'
 import Thread from '../../models/thread.js'
 import ThreadViews from '../../models/threadViews.js'
+import User from '../../models/user.js'
 import Reply from '../../models/reply.js'
 import auth from '../../middleware/auth.js'
 
@@ -14,6 +15,13 @@ router.post('/', async function(req, res) {
 
   if (!user_id) {
     res.status(403).json({ success: false, message: 'Authorize for create thread' })
+    return
+  }
+
+  const user = await User.findById(user_id)
+  const isWriteRestrict = user.restrictions.find(item => item.type === 'write')
+  if (isWriteRestrict) {
+    res.status(403).json({ success: false, message: 'You are not allowed to write on the forum' })
     return
   }
 
@@ -47,6 +55,17 @@ router.get('/', async function(req, res) {
   const { user: { user_id, clan_id } = {} } = req.session
 
   try {
+    if (!user_id) {
+      res.status(403).json({ success: false, message: 'Authorize for create thread' })
+      return
+    }
+
+    const user = await User.findById(user_id)
+    const isReadRestrict = user.restrictions.find(item => item.type === 'read')
+    if (isReadRestrict) {
+      res.status(403).json({ success: false, message: 'You are not allowed to read the forum' })
+      return
+    }
 
     if (id) {
       const thread = await Thread.findById(id)
@@ -58,7 +77,7 @@ router.get('/', async function(req, res) {
         res.status(403).json({ success: false, error: 'Thread available for authorized users only' })
         return
       }
-      if (thread.clan && thread.clan !== clanId) {
+      if (thread.clan && thread.clan !== clan_id) {
         res.status(403).json({ success: false, error: 'You have no access to this thread' })
         return
       }

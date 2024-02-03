@@ -64,6 +64,9 @@ router.get('/', function(req, res) {
         user.banReason = ban.reason
       }
 
+      user.restrictions = userDb.restrictions
+      user.violations = userDb.violations
+
       jwt.encode(JWT_SECRET, { ...result, clan_id, user_id: userDb._id }, function(err, newToken) {
         res.cookie('token', newToken)
         res.json({ user, success: true })

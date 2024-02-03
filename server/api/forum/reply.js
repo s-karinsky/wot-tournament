@@ -1,6 +1,7 @@
 import express from 'express'
 import auth from '../../middleware/auth.js'
 import Reply from '../../models/reply.js'
+import User from '../../models/user.js'
 import Thread from '../../models/thread.js'
 
 const router = express.Router()
@@ -17,6 +18,13 @@ router.post('/', async function(req, res) {
       return
     }
   
+    const user = await User.findById(user_id)
+    const isWriteRestrict = user.restrictions.find(item => item.type === 'write')
+    if (isWriteRestrict) {
+      res.status(403).json({ success: false, message: 'You are not allowed to write on the forum' })
+      return
+    }
+
     const thread = await Thread.findById(thread_id)
   
     if (!thread || (thread.clan && thread.clan !== clan_id)) {

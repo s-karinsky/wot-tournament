@@ -16,6 +16,21 @@ const userSchema = new mongoose.Schema({
   lastVisit: {
     type: Date
   },
+  violations: {
+    type: [{
+      date: Date,
+      reason: String
+    }]
+  },
+  restrictions: {
+    type: [{
+      type: {
+        type: String,
+        enum: ['read', 'write']
+      },
+      date: Date
+    }],
+  },
   role: {
     type: String,
     enum: ['admin', 'moderator', 'user'],
