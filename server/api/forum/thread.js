@@ -90,14 +90,20 @@ router.get('/', async function(req, res) {
         return
       }
   
-      const [ threadViews, replies ] = await Promise.all([
+      const [ threadViews, replies, totalReplies ] = await Promise.all([
         ThreadViews.findOne({ user: user_id, thread: id }),
-        Reply.find({ thread: id }).populate('user').sort({ createdAt: 1 })
+        Reply
+          .find({ thread: id })
+          .sort({ createdAt: 1 })
+          .skip(skip)
+          .limit(limit)
+          .populate('user'),
+        Reply.find({ thread: id }).countDocuments()
       ])
   
       await ThreadViews.findOneAndUpdate({ user: user_id, thread: id }, { lastView: Date.now() })
   
-      res.json({ success: true, thread, lastView: threadViews, replies })
+      res.json({ success: true, thread, lastView: threadViews, replies, totalReplies })
     } else {
       const threadViews = await ThreadViews.find({ user: user_id })
       const mapThreadViews = threadViews.reduce((acc, item) => ({
