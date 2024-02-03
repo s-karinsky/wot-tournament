@@ -17,15 +17,20 @@ export default function Forum() {
   const navigate = useNavigate()
   const restrictions = useSelector(selectUserRestrictions)
   const authorized = useSelector(state => state.user.authorized)
+  const isArchive = pathname === '/forum/archive'
 
   useEffect(() => {
     axios.get(
       '/api/forum/thread',
-      { params: { skip: (page - 1) * 20, limit: page * 20 } }
+      { params: {
+        skip: (page - 1) * 20,
+        limit: page * 20,
+        archive: isArchive || undefined
+      } }
     ).then(res => {
       setThreads(res.data?.threads || [])
     })
-  }, [page])
+  }, [page, isArchive])
 
   const [ readRestrict, writeRestrict ] = useMemo(() => [
     restrictions.find(item => item.type === 'read'),
@@ -65,8 +70,18 @@ export default function Forum() {
       <Helmet>
         <title>The tank brothers. Forum</title>
       </Helmet>
+      <div className="container">
+        <ul className={styles.tabs}>
+          <li className={cn(styles.tab, { [styles.active]: !isArchive })}>
+            <Link to='/forum'>Активные темы</Link>
+          </li>
+          <li className={cn(styles.tab, { [styles.active]: isArchive })}>
+            <Link to='/forum/archive'>Архив</Link>
+          </li>
+        </ul>
+      </div>
       <div className="container content-block">
-        {authorized && !writeRestrict && <Button to='/forum/create'>Создать тему</Button>}
+        {authorized && !writeRestrict && !isArchive && <Button to='/forum/create'>Создать тему</Button>}
         <div className={styles.threads}>
           {threads.map(thread => (
             <div

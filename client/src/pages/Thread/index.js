@@ -52,7 +52,7 @@ export default function Thread() {
           {...reply}
         />)}
       </div>
-      {!writeRestrict ?
+      {!writeRestrict && !thread.closed &&
         <div className={styles.answer}>
           Форма ответа
           <ForumForm
@@ -66,7 +66,9 @@ export default function Thread() {
             }
             submitLabel='Ответить'
           />
-        </div> :
+        </div>
+      }
+      {!writeRestrict && !thread.closed &&
         <div className={styles.restrictMessage}>
           Вы ограничены в правах и не можете отвечать на сообщения {!!writeRestrict.date && `до ${dayjs(writeRestrict.date).format('DD.MM.YYYY')}`}
         </div>

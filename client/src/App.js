@@ -37,6 +37,7 @@ export default function App() {
         <Route path="/tournaments/:page?" element={<Tournaments />} />
 
         <Route path="/forum/create?" element={<Forum />} />
+        <Route path="/forum/archive" element={<Forum />} />
         <Route path="/forum/:thread" element={<Thread />} />
 
       </Routes>
