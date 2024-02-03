@@ -12,3 +12,34 @@
 .replyText {
   padding: 20px;
 }
+
+.violations {
+  margin-top: 20px;
+}
+.warnings {
+  margin-top: 5px;
+  color: #c93e3e;
+
+  svg {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+.warning {
+  display: inline-block;
+  margin-right: 5px;
+  position: relative;
+
+  &:hover:after {
+    position: absolute;
+    top: 100%;
+    transform: translateX(-50%);
+    border-radius: 5px;
+    background: #fff;
+    padding: 5px;
+    box-shadow: 0 0 2px rgba(0, 0, 0, .2);
+    content: attr(data-reason);
+    white-space: nowrap;
+  }
+}

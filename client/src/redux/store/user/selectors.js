@@ -5,3 +5,5 @@ export const selectUserTournament = createSelector(
   state => state.user.tournaments,
   (id, tournaments) => tournaments[id]
 )
+
+export const selectUserRestrictions = state => state.user.profile?.restrictions || []
