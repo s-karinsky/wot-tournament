@@ -4,6 +4,7 @@ import ThreadViews from '../../models/threadViews.js'
 import User from '../../models/user.js'
 import Reply from '../../models/reply.js'
 import auth from '../../middleware/auth.js'
+import censor from '../../utils/censor.js'
 import getSettings from '../../utils/getSettings.js'
 import updateRepliesCount from '../../utils/updateRepliesCount.js'
 
@@ -41,9 +42,12 @@ router.post('/', async function(req, res) {
 
     const threadId = thread._id
 
+    const censorReplace = await getSettings('forumCensor')
+    const censoredText = censor(text, censorReplace)
+
     const [ lastView, reply ] = await Promise.all([
       ThreadViews.create({ user: user_id, thread: threadId, lastView: createdAt }),
-      Reply.create({ thread: threadId, user: user_id, text })
+      Reply.create({ thread: threadId, user: user_id, text: censoredText })
     ])
 
     await updateRepliesCount(user_id)

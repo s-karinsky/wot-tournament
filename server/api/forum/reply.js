@@ -3,6 +3,7 @@ import Reply from '../../models/reply.js'
 import User from '../../models/user.js'
 import Thread from '../../models/thread.js'
 import auth from '../../middleware/auth.js'
+import censor from '../../utils/censor.js'
 import getSettings from '../../utils/getSettings.js'
 import updateRepliesCount from '../../utils/updateRepliesCount.js'
 
@@ -39,9 +40,12 @@ router.post('/', async function(req, res) {
       res.status(403).json({ success: false, message: 'You have no access to this thread' })
       return
     }
+
+    const censorReplace = await getSettings('forumCensor')
+    const censoredText = censor(text, censorReplace)
   
     const [ reply ] = await Promise.all([
-      Reply.create({ thread: thread_id, user: user_id, text }),
+      Reply.create({ thread: thread_id, user: user_id, text: censoredText }),
       Thread.findByIdAndUpdate(thread_id, { updatedAt: Date.now(), lastUpdateUser: user_id })
     ])
 
