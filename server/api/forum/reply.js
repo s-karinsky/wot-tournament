@@ -3,6 +3,7 @@ import Reply from '../../models/reply.js'
 import User from '../../models/user.js'
 import Thread from '../../models/thread.js'
 import auth from '../../middleware/auth.js'
+import getSettings from '../../utils/getSettings.js'
 import updateRepliesCount from '../../utils/updateRepliesCount.js'
 
 const router = express.Router()
@@ -27,6 +28,12 @@ router.post('/', async function(req, res) {
     }
 
     const thread = await Thread.findById(thread_id)
+    const maxAge = await getSettings('forumActiveThreadAge')
+
+    if (thread.closed || (maxAge && new Date().getTime() - new Date(thread.updatedAt).getTime() > maxAge)) {
+      res.status(403).json({ success: false, message: 'Thread is closed' })
+      return
+    }
   
     if (!thread || (thread.clan && thread.clan !== clan_id)) {
       res.status(403).json({ success: false, message: 'You have no access to this thread' })
@@ -38,7 +45,7 @@ router.post('/', async function(req, res) {
       Thread.findByIdAndUpdate(thread_id, { updatedAt: Date.now(), lastUpdateUser: user_id })
     ])
 
-    updateRepliesCount(user_id)
+    await updateRepliesCount(user_id)
   
     res.json({ success: true, reply })
   } catch (error) {

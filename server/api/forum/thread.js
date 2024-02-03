@@ -4,6 +4,7 @@ import ThreadViews from '../../models/threadViews.js'
 import User from '../../models/user.js'
 import Reply from '../../models/reply.js'
 import auth from '../../middleware/auth.js'
+import getSettings from '../../utils/getSettings.js'
 import updateRepliesCount from '../../utils/updateRepliesCount.js'
 
 const router = express.Router()
@@ -45,7 +46,7 @@ router.post('/', async function(req, res) {
       Reply.create({ thread: threadId, user: user_id, text })
     ])
 
-    updateRepliesCount(user_id)
+    await updateRepliesCount(user_id)
 
     res.json({ success: true, thread, reply, lastView })
   } catch (error) {
@@ -54,7 +55,7 @@ router.post('/', async function(req, res) {
 })
 
 router.get('/', async function(req, res) {
-  const { id, skip = 0, limit = 20 } = req.query
+  const { id, archive, skip = 0, limit = 20 } = req.query
   const { user: { user_id, clan_id } = {} } = req.session
 
   try {
@@ -105,12 +106,22 @@ router.get('/', async function(req, res) {
       const queryThreadOr = [{ clan: null }]
       if (clan_id) queryThreadOr.push({ clan: clan_id })
 
-      const threadsResult = await Thread.find(query)
+      let threadsResult = await Thread.find(query)
         .or(queryThreadOr)
         .sort({ updatedAt: -1 })
         .skip(skip)
         .limit(limit)
         .populate('author')
+
+      const maxAge = await getSettings('forumActiveThreadAge')
+
+      threadsResult = threadsResult.filter(thread => {
+        if (archive) {
+          return thread.closed || (maxAge && new Date().getTime() - new Date(thread.updatedAt).getTime() > maxAge)
+        } else {
+          return !thread.closed && (!maxAge || new Date().getTime() - new Date(thread.updatedAt).getTime() < maxAge)
+        }
+      })
 
       const threadsUnsorted = await Promise.all(
         threadsResult.map(thread =>

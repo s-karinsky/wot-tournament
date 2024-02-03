@@ -26,6 +26,9 @@ const threadSchema = new mongoose.Schema({
   onlyAuthorized: {
     type: Boolean,
     default: false
+  },
+  closed: {
+    type: Boolean
   }
 })
 
