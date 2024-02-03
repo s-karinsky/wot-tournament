@@ -31,6 +31,9 @@ const userSchema = new mongoose.Schema({
       date: Date
     }],
   },
+  repliesCount: {
+    type: Number
+  },
   role: {
     type: String,
     enum: ['admin', 'moderator', 'user'],

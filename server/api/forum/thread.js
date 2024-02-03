@@ -4,6 +4,7 @@ import ThreadViews from '../../models/threadViews.js'
 import User from '../../models/user.js'
 import Reply from '../../models/reply.js'
 import auth from '../../middleware/auth.js'
+import updateRepliesCount from '../../utils/updateRepliesCount.js'
 
 const router = express.Router()
 
@@ -43,6 +44,8 @@ router.post('/', async function(req, res) {
       ThreadViews.create({ user: user_id, thread: threadId, lastView: createdAt }),
       Reply.create({ thread: threadId, user: user_id, text })
     ])
+
+    updateRepliesCount(user_id)
 
     res.json({ success: true, thread, reply, lastView })
   } catch (error) {

@@ -1,8 +1,9 @@
 import express from 'express'
-import auth from '../../middleware/auth.js'
 import Reply from '../../models/reply.js'
 import User from '../../models/user.js'
 import Thread from '../../models/thread.js'
+import auth from '../../middleware/auth.js'
+import updateRepliesCount from '../../utils/updateRepliesCount.js'
 
 const router = express.Router()
 
@@ -36,6 +37,8 @@ router.post('/', async function(req, res) {
       Reply.create({ thread: thread_id, user: user_id, text }),
       Thread.findByIdAndUpdate(thread_id, { updatedAt: Date.now(), lastUpdateUser: user_id })
     ])
+
+    updateRepliesCount(user_id)
   
     res.json({ success: true, reply })
   } catch (error) {
