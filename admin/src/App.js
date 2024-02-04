@@ -4,13 +4,13 @@ import { Row } from 'antd'
 import { LoadingOutlined } from '@ant-design/icons'
 import Home from './pages/Home'
 import Layout from './components/Layout'
-import { useUser } from './utils/hooks'
+import { useProfile } from './utils/hooks'
 
 export default function App() {
-  const user = useUser()
-  const hasAccess = ['admin', 'moderator'].includes(user.data?.role)
+  const profile = useProfile()
+  const hasAccess = ['admin', 'moderator'].includes(profile.data?.role)
 
-  if (user.isLoading) {
+  if (profile.isLoading) {
     return (
       <Row style={{ height: '100vh' }} justify='center' align='middle'>
         <LoadingOutlined style={{ fontSize: '64px' }} />
