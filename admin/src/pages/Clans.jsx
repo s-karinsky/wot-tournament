@@ -1,8 +1,7 @@
 import { useMemo } from 'react'
 import { Table } from 'antd'
-import dayjs from 'dayjs'
 import { Link } from 'react-router-dom'
-import { useClans, useUsers } from '../utils/hooks'
+import { useClans } from '../utils/hooks'
 import { localeCompare, getColumnSearch } from '../utils/utils'
 
 export default function Clans() {

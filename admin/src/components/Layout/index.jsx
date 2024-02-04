@@ -15,16 +15,16 @@ const menuItems = [
     key: 'clans',
     icon: <TeamOutlined />
   },
-  {
-    label: <Link to='/forum'>Форум</Link>,
-    key: 'forum',
-    icon: <CommentOutlined />
-  },
-  {
-    label: <Link to='/settings'>Настройки</Link>,
-    key: 'settings',
-    icon: <SettingOutlined />
-  }
+  // {
+  //   label: <Link to='/forum'>Форум</Link>,
+  //   key: 'forum',
+  //   icon: <CommentOutlined />
+  // },
+  // {
+  //   label: <Link to='/settings'>Настройки</Link>,
+  //   key: 'settings',
+  //   icon: <SettingOutlined />
+  // }
 ]
 
 export default function Layout() {

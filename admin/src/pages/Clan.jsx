@@ -1,24 +1,9 @@
 import { useMemo } from 'react'
 import { useParams, Link } from 'react-router-dom'
-import { Card, Table, List, Row, Col, message, Typography } from 'antd'
-import dayjs from 'dayjs'
+import { Card, List, Row, Col, message } from 'antd'
 import BanForm from '../components/BanForm'
-import ForumRestrictions from '../components/ForumRestrictions'
-import ForumViolations from '../components/ForumViolations'
 import { useClans } from '../utils/hooks'
 import axios from '../utils/axios'
-
-const visitColumns = [
-  {
-    title: 'Дата и время',
-    dataIndex: 'date',
-    render: date => dayjs(date).format('DD.MM.YYYY hh:mm:ss')
-  },
-  {
-    title: 'IP-адрес',
-    dataIndex: 'ip'
-  }
-]
 
 export default function Clan() {
   const [ messageApi, contextHolder ] = message.useMessage()

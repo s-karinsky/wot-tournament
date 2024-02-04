@@ -1,6 +1,6 @@
 import { useMemo } from 'react'
 import { Button, Calendar, Input, Select } from 'antd'
-import { useSearchParams, useLocation } from 'react-router-dom'
+import { useSearchParams } from 'react-router-dom'
 import { SearchOutlined } from '@ant-design/icons'
 
 export default function ColumnFilter({
