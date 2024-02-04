@@ -1,10 +1,11 @@
 import { useMemo } from 'react'
 import { Table } from 'antd'
 import dayjs from 'dayjs'
+import { Link } from 'react-router-dom'
 import { useClans, useUsers } from '../utils/hooks'
 import { localeCompare, getColumnSearch } from '../utils/utils'
 
-export default function Home() {
+export default function Users() {
   const clans = useClans()
   const users = useUsers()
 
@@ -23,12 +24,13 @@ export default function Home() {
       title: 'Ник',
       dataIndex: ['user', 'nickname'],
       sorter: (a, b) => localeCompare(a.user?.nickname, b.user?.nickname),
+      render: (nick, user) => (<Link to={`/users/${user._id}`}>{nick}</Link>),
       ...getColumnSearch('nickname', { getData: item => item.user?.nickname })
     },
     {
       title: 'Клан',
       dataIndex: ['user', 'clanId'],
-      render: clan => clanById[clan]?.name,
+      render: clan => (<Link to={`/clans/${clan}`}>{clanById[clan]?.name}</Link>),
       sorter: (a, b) => localeCompare(clanById[a.user?.clanId]?.name, clanById[b.user?.clanId]?.name),
       ...getColumnSearch('clan', { getData: item => item.user?.clanId, options: clanOptions })
     },

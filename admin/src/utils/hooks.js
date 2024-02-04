@@ -1,4 +1,5 @@
 import { useQuery } from '@tanstack/react-query'
+import dayjs from 'dayjs'
 import axios from './axios'
 
 export const useProfile = () => useQuery({
@@ -13,12 +14,27 @@ export const useProfile = () => useQuery({
   }
 })
 
-export const useUsers = () => useQuery({
-  queryKey: ['users'],
+export const useUsers = (id) => useQuery({
+  queryKey: ['users', id],
   queryFn: async () => {
     try {
-      const response = await axios.get('/api/admin/users')
-      return response.data?.users || []
+      const response = await axios.get('/api/admin/users', { params: { id } })
+      if (id) {
+        if (response.data?.ban?.id) {
+          response.data.ban.banned = true
+          response.data.ban.endDate = dayjs(response.data.ban.endDate)
+        }
+        if (response.data?.user?.violations) {
+          response.data.user.violations = response.data?.user?.violations.map(item => ({ ...item, date: dayjs(item.date) }))
+        }
+        const restrictForm = (response.data?.user?.restrictions || []).reduce((acc, item) => ({
+          ...acc,
+          [item.type]: true,
+          [`${item.type}_date`]: dayjs(item.date)
+        }), {})
+        response.data.restrictions = restrictForm
+      }
+      return id ? (response.data || {}) : (response.data?.users || [])
     } catch (e) {
       return []
     }

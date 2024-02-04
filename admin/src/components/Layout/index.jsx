@@ -36,12 +36,13 @@ export default function Layout() {
           mode='horizontal'
           items={menuItems}
           style={{ flex: 1, minWidth: 0 }}
+          defaultSelectedKeys={['users']}
         />
       </Header>
-      <Content style={{ padding: '0 48px' }}>
-        <Breadcrumb style={{ margin: '16px 0' }}>
+      <Content style={{ padding: '20px 48px 0' }}>
+        {/* <Breadcrumb style={{ margin: '16px 0' }}>
           <Breadcrumb.Item>Пользователи</Breadcrumb.Item>
-        </Breadcrumb>
+        </Breadcrumb> */}
         <Outlet />
       </Content>
       <Footer style={{ textAlign: 'center' }}>

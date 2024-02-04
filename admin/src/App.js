@@ -1,8 +1,8 @@
-import { useEffect } from 'react'
 import { Route, Routes } from 'react-router-dom'
 import { Row } from 'antd'
 import { LoadingOutlined } from '@ant-design/icons'
-import Home from './pages/Home'
+import Users from './pages/Users'
+import User from './pages/User'
 import Layout from './components/Layout'
 import { useProfile } from './utils/hooks'
 
@@ -25,7 +25,9 @@ export default function App() {
   return (
     <Routes>
       <Route path='/' element={<Layout />}>
-        <Route element={<Home />} index />
+        <Route element={<Users />} index />
+        <Route path='/users' element={<Users />} />
+        <Route path='/users/:id' element={<User />} />
       </Route>
     </Routes>
   )
