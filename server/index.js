@@ -39,6 +39,7 @@ app.use(session({
   cookie: { secure: true }
 }))
 app.use(express.static(path.resolve(__dirname, '../client/build')))
+app.use('/admin', express.static(path.resolve(__dirname, '../admin/build')))
 
 app.use('/api/clan', clanRouter)
 app.use('/api/forum', forumRouter)

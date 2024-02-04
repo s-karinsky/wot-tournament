@@ -67,6 +67,7 @@ router.get('/', function(req, res) {
       user.restrictions = userDb.restrictions
       user.violations = userDb.violations
       user.repliesCount = userDb.repliesCount || 0
+      user.role = userDb.role
 
       jwt.encode(JWT_SECRET, { ...result, clan_id, user_id: userDb._id }, function(err, newToken) {
         res.cookie('token', newToken)
