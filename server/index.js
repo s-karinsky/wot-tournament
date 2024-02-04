@@ -9,6 +9,7 @@ import morgan from 'morgan'
 import session from 'express-session'
 import bodyParser from 'body-parser'
 import dbConnect from './utils/dbConnect.js'
+import adminRouter from './api/admin/index.js'
 import clanRouter from './api/clan.js'
 import forumRouter from './api/forum/index.js'
 import newsRouter from './api/news.js'
@@ -41,6 +42,7 @@ app.use(session({
 app.use(express.static(path.resolve(__dirname, '../client/build')))
 app.use('/admin', express.static(path.resolve(__dirname, '../admin/build')))
 
+app.use('/api/admin', adminRouter)
 app.use('/api/clan', clanRouter)
 app.use('/api/forum', forumRouter)
 app.use('/api/news', newsRouter)

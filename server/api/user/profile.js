@@ -1,5 +1,6 @@
 import express from 'express'
 import jwt from 'json-web-token'
+import Clan from '../../models/clan.js'
 import User from '../../models/user.js'
 import UserVisits from '../../models/userVisits.js'
 import axios from '../../utils/axios.js'
@@ -35,6 +36,18 @@ router.get('/', function(req, res) {
           accountId: account_id,
           clanId: clan_id,
           nickname
+        })
+      }
+
+      const clanDb = await Clan.findOne({ clanId: clan_id })
+      if (!clanDb) {
+        const clanResponse = await axios.get(`/clans/info/?application_id=${API_KEY}&clan_id=${clan_id}&fields=clan_id%2Cleader_id%2Cleader_name%2Cname`)
+        const clan = Object.values(clanResponse.data?.data)[0] || {}
+        Clan.create({
+          clanId: clan_id,
+          leaderId: clan.leader_id,
+          leaderName: clan.leader_name,
+          name: clan.name
         })
       }
 
