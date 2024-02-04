@@ -19,7 +19,11 @@ const userSchema = new mongoose.Schema({
   violations: {
     type: [{
       date: Date,
-      reason: String
+      reason: String,
+      reply: {
+        type: mongoose.ObjectId,
+        ref: 'Reply'
+      }
     }]
   },
   restrictions: {
