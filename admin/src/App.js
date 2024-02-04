@@ -1,6 +1,8 @@
 import { Route, Routes } from 'react-router-dom'
 import { Row } from 'antd'
 import { LoadingOutlined } from '@ant-design/icons'
+import Clans from './pages/Clans'
+import Clan from './pages/Clan'
 import Users from './pages/Users'
 import User from './pages/User'
 import Layout from './components/Layout'
@@ -28,6 +30,8 @@ export default function App() {
         <Route element={<Users />} index />
         <Route path='/users' element={<Users />} />
         <Route path='/users/:id' element={<User />} />
+        <Route path='/clans' element={<Clans />} />
+        <Route path='/clans/:id' element={<Clan />} />
       </Route>
     </Routes>
   )

@@ -24,7 +24,7 @@ export default function Users() {
       title: 'Ник',
       dataIndex: ['user', 'nickname'],
       sorter: (a, b) => localeCompare(a.user?.nickname, b.user?.nickname),
-      render: (nick, user) => (<Link to={`/users/${user._id}`}>{nick}</Link>),
+      render: (nick, user) => (<Link to={`/users/${user.user?.accountId}`}>{nick}</Link>),
       ...getColumnSearch('nickname', { getData: item => item.user?.nickname })
     },
     {
@@ -56,7 +56,6 @@ export default function Users() {
         columns={columns}
         dataSource={users.data}
         loading={users.isLoading}
-        
         pagination={{
           pageSize: 20
         }}

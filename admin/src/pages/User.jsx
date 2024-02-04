@@ -1,11 +1,24 @@
-import { useMemo, useState } from 'react'
+import { useMemo } from 'react'
 import { useParams } from 'react-router-dom'
-import { Card, List, Row, Col, message } from 'antd'
+import { Card, Table, List, Row, Col, message, Typography } from 'antd'
+import dayjs from 'dayjs'
 import BanForm from '../components/BanForm'
 import ForumRestrictions from '../components/ForumRestrictions'
 import ForumViolations from '../components/ForumViolations'
 import { useUsers } from '../utils/hooks'
 import axios from '../utils/axios'
+
+const visitColumns = [
+  {
+    title: 'Дата и время',
+    dataIndex: 'date',
+    render: date => dayjs(date).format('DD.MM.YYYY hh:mm:ss')
+  },
+  {
+    title: 'IP-адрес',
+    dataIndex: 'ip'
+  }
+]
 
 export default function User() {
   const [ messageApi, contextHolder ] = message.useMessage()
@@ -19,7 +32,7 @@ export default function User() {
     },
     {
       title: 'Клан',
-      desc: user.data?.clan.name
+      desc: user.data?.clan?.name
     },
     {
       title: 'Роль',
@@ -32,6 +45,15 @@ export default function User() {
   ].filter(item => Boolean(item.desc)), [user.data])
 
   if (user.isLoading) return null
+
+  if (Array.isArray(user.data) && !user.data.length) {
+    return (
+      <div>
+        User not found
+      </div>
+    )
+  }
+
   return (
     <Row gutter={20}>
       <Col span={6}>
@@ -103,6 +125,16 @@ export default function User() {
             }}
           />
         </Card>
+      </Col>
+      <Col span={24}>
+        <Typography.Title level={3}>Посещения</Typography.Title>
+        <Table
+          columns={visitColumns}
+          dataSource={user.data?.visits || []}
+          pagination={{
+            pageSize: 20
+          }}
+        />
       </Col>
       {contextHolder}
     </Row>

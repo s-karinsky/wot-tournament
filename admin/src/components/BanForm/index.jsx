@@ -1,6 +1,10 @@
 import { Form, Checkbox, DatePicker, Input, Button } from 'antd'
 
-export default function BanForm({ initialValues, onSubmit = () => {} }) {
+export default function BanForm({
+  initialValues,
+  checkboxText = 'Забанить пользователя на сайте',
+  onSubmit = () => {}
+}) {
   const [ form ] = Form.useForm()
 
   const banned = Form.useWatch('banned', form)
@@ -17,7 +21,7 @@ export default function BanForm({ initialValues, onSubmit = () => {} }) {
         valuePropName='checked'
       >
         <Checkbox>
-          Забанить пользователя на сайте
+          {checkboxText}
         </Checkbox>
       </Form.Item>
       {banned && <>

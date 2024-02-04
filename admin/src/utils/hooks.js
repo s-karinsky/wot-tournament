@@ -41,12 +41,18 @@ export const useUsers = (id) => useQuery({
   }
 })
 
-export const useClans = () => useQuery({
-  queryKey: ['clans'],
+export const useClans = (id) => useQuery({
+  queryKey: ['clans', id],
   queryFn: async () => {
     try {
-      const response = await axios.get('/api/admin/clans')
-      return response.data?.clans || []
+      const response = await axios.get('/api/admin/clans', { params: { id } })
+      if (id) {
+        if (response.data?.ban?.id) {
+          response.data.ban.banned = true
+          response.data.ban.endDate = dayjs(response.data.ban.endDate)
+        }
+      }
+      return id ? (response.data || {}) : (response.data?.clans || [])
     } catch (e) {
       return []
     }
