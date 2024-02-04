@@ -60,11 +60,15 @@ router.get('/', async (req, res) => {
   const { id } = req.query
 
   if (id) {
-    const user = await User.findById(id)
-    const visits = await UserVisits.find({ user: id })
-    const ban = await Ban.findOne({ type: 'user', id: user.accountId, endDate: { $gte: Date.now() } })
+    const user = await User.findOne({ accountId: id })
+    if (!user) {
+      res.status(500).json({ success: false, message: 'User not found' })
+      return
+    }
+    const visits = await UserVisits.find({ user: user._id })
+    const ban = await Ban.findOne({ type: 'user', id, endDate: { $gte: Date.now() } })
     const clan = user.clanId ? await Clan.findOne({ clanId: user.clanId }) : null
-    const tournaments = await TournamentUser.find({ user: id }).populate('tournament')
+    const tournaments = await TournamentUser.find({ user: user._id }).populate('tournament')
     res.json({ success: true, user, visits, clan, ban, tournaments })
     return
   }
