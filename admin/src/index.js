@@ -9,7 +9,7 @@ import dayjs from 'dayjs'
 import relativeTime from 'dayjs/plugin/relativeTime'
 import App from './App'
 import reportWebVitals from './reportWebVitals'
-import './index.css'  
+import './index.scss'  
 import 'dayjs/locale/ru'
 
 const queryClient = new QueryClient()

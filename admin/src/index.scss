@@ -11,3 +11,18 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.akr_label {
+  display: block;
+  cursor: pointer;
+  margin-right: 10px;
+
+  input {
+    display: none;
+  }
+
+  input:checked + img {
+    border-radius: 5px;
+    box-shadow: 0 0 5px #000;
+  }
+}
