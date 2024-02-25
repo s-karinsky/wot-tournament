@@ -42,6 +42,10 @@ const userSchema = new mongoose.Schema({
     type: String,
     enum: ['admin', 'moderator', 'user'],
     default: 'user'
+  },
+  moderatorAccess: {
+    type: [String],
+    default: []
   }
 })
 
