@@ -58,3 +58,15 @@ export const useClans = (id) => useQuery({
     }
   }
 })
+
+export const useModerators = (id) => useQuery({
+  queryKey: ['moderators', id],
+  queryFn: async () => {
+    try {
+      const response = await axios.get('/api/admin/moderator', { params: { id } })
+      return id ? (response.data?.moderator || {}) : (response.data?.moderators || [])
+    } catch (e) {
+      return []
+    }
+  }
+})

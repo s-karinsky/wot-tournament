@@ -3,6 +3,8 @@ import { Row } from 'antd'
 import { LoadingOutlined } from '@ant-design/icons'
 import Clans from './pages/Clans'
 import Clan from './pages/Clan'
+import Moderators from './pages/Moderators'
+import Moderator from './pages/Moderator'
 import Users from './pages/Users'
 import User from './pages/User'
 import Layout from './components/Layout'
@@ -32,6 +34,8 @@ export default function App() {
         <Route path='/users/:id' element={<User />} />
         <Route path='/clans' element={<Clans />} />
         <Route path='/clans/:id' element={<Clan />} />
+        <Route path='/moderators' element={<Moderators />} />
+        <Route path='/moderators/:id' element={<Moderator />} />
       </Route>
     </Routes>
   )

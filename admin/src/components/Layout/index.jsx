@@ -1,6 +1,6 @@
 import { Outlet, Link } from 'react-router-dom'
 import { Breadcrumb, Menu, Layout as AntLayout } from 'antd'
-import { CommentOutlined, SettingOutlined, TeamOutlined, UserOutlined } from '@ant-design/icons'
+import { CommentOutlined, RocketOutlined, SettingOutlined, TeamOutlined, UserOutlined, UsergroupAddOutlined } from '@ant-design/icons'
 
 const { Header, Content, Footer } = AntLayout
 
@@ -14,6 +14,16 @@ const menuItems = [
     label: <Link to='/clans'>Кланы</Link>,
     key: 'clans',
     icon: <TeamOutlined />
+  },
+  {
+    label: <Link to='/moderators'>Модераторы</Link>,
+    key: 'moderators',
+    icon: <UsergroupAddOutlined />
+  },
+  {
+    label: <Link to='/akr'>АКР</Link>,
+    key: 'akr',
+    icon: <RocketOutlined />
   },
   // {
   //   label: <Link to='/forum'>Форум</Link>,
