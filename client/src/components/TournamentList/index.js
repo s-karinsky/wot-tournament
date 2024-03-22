@@ -21,7 +21,7 @@ export default function TournamentList({ data }) {
         Cell: ({ value, row }) => (<Link to={`/tournaments/${row.original._id}`}>{value}</Link>)
       },
       {
-        Header: 'Создатель',
+        Header: 'Организатор турнира',
         accessor: 'creator',
         className: styles.cell__name,
         Cell: ({ value }) => value?.nickname

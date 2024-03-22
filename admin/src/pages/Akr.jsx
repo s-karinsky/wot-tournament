@@ -13,6 +13,11 @@ const WEEKDAYS = [
 
 const VARIANTS = Array.from({ length: 6 }, (v, i) => i + 1)
 
+// ADDITIONAL_BRIEFING
+// BATTLE_PAYMENTS
+// MILITARY_MANEUVERS
+// TACTICAL_TRAINING
+
 export default function Akr() {
   return (
     <>
@@ -37,7 +42,7 @@ export default function Akr() {
                 <Col span={4} key={i}>
                   <Input defaultValue='--:--' />
                   <Select options={[ { value: 'Опыт на танк' }, { value: 'На серебро' } ]} style={{ display: 'block', marginTop: 5 }} />
-                  <Select options={[ { value: 'Сначала мин.' }, { value: 'Снаала макс.' } ]} style={{ display: 'block', marginTop: 5 }} />
+                  <Select options={[ { value: 'Сначала мин.' }, { value: 'Сначала макс.' } ]} style={{ display: 'block', marginTop: 5 }} />
                 </Col>
               ))}
             </Row>
@@ -58,7 +63,7 @@ export default function Akr() {
                 <Col span={4} key={i}>
                   <Input defaultValue='--:--' />
                   <Select options={[ { value: 'Опыт на танк' }, { value: 'На серебро' } ]} style={{ display: 'block', marginTop: 5 }} />
-                  <Select options={[ { value: 'Сначала мин.' }, { value: 'Снаала макс.' } ]} style={{ display: 'block', marginTop: 5 }} />
+                  <Select options={[ { value: 'Сначала мин.' }, { value: 'Сначала макс.' } ]} style={{ display: 'block', marginTop: 5 }} />
                 </Col>
               ))}
             </Row>

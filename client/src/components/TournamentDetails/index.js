@@ -48,7 +48,7 @@ export default function TournamentDetails({ id, onJoin, onReset }) {
             </>}
           </div>
           {!!data.creator && <div className={styles.creator}>
-            <b>Турнир создал </b> {data.creator?.nickname}
+            <b>Организатор турнира </b> {data.creator?.nickname}
           </div>}
           <div className={styles.header}>
             Правила турнира
