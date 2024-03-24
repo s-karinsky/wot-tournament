@@ -30,6 +30,9 @@ export default function Reply({
       <div className={styles.replyInfo}>
         <b>{user.nickname}</b><br />
         {dayjs(createdAt).format('DD.MM.YYYY в HH:mm')}
+        {!!user.rank && <div>
+          <b>Ранг</b> {user.rank}
+        </div>}
         {user.violations?.length > 0 &&
           <div className={styles.violations}>
             <b>Предупреждения:</b>
