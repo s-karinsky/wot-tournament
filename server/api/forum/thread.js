@@ -43,7 +43,7 @@ router.post('/', async function(req, res) {
     const threadId = thread._id
 
     const censorReplace = await getSettings('forumCensor')
-    const censoredText = censor(text, censorReplace)
+    const censoredText = censor(text, [censorReplace])
 
     const [ lastView, reply ] = await Promise.all([
       ThreadViews.create({ user: user_id, thread: threadId, lastView: createdAt }),
@@ -97,10 +97,24 @@ router.get('/', async function(req, res) {
           .sort({ createdAt: 1 })
           .skip(skip)
           .limit(limit)
-          .populate('user'),
+          .populate('user')
+          .lean(),
         Reply.find({ thread: id }).countDocuments()
       ])
   
+      let ranks = await getSettings('forumRepliesRank')
+      ranks = ranks.sort((a, b) => a.repliesCount > b.repliesCount ? 1 : -1)
+
+      replies.forEach(reply => {
+        const user = reply.user
+        let index = ranks.findIndex(item => item.repliesCount > user.repliesCount) - 1
+        if (index < 0) {
+          user.rank = ''
+        } else {
+          user.rank = ranks[index].rank
+        }
+      })
+
       await ThreadViews.findOneAndUpdate({ user: user_id, thread: id }, { lastView: Date.now() })
   
       res.json({ success: true, thread, lastView: threadViews, replies, totalReplies })

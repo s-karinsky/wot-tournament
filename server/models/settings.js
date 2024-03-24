@@ -1,6 +1,10 @@
 import mongoose from 'mongoose'
 
 const settingsSchema = new mongoose.Schema({
+  key: {
+    type: String,
+    enum: ['forumRepliesRank', 'forumActiveThreadAge', 'forumViolations', 'forumCensor']
+  },
   forumRepliesRank: {
     type: [{
       repliesCount: Number,
@@ -10,14 +14,11 @@ const settingsSchema = new mongoose.Schema({
   forumActiveThreadAge: {
     type: Number
   },
-  forumViolations: {
-    type: [String]
-  },
   forumCensor: {
-    type: [{
+    type: {
       findWords: [String],
       replaceWith: String
-    }]
+    }
   }
 })
 
