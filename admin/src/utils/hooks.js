@@ -70,3 +70,24 @@ export const useModerators = (id) => useQuery({
     }
   }
 })
+
+export const useSettings = () => useQuery({
+  queryKey: ['settings'],
+  queryFn: async () => {
+    try {
+      const response = await axios.get('/api/admin/settings')
+      const settings =  (response.data?.settings || [])
+      const res = settings.reduce((acc, item) => ({
+        ...acc,
+        [item.key]: item
+      }), {})
+      console.log(res)
+      if (res.forumActiveThreadAge?.forumActiveThreadAge) {
+        res.forumActiveThreadAge.forumActiveThreadAge = res.forumActiveThreadAge.forumActiveThreadAge / (60 * 60 * 1000)
+      }
+      return res
+    } catch (e) {
+      return {}
+    }
+  }
+})

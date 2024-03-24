@@ -6,6 +6,7 @@ import Clans from './pages/Clans'
 import Clan from './pages/Clan'
 import Moderators from './pages/Moderators'
 import Moderator from './pages/Moderator'
+import Settings from './pages/Settings'
 import Users from './pages/Users'
 import User from './pages/User'
 import Layout from './components/Layout'
@@ -38,6 +39,7 @@ export default function App() {
         <Route path='/clans/:id' element={<Clan />} />
         <Route path='/moderators' element={<Moderators />} />
         <Route path='/moderators/:id' element={<Moderator />} />
+        <Route path='/settings' element={<Settings />} />
       </Route>
     </Routes>
   )
