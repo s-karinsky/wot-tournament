@@ -20,16 +20,16 @@ const menuItems = [
     key: 'moderators',
     icon: <UsergroupAddOutlined />
   },
-  // {
-  //   label: <Link to='/akr'>АКР</Link>,
-  //   key: 'akr',
-  //   icon: <RocketOutlined />
-  // },
-  // {
-  //   label: <Link to='/forum'>Форум</Link>,
-  //   key: 'forum',
-  //   icon: <CommentOutlined />
-  // },
+  {
+    label: <Link to='/akr'>АКР</Link>,
+    key: 'akr',
+    icon: <RocketOutlined />
+  },
+  {
+    label: <Link to='/forum'>Форум</Link>,
+    key: 'forum',
+    icon: <CommentOutlined />
+  },
   {
     label: <Link to='/settings'>Настройки</Link>,
     key: 'settings',

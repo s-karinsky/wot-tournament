@@ -1,5 +1,6 @@
-import { Fragment } from 'react'
-import { Col, Row, Typography, Input, Select } from 'antd'
+import { Fragment, useMemo } from 'react'
+import { Col, Row, Typography, TimePicker, Input, Select } from 'antd'
+import { useReserves } from '../utils/hooks'
 
 const WEEKDAYS = [
   'Понедельник',
@@ -19,6 +20,10 @@ const VARIANTS = Array.from({ length: 6 }, (v, i) => i + 1)
 // TACTICAL_TRAINING
 
 export default function Akr() {
+  const res = useReserves()
+  
+  if (res.isLoading) return null
+  
   return (
     <>
       {WEEKDAYS.map((day, num) => (
@@ -26,7 +31,25 @@ export default function Akr() {
           <Typography.Title>
             {day}
           </Typography.Title>
-          <div style={{ display: 'flex' }}>
+          <div style={{ display: 'flex', alignItems: 'stretch', gap: '10px' }}>
+            {res.data.map(item => (
+              <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', flex: '1 1 0' }}>
+                <div>
+                  <b>{item.name}</b><br /><i>{item.bonus_type}</i>
+                </div>
+                <div style={{ marginTop: 10 }}>
+                  <TimePicker placeholder='Время активации' style={{ display: 'block' }} />
+                  <Select
+                    disabled={!item.in_stock || !item.in_stock.length}
+                    options={(item.in_stock || []).map(item => ({ value: item.level, label: `Уровень ${item.level}` }))}
+                    style={{ marginTop: 10, display: 'block' }}
+                    placeholder='Уровень'
+                  />
+                </div>
+              </div>
+            ))}
+          </div>
+          {/* <div style={{ display: 'flex' }}>
             <div>
               <label className='akr_label'>
                 <input type='radio' name={`day_${num}_type_1`} />
@@ -67,7 +90,7 @@ export default function Akr() {
                 </Col>
               ))}
             </Row>
-          </div>
+          </div> */}
         </Fragment>
       ))}
     </>

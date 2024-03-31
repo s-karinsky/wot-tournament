@@ -4,6 +4,7 @@ import { LoadingOutlined } from '@ant-design/icons'
 import Akr from './pages/Akr'
 import Clans from './pages/Clans'
 import Clan from './pages/Clan'
+import Forum from './pages/Forum'
 import Moderators from './pages/Moderators'
 import Moderator from './pages/Moderator'
 import Settings from './pages/Settings'
@@ -40,6 +41,7 @@ export default function App() {
         <Route path='/moderators' element={<Moderators />} />
         <Route path='/moderators/:id' element={<Moderator />} />
         <Route path='/settings' element={<Settings />} />
+        <Route path='/forum' element={<Forum />} />
       </Route>
     </Routes>
   )

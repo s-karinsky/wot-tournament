@@ -91,3 +91,15 @@ export const useSettings = () => useQuery({
     }
   }
 })
+
+export const useReserves = () => useQuery({
+  queryKey: ['reserves'],
+  queryFn: async () => {
+    try {
+      const response = await axios.get('/api/admin/reserves')
+      return response.data?.data || []
+    } catch (e) {
+      return {}
+    }
+  }
+})
