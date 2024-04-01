@@ -10,7 +10,8 @@
     "dev": "nodemon -r dotenv/config server/index.js --ignore client/ --ignore admin/",
     "start": "node -r dotenv/config server/index.js",
     "runTournaments": "node -r dotenv/config checkTournaments.js --run",
-    "stopTournaments": "node -r dotenv/config checkTournaments.js --stop"
+    "stopTournaments": "node -r dotenv/config checkTournaments.js --stop",
+    "checkReserves": "node -r dotenv/config checkReserves.js"
   },
   "keywords": [],
   "author": "",
