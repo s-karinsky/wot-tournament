@@ -33,7 +33,7 @@ export default function App() {
     <Routes>
       <Route path='/' element={<Layout />}>
         <Route element={<Users />} index />
-        <Route path='/akr' element={<Akr />} />
+        <Route path='/akr' element={<Akr profile={profile.data} />} />
         <Route path='/users' element={<Users />} />
         <Route path='/users/:id' element={<User />} />
         <Route path='/clans' element={<Clans />} />

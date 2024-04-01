@@ -1,6 +1,7 @@
 import { useQuery } from '@tanstack/react-query'
 import dayjs from 'dayjs'
 import axios from './axios'
+import { RESERVE_TYPES } from '../consts'
 
 export const useProfile = () => useQuery({
   queryKey: ['profile'],
@@ -97,7 +98,12 @@ export const useReserves = () => useQuery({
   queryFn: async () => {
     try {
       const response = await axios.get('/api/admin/reserves')
-      return response.data?.data || []
+      const list = (response.data?.data || []).filter(item => RESERVE_TYPES.includes(item.type))
+      const initialValues = response.data?.initialValues || {}
+      return {
+        list,
+        initialValues
+      }
     } catch (e) {
       return {}
     }
