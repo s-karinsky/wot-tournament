@@ -37,7 +37,6 @@ dbConnect().then(async () => {
           level = Math[startFrom](level, stock.level)
         }
       })
-      console.log({reserve_level: level, reserve_type: type, token})
       const formData = new FormData()
       formData.append('access_token', token)
       formData.append('application_id', API_KEY)

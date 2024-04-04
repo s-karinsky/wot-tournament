@@ -12,7 +12,7 @@ const reservesSchema = new mongoose.Schema({
     required: true
   },
   time: {
-    type: String,
+    type: [String],
     required: true
   },
   type: {
