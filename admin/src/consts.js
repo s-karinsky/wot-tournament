@@ -6,4 +6,4 @@ export const MODERATOR_ACCESS = {
   forum_violations: 'Возможность выдавать предупреждения на форуме'
 }
 
-export const RESERVE_TYPES = ['ADDITIONAL_BRIEFING', 'BATTLE_PAYMENTS', 'MILITARY_MANEUVERS', 'TACTICAL_TRAINING']
+export const RESERVE_TYPES = ['MILITARY_MANEUVERS', 'ADDITIONAL_BRIEFING', 'BATTLE_PAYMENTS', 'TACTICAL_TRAINING']

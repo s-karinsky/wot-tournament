@@ -26,3 +26,23 @@ code {
     box-shadow: 0 0 5px #000;
   }
 }
+
+.akr {
+  & > div {
+    padding: 10px;
+    border: 1px solid #999;
+  }
+  & > div:first-child,
+  & > div:nth-child(3) {
+    border-right: none;
+    border-radius: 10px 0 0 10px;
+  }
+  & > div:nth-child(2) {
+    margin-right: 20px;
+  }
+  & > div:nth-child(2),
+  & > div:nth-child(4) {
+    border-left: none;
+    border-radius: 0 10px 10px 0;
+  }
+}

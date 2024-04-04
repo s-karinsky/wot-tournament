@@ -98,7 +98,7 @@ export const useReserves = () => useQuery({
   queryFn: async () => {
     try {
       const response = await axios.get('/api/admin/reserves')
-      const list = (response.data?.data || []).filter(item => RESERVE_TYPES.includes(item.type))
+      const list = (response.data?.data || []).filter(item => RESERVE_TYPES.includes(item.type)).sort((a, b) => RESERVE_TYPES.indexOf(a.type) > RESERVE_TYPES.indexOf(b.type) ? 1 : -1)
       const initialValues = response.data?.initialValues || {}
       return {
         list,
