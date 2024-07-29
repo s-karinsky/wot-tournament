@@ -41,14 +41,16 @@ router.get('/', function(req, res) {
 
       const clanDb = await Clan.findOne({ clanId: clan_id })
       if (!clanDb) {
-        const clanResponse = await axios.get(`/clans/info/?application_id=${API_KEY}&clan_id=${clan_id}&fields=clan_id%2Cleader_id%2Cleader_name%2Cname`)
-        const clan = Object.values(clanResponse.data?.data)[0] || {}
-        Clan.create({
-          clanId: clan_id,
-          leaderId: clan.leader_id,
-          leaderName: clan.leader_name,
-          name: clan.name
-        })
+        const { data: clanResponse } = await axios.get(`/clans/info/?application_id=${API_KEY}&clan_id=${clan_id}&fields=clan_id%2Cleader_id%2Cleader_name%2Cname`)
+        if (clanResponse && clanResponse?.data) {
+          const clan = Object.values(clanResponse?.data)[0] || {}
+          Clan.create({
+            clanId: clan_id,
+            leaderId: clan.leader_id,
+            leaderName: clan.leader_name,
+            name: clan.name
+          })
+        }
       }
 
       const visit  = {
