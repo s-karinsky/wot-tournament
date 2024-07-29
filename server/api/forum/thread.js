@@ -43,7 +43,7 @@ router.post('/', async function(req, res) {
     const threadId = thread._id
 
     const censorReplace = await getSettings('forumCensor')
-    const censoredText = censor(text, [censorReplace])
+    const censoredText = censorReplace ? censor(text, [censorReplace]) : text
 
     const [ lastView, reply ] = await Promise.all([
       ThreadViews.create({ user: user_id, thread: threadId, lastView: createdAt }),
@@ -61,7 +61,6 @@ router.post('/', async function(req, res) {
 router.get('/', async function(req, res) {
   const { id, archive, skip = 0, limit = 20 } = req.query
   const { user: { user_id, clan_id } = {} } = req.session
-
   try {
     if (!user_id) {
       res.status(403).json({ success: false, message: 'Authorize for create thread' })
@@ -69,7 +68,7 @@ router.get('/', async function(req, res) {
     }
 
     const user = await User.findById(user_id)
-    const isReadRestrict = user.restrictions.find(item => item.type === 'read')
+    const isReadRestrict = user.restrictions.find(item => item.type === 'read' && (!item.date || item.date.getTime() > Date.now()))
     if (isReadRestrict) {
       res.status(403).json({ success: false, message: 'You are not allowed to read the forum' })
       return
@@ -103,7 +102,7 @@ router.get('/', async function(req, res) {
       ])
   
       let ranks = await getSettings('forumRepliesRank')
-      ranks = ranks.sort((a, b) => a.repliesCount > b.repliesCount ? 1 : -1)
+      ranks = ranks ? ranks.sort((a, b) => a.repliesCount > b.repliesCount ? 1 : -1) : []
 
       replies.forEach(reply => {
         const user = reply.user
