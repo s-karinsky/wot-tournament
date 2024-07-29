@@ -42,7 +42,7 @@ router.post('/', async function(req, res) {
     }
 
     const censorReplace = await getSettings('forumCensor')
-    const censoredText = censor(text, [censorReplace])
+    const censoredText = censorReplace ? censor(text, [censorReplace]) : text
   
     const [ reply ] = await Promise.all([
       Reply.create({ thread: thread_id, user: user_id, text: censoredText }),
