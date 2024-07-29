@@ -44,7 +44,7 @@ export default function MainNav({
             {user.authorized ?
               (<span>
                 <Link className={cn(styles.accountLink)} to="/account">
-                  {role.role_i18n} {user.profile?.nickname}
+                  {role ? role.role_i18n : ''} {user.profile?.nickname}
                 </Link>
                 <br />
                 <a className={styles.logoutLink} href={`${API_URL}/api/user/logout`}>Выход</a>
